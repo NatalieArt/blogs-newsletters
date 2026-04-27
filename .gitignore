@@ -1,0 +1,19 @@
+# Dev-only build helpers, not for production
+_make_og.py
+_preview/
+assets/_favicon-preview.png
+
+# Dead assets from earlier iterations (replaced by showcase-*.mp4 / preview-*.mp4)
+assets/banner-1.*
+assets/banner-2.*
+assets/banner-3.*
+assets/banner-4.*
+assets/favicon-dark.svg
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/

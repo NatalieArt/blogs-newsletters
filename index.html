@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sogni / Index — Stories from the Supernet</title>
+<meta name="description" content="Tutorials, walkthroughs, product news, and the monthly Sogni / Sync newsletter. The home for stories from the Supernet." />
+
+<meta name="theme-color" content="#0a0e02" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#0a0e02" />
+
+<meta property="og:title" content="Sogni / Blogs &amp; Newsletters" />
+<meta property="og:description" content="Tutorials, walkthroughs, product news, and the monthly Sogni / Sync newsletter — all in one place." />
+<link rel="canonical" href="https://natalieart.github.io/blogs-newsletters/" />
+<meta property="og:image" content="assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Sogni / Blogs &amp; Newsletters — Stories from the Supernet" />
+<meta property="og:url" content="https://natalieart.github.io/blogs-newsletters/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sogni" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@sogni_protocol" />
+<meta name="twitter:title" content="Sogni / Blogs &amp; Newsletters" />
+<meta name="twitter:description" content="Tutorials, walkthroughs, product news, and the monthly Sogni / Sync newsletter." />
+<meta name="twitter:image" content="assets/og-image.jpg" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+<link rel="mask-icon" href="assets/favicon.svg" color="#00FF9D" />
+
+<!-- Brand fonts from sogni.ai -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" />
+
+<style>
+  /* ========================================================================
+     SOGNI / INDEX  ·  Compact editorial layout
+     Palette pulled from the Sogni Brand Guidelines (no orange — per request).
+     ======================================================================== */
+  :root {
+    --bg:           #0a0e02;
+    --bg-soft:      #0c1200;
+    --surface:      #11170a;
+    --surface-2:    #161e0d;
+    --line:         #243017;
+    --line-2:       #2f3d1f;
+
+    --text:         #ffffff;
+    --text-muted:   #c2cdb1;
+    --text-soft:    #8a9479;
+
+    --lime:         #00FF9D;   /* unified to mint per request */
+    --positive:     #00FF9D;
+    --magenta:      #FF00CF;
+    --cyan:         #00D3FF;
+    --violet:       #4D40FE;
+
+    --font-body:    "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-display: "Inter", "Open Sans", system-ui, sans-serif;
+    --font-mono:    "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --radius: 14px;
+    --max:    1200px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a { color: var(--lime); text-decoration: none; transition: color .15s ease; }
+  a:hover { color: #b6ff44; }
+  img { display: block; max-width: 100%; height: auto; border: 0; }
+
+  /* ============================================================
+     ATMOSPHERIC BG — softer, smaller blobs
+     ============================================================ */
+  .bg-fx {
+    position: fixed; inset: 0; z-index: -2;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(255,0,207,0.08), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0,211,255,0.08), transparent 50%),
+      linear-gradient(180deg, #0c1200 0%, #050700 100%);
+    pointer-events: none;
+  }
+  .blob {
+    position: fixed; z-index: -1; pointer-events: none;
+    border-radius: 50%; filter: blur(80px); opacity: 0.35;
+    will-change: transform;
+  }
+  .blob.b1 { width: 360px; height: 360px; top: -120px; left: -80px;  background: var(--violet);  animation: drift1 22s ease-in-out infinite; }
+  .blob.b2 { width: 320px; height: 320px; top: 40%;    right: -100px; background: var(--magenta); animation: drift2 26s ease-in-out infinite; opacity: 0.28; }
+  .blob.b3 { width: 280px; height: 280px; bottom: -100px; left: 30%; background: var(--cyan);    animation: drift3 30s ease-in-out infinite; opacity: 0.25; }
+
+  @keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(40px,60px) scale(1.08);} }
+  @keyframes drift2 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-60px,-40px) scale(1.04);} }
+  @keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(30px,-60px) scale(1.06);} }
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    background: rgba(10,14,2,0.75);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px; max-width: var(--max); margin: 0 auto;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--font-display); font-weight: 700;
+    color: var(--text); font-size: 16px; letter-spacing: -0.01em;
+    transition: filter .2s ease, opacity .15s ease;
+  }
+  .brand:hover { opacity: 0.92; }
+  .brand:hover .brand-logo { filter: drop-shadow(0 0 14px rgba(0,255,157,0.55)); }
+  .brand-logo {
+    height: 24px; width: auto; display: block;
+    color: #00FF9D;
+    filter: drop-shadow(0 0 10px rgba(0,255,157,0.35));
+    transition: filter .2s ease;
+    flex-shrink: 0;
+  }
+  .brand-divider {
+    color: var(--text-soft); font-weight: 300; font-size: 22px;
+    line-height: 1;
+    font-family: var(--font-display);
+  }
+  .brand-sub {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1;
+  }
+  .brand .slash { color: var(--text-soft); font-weight: 400; }
+  @media (max-width: 520px) {
+    .brand-logo { height: 20px; }
+    .brand-divider { font-size: 18px; }
+    .brand-sub { font-size: 10px; }
+  }
+
+  .topnav {
+    display: flex; gap: 24px; align-items: center;
+    font-family: var(--font-display); font-size: 13px; font-weight: 500;
+  }
+  .topnav a { color: var(--text-muted); transition: color .15s ease; position: relative; }
+  .topnav a.nav-link::after {
+    content: ""; position: absolute; left: 0; bottom: -5px;
+    width: 0; height: 2px; background: var(--lime);
+    transition: width .25s ease;
+  }
+  .topnav a.nav-link:hover { color: var(--text); }
+  .topnav a.nav-link:hover::after { width: 100%; }
+  .topnav .cta {
+    color: #001b00;
+    background: linear-gradient(135deg, var(--lime), var(--positive));
+    padding: 9px 16px; border-radius: 8px; font-weight: 700;
+    box-shadow: 0 6px 22px rgba(0,255,157,0.24);
+  }
+  .topnav .cta:hover { transform: translateY(-1px); color: #001b00; }
+
+  /* ===== Top-nav dropdown menus ===== */
+  .nav-item { position: relative; }
+  .nav-toggle {
+    background: none; border: 0; padding: 0; cursor: pointer;
+    color: var(--text-muted);
+    font-family: var(--font-display); font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color .15s ease;
+  }
+  .nav-toggle svg { transition: transform .25s ease; opacity: 0.7; }
+  .nav-toggle:hover { color: var(--text); }
+  .nav-toggle::after {
+    content: ""; position: absolute; left: 0; bottom: -5px;
+    width: 0; height: 2px; background: var(--lime);
+    transition: width .25s ease;
+  }
+  .nav-item:hover .nav-toggle,
+  .nav-item.open .nav-toggle { color: var(--text); }
+  .nav-item:hover .nav-toggle::after,
+  .nav-item.open .nav-toggle::after { width: 100%; }
+  .nav-item:hover .nav-toggle svg,
+  .nav-item.open .nav-toggle svg { transform: rotate(180deg); opacity: 1; }
+
+  .dropdown {
+    position: absolute; top: calc(100% + 16px); right: 0;
+    width: 380px;
+    background: rgba(15,20,5,0.96);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid var(--line-2);
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.02);
+    opacity: 0; pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .2s ease, transform .25s cubic-bezier(.2,.7,.3,1.2);
+    z-index: 60;
+  }
+  /* invisible hover bridge so the menu stays open while moving cursor */
+  .dropdown::before {
+    content: ""; position: absolute; top: -16px; left: 0; right: 0; height: 16px;
+  }
+  .nav-item:hover .dropdown,
+  .nav-item.open .dropdown {
+    opacity: 1; pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .dropdown-head {
+    padding: 6px 10px 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 6px;
+  }
+  .dropdown-eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-soft); letter-spacing: 0.16em;
+    text-transform: uppercase; font-weight: 700;
+  }
+
+  .dropdown-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--text);
+    transition: background .2s ease;
+  }
+  .dropdown-item:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+
+  .dropdown-thumb {
+    width: 64px; height: 44px; flex-shrink: 0;
+    border-radius: 7px; overflow: hidden;
+    background: #0a0a0a;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .dropdown-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .35s ease;
+  }
+  .dropdown-item:hover .dropdown-thumb img { transform: scale(1.06); }
+  .dropdown-item[data-c="magenta"]:hover .dropdown-thumb { border-color: var(--magenta); }
+  .dropdown-item[data-c="cyan"]:hover    .dropdown-thumb { border-color: var(--cyan); }
+  .dropdown-item[data-c="violet"]:hover  .dropdown-thumb { border-color: var(--violet); }
+  .dropdown-item[data-c="lime"]:hover    .dropdown-thumb { border-color: var(--lime); }
+  .dropdown-item[data-c="positive"]:hover .dropdown-thumb { border-color: var(--positive); }
+
+  .dropdown-text {
+    display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0;
+  }
+  .dropdown-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 13px; line-height: 1.3;
+    color: var(--text); letter-spacing: -0.005em;
+    /* clamp to 2 lines */
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .dropdown-meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-soft); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .dropdown-arrow {
+    color: var(--text-soft); flex-shrink: 0;
+    transition: color .2s ease, transform .2s ease;
+    opacity: 0.6;
+  }
+  .dropdown-item:hover .dropdown-arrow { opacity: 1; transform: translate(2px, -2px); }
+  .dropdown-item[data-c="magenta"]:hover .dropdown-arrow { color: var(--magenta); }
+  .dropdown-item[data-c="cyan"]:hover    .dropdown-arrow { color: var(--cyan); }
+  .dropdown-item[data-c="violet"]:hover  .dropdown-arrow { color: var(--violet); }
+  .dropdown-item[data-c="lime"]:hover    .dropdown-arrow { color: var(--lime); }
+  .dropdown-item[data-c="positive"]:hover .dropdown-arrow { color: var(--positive); }
+
+  .dropdown-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 6px;
+    padding: 11px 14px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--lime); font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .dropdown-foot:hover { color: #b6ff44; }
+  .dropdown-foot svg { transition: transform .2s ease; }
+  .dropdown-foot:hover svg { transform: translateX(4px); }
+
+  /* ============================================================
+     HERO — split: text + video collage
+     ============================================================ */
+  .hero {
+    padding: 56px 0 40px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-meta {
+    display: inline-flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-soft); letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero-meta .pill {
+    background: rgba(0,255,157,0.10);
+    border: 1px solid rgba(0,255,157,0.32);
+    color: var(--lime);
+    padding: 5px 11px; border-radius: 999px;
+    letter-spacing: 0.10em;
+  }
+  .hero h1 {
+    margin: 0 0 18px;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(36px, 5.2vw, 64px);
+    line-height: 1.0; letter-spacing: -0.025em;
+    max-width: 14ch;
+  }
+  .hero h1 .grad-1 {
+    background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .grad-2 {
+    background: linear-gradient(135deg, var(--magenta) 0%, var(--violet) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .slash-deco { color: var(--text-soft); font-weight: 300; }
+  .hero p.lead {
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6; margin: 0 0 22px; max-width: 48ch;
+  }
+  .hero .lead strong { color: var(--text); font-weight: 600; }
+  .hero-stats {
+    display: flex; gap: 28px; flex-wrap: wrap;
+    margin-top: 24px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .stat-tile b {
+    display: block;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 22px; line-height: 1; letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .stat-tile span {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-soft); text-transform: uppercase;
+    letter-spacing: 0.10em;
+  }
+  .stat-tile.l b { color: var(--lime); }
+  .stat-tile.m b { color: var(--magenta); }
+  .stat-tile.c b { color: var(--cyan); }
+  .stat-tile.v b { color: var(--violet); }
+
+  /* ===== Single showcase player on hero right side ===== */
+  .hero-visual { position: relative; }
+  .showcase {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 520px;
+    margin-left: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0a0a0a;
+    border: 1px solid var(--line);
+    box-shadow:
+      0 24px 60px rgba(0,0,0,0.45),
+      0 0 0 1px rgba(255,255,255,0.02),
+      0 0 80px -20px rgba(0,255,157,0.18);
+  }
+  .showcase-stage {
+    position: absolute; inset: 0;
+  }
+  .showcase-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    opacity: 0;
+    transition: opacity .9s ease, transform 6s ease;
+    transform: scale(1.0);
+    will-change: opacity, transform;
+  }
+  .showcase-video.active {
+    opacity: 1;
+    transform: scale(1.04);  /* slow Ken-Burns push */
+  }
+
+  /* Bottom gradient + caption overlay */
+  .showcase-overlay {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+    padding: 22px 22px 60px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.78) 100%);
+    pointer-events: none;
+    display: flex; align-items: end; justify-content: space-between;
+    gap: 16px;
+  }
+  .showcase-captions {
+    position: relative; flex: 1; min-width: 0;
+    min-height: 1.2em;
+  }
+  .showcase-cap {
+    position: absolute; left: 0; bottom: 0; right: 0;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(18px, 2.4vw, 26px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    color: #00FF9D;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .55s ease, transform .55s cubic-bezier(.2,.7,.3,1);
+    text-shadow:
+      0 2px 18px rgba(0,0,0,0.85),
+      0 0 22px rgba(0,0,0,0.55);
+  }
+  .showcase-cap.active { opacity: 1; transform: translateY(0); }
+
+  .showcase-counter {
+    font-family: var(--font-mono); font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.12em;
+    flex-shrink: 0; padding-bottom: 2px;
+  }
+  .showcase-counter-num { color: #fff; font-weight: 700; }
+
+  /* Prev / Next arrows */
+  .showcase-arrow {
+    position: absolute; top: 50%; z-index: 5;
+    transform: translateY(-50%);
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    display: grid; place-items: center;
+    cursor: pointer;
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .showcase-arrow.prev { left: 12px; }
+  .showcase-arrow.next { right: 12px; }
+  .showcase:hover .showcase-arrow { opacity: 1; pointer-events: auto; }
+  .showcase-arrow:hover {
+    background: var(--lime); color: #001b00;
+    border-color: var(--lime);
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 8px 26px rgba(0,255,157,0.32);
+  }
+  .showcase-arrow:active { transform: translateY(-50%) scale(0.97); }
+  /* On touch devices, show arrows always */
+  @media (hover: none) {
+    .showcase-arrow { opacity: 1; pointer-events: auto; }
+  }
+
+  /* While dragging */
+  .showcase.dragging { cursor: grabbing; }
+  .showcase.dragging .showcase-video.active { transition: opacity .2s ease, transform .2s ease; }
+
+  /* Dots */
+  .showcase-dots {
+    position: absolute; bottom: 18px; left: 0; right: 0; z-index: 4;
+    display: flex; justify-content: center; gap: 8px;
+    pointer-events: auto;
+  }
+  .showcase-dots .dot {
+    width: 22px; height: 3px; border-radius: 2px;
+    background: rgba(255,255,255,0.25);
+    border: 0; padding: 0; cursor: pointer;
+    transition: background .25s ease, width .25s ease;
+  }
+  .showcase-dots .dot:hover { background: rgba(255,255,255,0.45); }
+  .showcase-dots .dot.active {
+    background: var(--lime);
+    width: 36px;
+    box-shadow: 0 0 14px rgba(0,255,157,0.55);
+  }
+
+
+  /* ============================================================
+     MARQUEE TICKER
+     ============================================================ */
+  .marquee {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(0,0,0,0.4);
+    overflow: hidden;
+    padding: 14px 0;
+    margin: 36px 0 0;
+  }
+  .marquee-track {
+    display: flex; gap: 48px;
+    white-space: nowrap;
+    animation: scroll 40s linear infinite;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 15px; letter-spacing: -0.005em;
+    align-items: center;
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 48px; }
+  .marquee-track .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--magenta);
+    box-shadow: 0 0 12px var(--magenta);
+  }
+  .marquee-track .dot.alt { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+  .marquee-track .dot.alt2 { background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+  .marquee-track .dot.alt3 { background: var(--violet); box-shadow: 0 0 12px var(--violet); }
+  .marquee-track em {
+    font-style: normal; font-family: var(--font-mono);
+    font-size: 11px; color: var(--text-soft); font-weight: 400;
+    letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ============================================================
+     SECTION HEADERS
+     ============================================================ */
+  .section { padding: 56px 0; position: relative; }
+  .section-head {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: end;
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-soft); letter-spacing: 0.14em;
+    line-height: 1; padding-bottom: 8px;
+  }
+  .section-head .num b { color: var(--text); font-weight: 700; }
+  .section-head .heading h2 {
+    margin: 0;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(26px, 3.4vw, 38px);
+    letter-spacing: -0.025em; line-height: 1.05;
+  }
+  .section-head .heading .label {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 8px; font-weight: 700;
+  }
+  .section-head.blogs .label { color: var(--magenta); }
+  .section-head.blogs h2 .accent { color: var(--magenta); }
+  .section-head.news  .label  { color: var(--cyan); }
+  .section-head.news  h2 .accent { color: var(--cyan); }
+  .section-head .meta {
+    font-family: var(--font-mono); color: var(--text-soft);
+    font-size: 11px; letter-spacing: 0.05em;
+    text-align: right; padding-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  /* ============================================================
+     ARTICLE GRID — square previews, equal columns
+     ============================================================ */
+  .bento {
+    display: grid; gap: 22px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    color: inherit;
+    transition: transform .3s cubic-bezier(.2,.7,.3,1.3), border-color .25s ease, box-shadow .25s ease;
+  }
+  .card[data-accent="magenta"]:hover { border-color: var(--magenta); box-shadow: 0 18px 44px rgba(255,0,207,0.18); }
+  .card[data-accent="cyan"]:hover    { border-color: var(--cyan);    box-shadow: 0 18px 44px rgba(0,211,255,0.18); }
+  .card[data-accent="violet"]:hover  { border-color: var(--violet);  box-shadow: 0 18px 44px rgba(77,64,254,0.24); }
+  .card[data-accent="lime"]:hover    { border-color: var(--lime);    box-shadow: 0 18px 44px rgba(0,255,157,0.16); }
+  .card[data-accent="positive"]:hover{ border-color: var(--positive);box-shadow: 0 18px 44px rgba(0,255,157,0.16); }
+  .card:hover { transform: translateY(-4px); }
+
+  .card .thumb {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #161e0d, #0a0e02);
+    aspect-ratio: 1 / 1;
+  }
+  .card .thumb img,
+  .card .thumb video {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    transition: transform .6s cubic-bezier(.2,.7,.3,1);
+  }
+  .card:hover .thumb img,
+  .card:hover .thumb video { transform: scale(1.05); }
+
+  /* Variant: show full image (no crop, centered) — for app screenshots */
+  .card .thumb.thumb-contain {
+    background:
+      radial-gradient(ellipse at center, #1a1d12 0%, #0a0e02 100%);
+    display: grid;
+    place-items: center;
+  }
+  .card .thumb.thumb-contain img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%; height: 100%;
+    padding: 14px;
+  }
+  .card:hover .thumb.thumb-contain img { transform: scale(1.03); }
+  .card .thumb::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+  }
+
+  .card-num {
+    position: absolute; top: 12px; left: 14px; z-index: 3;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text); letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  }
+  .badge {
+    position: absolute; top: 12px; right: 14px; z-index: 3;
+    font-family: var(--font-display); font-size: 10px;
+    padding: 5px 10px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .badge.magenta  { background: var(--magenta); color: #fff; }
+  .badge.cyan     { background: var(--cyan);    color: #003b48; }
+  .badge.violet   { background: var(--violet);  color: #fff; }
+  .badge.lime     { background: var(--lime);    color: #001b00; }
+  .badge.positive { background: var(--positive);color: #003621; }
+
+  .card .body { padding: 20px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+
+  .card .meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-soft); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 10px;
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+  .card .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-soft); }
+  .card .meta .accent { color: var(--lime); font-weight: 700; }
+  .card[data-accent="magenta"] .meta .accent { color: var(--magenta); }
+  .card[data-accent="cyan"]    .meta .accent { color: var(--cyan); }
+  .card[data-accent="violet"]  .meta .accent { color: var(--violet); }
+  .card[data-accent="positive"] .meta .accent { color: var(--positive); }
+
+  .card h3 {
+    margin: 0 0 10px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 17px; line-height: 1.25; letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .card p {
+    margin: 0; color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 14px; line-height: 1.6;
+  }
+
+  .card .read {
+    margin-top: auto; padding-top: 16px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.08em;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-transform: uppercase; font-weight: 700;
+    color: var(--lime);
+  }
+  .card[data-accent="magenta"] .read { color: var(--magenta); }
+  .card[data-accent="cyan"]    .read { color: var(--cyan); }
+  .card[data-accent="violet"]  .read { color: var(--violet); }
+  .card[data-accent="positive"] .read { color: var(--positive); }
+  .card .read svg { transition: transform .25s ease; }
+  .card:hover .read svg { transform: translateX(4px); }
+
+  /* ============================================================
+     NEWSLETTER ROW — compact landscape covers
+     ============================================================ */
+  .news-grid {
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .news-card {
+    position: relative;
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform .3s ease, border-color .3s, box-shadow .3s;
+    color: inherit; display: block;
+    aspect-ratio: 4 / 3;
+    background: #0c1200;
+  }
+  .news-card .cover {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .news-card .cover img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .8s cubic-bezier(.2,.7,.3,1), filter .4s ease;
+    filter: saturate(1.05) brightness(0.85);
+  }
+  .news-card:hover .cover img { transform: scale(1.05); filter: saturate(1.15) brightness(1); }
+  .news-card .cover::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.0) 25%, rgba(0,0,0,0.55) 75%, rgba(10,14,2,0.92) 100%);
+  }
+  .news-card .top {
+    position: absolute; top: 12px; left: 14px; right: 14px; z-index: 2;
+    display: flex; justify-content: space-between; align-items: start;
+    gap: 10px;
+    font-family: var(--font-mono); font-size: 9px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .news-card .top .vol {
+    background: var(--lime); color: #001b00;
+    padding: 4px 9px; border-radius: 999px; font-weight: 700;
+    font-size: 9px;
+  }
+  .news-card[data-accent="positive"] .top .vol { background: var(--positive); color: #003621; }
+
+  .news-card .bottom {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    padding: 14px 16px 16px;
+  }
+  .news-card .eyebrow {
+    font-family: var(--font-mono); font-size: 9px;
+    color: var(--lime); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .news-card[data-accent="positive"] .eyebrow { color: var(--positive); }
+  .news-card h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(15px, 1.7vw, 19px);
+    line-height: 1.18; letter-spacing: -0.018em;
+    color: #fff;
+  }
+  .news-card p {
+    margin: 0 0 10px;
+    color: rgba(255,255,255,0.82);
+    font-family: var(--font-body);
+    font-size: 12px; line-height: 1.5;
+    max-width: 42ch;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-card .read {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.08em; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-transform: uppercase; color: var(--lime);
+  }
+  .news-card[data-accent="positive"] .read { color: var(--positive); }
+  .news-card .read svg { transition: transform .25s ease; }
+  .news-card:hover .read svg { transform: translateX(4px); }
+  .news-card:hover { transform: translateY(-4px); border-color: var(--lime); box-shadow: 0 18px 44px rgba(0,255,157,0.16); }
+  .news-card[data-accent="positive"]:hover { border-color: var(--positive); box-shadow: 0 18px 44px rgba(0,255,157,0.16); }
+
+  /* ============================================================
+     CTA STRIP
+     ============================================================ */
+  .cta-strip {
+    margin: 40px 0 0;
+    padding: 2px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--magenta), var(--violet) 35%, var(--cyan) 70%, var(--lime));
+    background-size: 200% 200%;
+    animation: rainbow-shift 8s ease infinite;
+  }
+  @keyframes rainbow-shift {
+    0%,100% { background-position: 0% 50%; }
+    50%     { background-position: 100% 50%; }
+  }
+  .cta-strip-inner {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 26px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .cta-strip h3 {
+    margin: 0 0 4px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 20px; letter-spacing: -0.02em; line-height: 1.2;
+  }
+  .cta-strip p {
+    margin: 0; color: var(--text-muted);
+    font-size: 14px; max-width: 60ch;
+  }
+  .cta-strip .btn {
+    background: linear-gradient(135deg, var(--lime), var(--positive));
+    color: #001b00;
+    padding: 12px 22px; border-radius: 10px;
+    font-weight: 800; font-family: var(--font-display);
+    font-size: 14px; letter-spacing: 0.01em;
+    display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 10px 28px rgba(0,255,157,0.28);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cta-strip .btn:hover { transform: translateY(-2px); color: #001b00; box-shadow: 0 14px 36px rgba(0,255,157,0.40); }
+
+  /* ============================================================
+     FOOTER — editorial closing layout
+     ============================================================ */
+  .site-footer {
+    margin-top: 80px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+    position: relative;
+    border-top: 1px solid var(--line);
+  }
+  .site-footer::before {
+    content: "";
+    position: absolute; top: -1px; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--magenta), var(--violet), var(--cyan), var(--lime));
+    background-size: 200% 100%;
+    animation: rainbow-shift 8s ease infinite;
+  }
+
+  /* ----- Hero closing statement ----- */
+  .footer-hero {
+    padding: 56px 0 50px;
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    position: relative;
+  }
+  .footer-eyebrow {
+    margin: 0 0 14px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--lime); letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .footer-tagline {
+    margin: 0 0 28px;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(26px, 3.4vw, 44px);
+    line-height: 1.05; letter-spacing: -0.025em;
+    color: #fff;
+  }
+  .footer-tagline span {
+    display: inline-block; margin: 0 6px;
+  }
+  .footer-tagline span:nth-child(1) {
+    background: linear-gradient(135deg, var(--lime), var(--cyan));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .footer-tagline span:nth-child(2) {
+    background: linear-gradient(135deg, var(--magenta), var(--violet));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .footer-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--lime), var(--positive));
+    color: #001b00 !important;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 14px; letter-spacing: 0.01em;
+    padding: 13px 24px; border-radius: 999px;
+    box-shadow: 0 10px 28px rgba(0,255,157,0.28);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .footer-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(0,255,157,0.4);
+    color: #001b00 !important;
+  }
+
+  /* ----- Main grid ----- */
+  .footer-main { padding: 60px 0 50px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 56px;
+  }
+  .footer-col { min-width: 0; }
+  .footer-brand-col { padding-right: 8px; }
+  .footer-logo-link {
+    display: inline-block; margin-bottom: 18px;
+    color: #00FF9D;
+    transition: filter .2s ease;
+  }
+  .footer-logo-link:hover { filter: drop-shadow(0 0 14px rgba(0,255,157,0.5)); }
+  .footer-logo {
+    height: 30px; width: auto; display: block;
+    color: inherit;
+    filter: drop-shadow(0 0 10px rgba(0,255,157,0.3));
+  }
+  .footer-about {
+    margin: 0;
+    color: var(--text-muted); font-size: 14px; line-height: 1.65;
+    max-width: 38ch;
+  }
+  .footer-heading {
+    margin: 0 0 20px;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--lime); letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 700;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer-links {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 14px; letter-spacing: -0.005em;
+    transition: color .2s ease, padding-left .2s ease;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .footer-links a:hover {
+    color: #fff;
+    padding-left: 4px;
+  }
+  .footer-links a::before {
+    content: "→";
+    opacity: 0; margin-right: -16px;
+    transition: opacity .2s ease, margin .2s ease, color .2s ease;
+    color: var(--lime);
+  }
+  .footer-links a:hover::before {
+    opacity: 1; margin-right: 0;
+  }
+
+  /* ----- Social pills grid ----- */
+  .social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .social-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 13px; letter-spacing: -0.005em;
+    transition: border-color .25s ease, color .25s ease, background .25s ease, transform .2s ease;
+  }
+  .social-pill svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .social-pill:hover { transform: translateY(-2px); color: #fff; }
+  /* per-platform brand colors on hover */
+  .social-pill[aria-label="Discord"]:hover     { border-color: #5865F2; background: rgba(88,101,242,0.10); color: #fff; }
+  .social-pill[aria-label="Telegram"]:hover    { border-color: #29B6F6; background: rgba(41,182,246,0.10); color: #fff; }
+  .social-pill[aria-label="X (Twitter)"]:hover { border-color: #fff;    background: rgba(255,255,255,0.06); color: #fff; }
+  .social-pill[aria-label="YouTube"]:hover     { border-color: #FF0033; background: rgba(255,0,51,0.10);  color: #fff; }
+  .social-pill[aria-label="Instagram"]:hover   { border-color: #FF00CF; background: rgba(255,0,207,0.10); color: #fff; }
+  .social-pill[aria-label="LinkedIn"]:hover    { border-color: #0A66C2; background: rgba(10,102,194,0.10);color: #fff; }
+  .social-pill[aria-label="Medium"]:hover      { border-color: var(--lime); background: rgba(0,255,157,0.10); color: #fff; }
+  .social-pill[aria-label="TikTok"]:hover       { border-color: var(--cyan); background: rgba(0,211,255,0.10); color: #fff; }
+
+  /* ----- Bottom legal bar ----- */
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding: 22px 0;
+    background: rgba(0,0,0,0.45);
+  }
+  .footer-bottom-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 14px;
+  }
+  .footer-legal-text,
+  .footer-legal-links {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-soft); letter-spacing: 0.05em;
+    display: inline-flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer-legal-text .dot-sep,
+  .footer-legal-links .dot-sep { color: var(--line-2); }
+  .footer-legal-links a {
+    color: var(--text-muted);
+    transition: color .2s ease;
+  }
+  .footer-legal-links a:hover { color: var(--lime); }
+
+  /* ----- Footer responsive ----- */
+  @media (max-width: 1080px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+      row-gap: 44px;
+    }
+    .footer-social-col {
+      grid-column: 1 / -1;
+    }
+    .social-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 760px) {
+    .footer-hero { padding: 56px 0 50px; }
+    .footer-tagline span { margin: 0 4px; display: block; }
+    .footer-main { padding: 50px 0 40px; }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    .footer-brand-col { grid-column: 1 / -1; }
+    .footer-social-col { grid-column: 1 / -1; }
+    .social-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-bottom-inner { justify-content: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-visual { order: -1; }
+    .showcase { max-width: 480px; margin: 0 auto; }
+    .bento { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ============================================================
+     MOBILE  ≤720px
+     ============================================================ */
+  @media (max-width: 720px) {
+    .bento { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; max-width: 460px; }
+    .nav-item { display: none; }
+    .topnav { gap: 12px; }
+    .topnav .cta { padding: 8px 14px; font-size: 12px; }
+    .dropdown { width: 90vw; right: -8px; }
+
+    /* Hero — tighter rhythm */
+    .hero { padding: 32px 0 24px; }
+    .hero h1 { font-size: clamp(32px, 8vw, 44px); margin-bottom: 14px; }
+    .hero p.lead { font-size: 15px; }
+    .hero-meta { font-size: 10px; gap: 10px; margin-bottom: 16px; }
+    .hero-stats { gap: 14px; padding-top: 14px; margin-top: 18px; }
+    .stat-tile b { font-size: 18px; }
+
+    /* Showcase player */
+    .showcase { border-radius: 14px; }
+    .showcase-cap { font-size: 18px; }
+    .showcase-arrow { width: 36px; height: 36px; }
+    .showcase-arrow svg { width: 16px; height: 16px; }
+
+    /* Marquee */
+    .marquee { padding: 12px 0; margin-top: 28px; }
+    .marquee-track { font-size: 13px; gap: 28px; }
+    .marquee-track span { gap: 28px; }
+
+    /* Section heads */
+    .section { padding: 40px 0; }
+    .section-head { grid-template-columns: 1fr; gap: 6px; padding-bottom: 14px; margin-bottom: 24px; }
+    .section-head .num { padding-bottom: 0; }
+    .section-head .meta { text-align: left; padding-bottom: 0; }
+    .section-head .heading h2 { font-size: clamp(24px, 6vw, 30px); }
+
+    /* Cards */
+    .card .body { padding: 16px 16px 18px; }
+    .card h3 { font-size: 16px; }
+    .card p { font-size: 13px; }
+    .card .read { font-size: 11px; padding-top: 14px; }
+    .card .meta { font-size: 9px; gap: 8px; }
+    .badge { font-size: 9px; padding: 4px 8px; }
+
+    /* News cards */
+    .news-card .top { top: 10px; left: 12px; right: 12px; }
+    .news-card .bottom { padding: 12px 14px 14px; }
+    .news-card h3 { font-size: 16px; }
+    .news-card p { font-size: 12px; }
+
+    /* CTA */
+    .cta-strip { margin-top: 32px; }
+    .cta-strip-inner { padding: 22px; flex-direction: column; align-items: flex-start; }
+    .cta-strip h3 { font-size: 18px; }
+    .cta-strip .btn { width: 100%; justify-content: center; }
+
+    /* Footer */
+    .footer-hero { padding: 44px 0 40px; }
+    .footer-tagline { font-size: clamp(22px, 6vw, 32px); }
+    .footer-tagline span { display: block; margin: 0; }
+    .footer-eyebrow { font-size: 9px; }
+    .footer-cta { padding: 12px 22px; font-size: 13px; }
+    .footer-main { padding: 40px 0 30px; }
+    .footer-bottom { padding: 18px 0; }
+    .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .footer-legal-text, .footer-legal-links { font-size: 10px; }
+
+    /* Reduce blob noise on mobile (perf) */
+    .blob.b3 { display: none; }
+    .blob { opacity: 0.22; }
+  }
+
+  /* ============================================================
+     SMALL MOBILE  ≤520px
+     ============================================================ */
+  @media (max-width: 520px) {
+    .container { padding: 0 16px; }
+    .topbar-inner { padding: 12px 16px; }
+    .topnav .cta { padding: 7px 12px; font-size: 11px; }
+    .brand-sub { display: none; } /* keep just the wordmark on tiny screens */
+    .brand-divider { display: none; }
+    .brand-logo { height: 22px; }
+
+    /* Hero stats: 2x2 stays, but tighter */
+    .hero-stats { padding: 14px; gap: 12px; }
+    .stat-tile { padding: 4px 6px; }
+    .stat-tile b { font-size: 17px; margin-bottom: 2px; }
+    .stat-tile span { font-size: 9px; }
+
+    .cta-strip-inner { padding: 20px; gap: 14px; }
+    .cta-strip h3 { font-size: 17px; }
+    .cta-strip p { font-size: 13px; }
+
+    .marquee-track { font-size: 12px; gap: 22px; }
+    .marquee-track span { gap: 22px; }
+    .marquee-track em { font-size: 10px; }
+
+    /* Footer social: stay 2 columns and full-width */
+    .social-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .social-pill { padding: 9px 10px; font-size: 12px; }
+    .social-pill svg { width: 14px; height: 14px; }
+  }
+
+  /* ============================================================
+     EXTRA-TIGHT  ≤380px (older phones)
+     ============================================================ */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 30px; }
+    .stat-tile b { font-size: 16px; }
+    .news-card h3 { font-size: 15px; }
+    .footer-tagline { font-size: 24px; }
+  }
+
+  /* ============================================================
+     REDUCED MOTION — respect user preference
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .blob { animation: none !important; }
+    .marquee-track { animation: none !important; }
+    .showcase-video.active { transform: none !important; }
+  }
+
+  /* ============================================================
+     REVEAL ON SCROLL
+     ============================================================ */
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+
+<body>
+
+<!-- Background FX -->
+<div class="bg-fx"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://www.sogni.ai" target="_blank" rel="noopener" aria-label="Go to sogni.ai">
+      <!-- Official Sogni wordmark, sourced from sogni.ai -->
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 387 160" aria-hidden="true">
+        <path fill="currentColor" d="M17.2,106.99c5.33,2.29,11.3,3.41,17.95,3.41,7.03,0,13.11-1.33,18.23-3.98,5.23-2.75,9.17-6.34,11.82-10.81,2.76-4.44,4.12-9.19,4.12-14.2,0-6.24-1.47-11.22-4.43-14.92-2.86-3.8-6.36-6.57-10.53-8.37-4.09-1.8-9.4-3.59-15.96-5.39-4.94-1.34-8.83-2.57-11.69-3.7-2.86-1.13-5.23-2.64-7.13-4.54-1.8-1.98-2.7-4.49-2.7-7.52,0-4.44,1.47-7.86,4.4-10.22,2.94-2.36,6.75-3.54,11.41-3.54,5.12,0,9.27,1.28,12.39,3.83,3.14,2.57,4.84,5.62,5.12,9.24h17.95c-.67-8.34-4.09-14.87-10.25-19.62-6.08-4.83-13.9-7.24-23.51-7.24-6.75,0-12.67,1.13-17.82,3.41-5.12,2.29-9.11,5.55-11.97,9.81C1.73,26.91.31,31.89.31,37.56c0,6.16,1.42,11.09,4.27,14.76,2.86,3.7,6.28,6.44,10.25,8.24,4.09,1.69,9.35,3.42,15.81,5.11,5.12,1.34,9.11,2.57,11.97,3.7,2.94,1.13,5.36,2.75,7.26,4.83,1.98,2.08,2.99,4.78,2.99,8.09,0,4.26-1.57,7.75-4.71,10.5-3.14,2.64-7.49,3.98-13.11,3.98s-9.63-1.36-12.67-4.11c-2.94-2.75-4.61-6.24-5-10.5H0c0,5.67,1.52,10.66,4.56,14.92,3.04,4.26,7.21,7.57,12.54,9.94l.1-.03ZM102.48,105.71c5.97,3.31,12.67,4.98,20.08,4.98s14.34-1.67,20.52-4.98c6.28-3.42,11.2-8.19,14.83-14.35,3.6-6.16,5.41-13.22,5.41-21.16s-1.75-15.02-5.28-21.16c-3.53-6.14-8.32-10.89-14.39-14.2-6.08-3.31-12.87-4.98-20.37-4.98s-14.29,1.67-20.37,4.98c-6.08,3.31-10.87,8.06-14.39,14.2-3.53,6.16-5.28,13.22-5.28,21.16s1.7,15.15,5.12,21.31c3.42,6.06,8.11,10.81,14.11,14.2ZM134.25,93.64c-3.61,1.98-7.49,2.98-11.69,2.98-6.54,0-12.03-2.29-16.38-6.83-4.27-4.65-6.41-11.17-6.41-19.62,0-5.67,1.06-10.48,3.14-14.35,2.08-3.98,4.89-6.96,8.39-8.96,3.61-1.98,7.49-2.98,11.69-2.98s8.08,1,11.69,2.98c3.6,1.98,6.51,4.98,8.7,8.96,2.19,3.88,3.27,8.68,3.27,14.35s-1.13,10.5-3.42,14.48c-2.29,3.98-5.28,6.96-8.99,8.96v.03ZM227.1,33.53c-4.66-2.46-10.02-3.7-16.09-3.7-6.85,0-13.11,1.69-18.8,5.11-5.61,3.31-10.07,8.01-13.39,14.07-3.22,6.06-4.84,13.02-4.84,20.88s1.62,14.92,4.84,21.16c3.32,6.16,7.78,10.99,13.39,14.48,5.69,3.42,11.97,5.11,18.8,5.11,5.97,0,11.3-1.23,15.96-3.7,4.74-2.57,8.5-5.67,11.25-9.37v13.07c0,7.57-2.03,13.35-6.13,17.33-3.99,3.98-9.27,5.96-15.81,5.96-5.61,0-10.45-1.28-14.52-3.83-3.99-2.46-6.59-5.72-7.83-9.81h-16.09c.95,8.53,4.94,15.25,11.97,20.18,7.03,5.03,15.86,7.52,26.5,7.52,7.98,0,14.81-1.62,20.52-4.83,5.79-3.21,10.22-7.68,13.26-13.35,3.04-5.6,4.56-11.99,4.56-19.18V31.07h-16.38v11.37c-2.65-3.59-6.36-6.57-11.12-8.96l-.05.05ZM234.8,56.13c2.29,3.98,3.42,8.68,3.42,14.07s-1.13,10.14-3.42,14.2c-2.19,3.98-5.07,7.01-8.7,9.09-3.61,2.08-7.49,3.13-11.69,3.13s-7.98-1.05-11.69-3.13c-3.6-2.18-6.57-5.32-8.83-9.37-2.19-4.08-3.27-8.81-3.27-14.2s1.08-10.04,3.27-13.92c2.29-3.98,5.23-6.96,8.83-8.96,3.6-2.08,7.49-3.13,11.69-3.13s8.08,1.05,11.69,3.13c3.6,2.08,6.51,5.11,8.7,9.09ZM332.08,33.69c-4.84-2.57-10.35-3.83-16.53-3.83-4.66,0-9.06.9-13.26,2.7-4.09,1.8-7.47,4.31-10.12,7.52v-8.96h-16.25v78.29h16.25v-43.75c0-7.01,1.75-12.35,5.28-16.05,3.61-3.8,8.45-5.67,14.52-5.67s10.87,1.9,14.39,5.67c3.5,3.7,5.28,9.04,5.28,16.05v43.75h16.09v-46.17c0-7.11-1.37-13.17-4.12-18.18-2.76-5.03-6.59-8.81-11.54-11.37ZM369.34,17.77c1.98,1.98,4.45,2.98,7.42,2.98s5.28-1,7.26-2.98c1.98-1.98,2.99-4.44,2.99-7.39s-1-5.39-2.99-7.39c-1.98-1.98-4.43-2.98-7.26-2.98s-5.41,1-7.42,2.98c-1.98,1.98-2.99,4.44-2.99,7.39s1,5.39,2.99,7.39ZM384.71,109.41V31.12h-16.25v78.29h16.25Z"/>
+      </svg>
+      <span class="brand-divider">/</span>
+      <span class="brand-sub">Blogs &amp; Newsletters</span>
+    </a>
+    <nav class="topnav">
+
+      <!-- BLOGS dropdown -->
+      <div class="nav-item has-menu">
+        <button class="nav-link nav-toggle" aria-haspopup="true" aria-expanded="false">
+          Blogs
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-head">
+            <span class="dropdown-eyebrow">// Latest articles</span>
+          </div>
+          <a class="dropdown-item" data-c="magenta" href="https://natalieart.github.io/architectural-renders/" target="_blank" rel="noopener" role="menuitem">
+            <span class="dropdown-thumb"><img src="https://natalieart.github.io/architectural-renders/assets/banner-start.png" alt="" loading="lazy" /></span>
+            <span class="dropdown-text">
+              <span class="dropdown-title">Why You No Longer Need to Outsource Your Architectural Renders</span>
+              <span class="dropdown-meta">Tutorial · Architecture</span>
+            </span>
+            <svg class="dropdown-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a class="dropdown-item" data-c="cyan" href="https://natalieart.github.io/creative-assistant/" target="_blank" rel="noopener" role="menuitem">
+            <span class="dropdown-thumb"><img src="https://natalieart.github.io/creative-assistant/assets/5-edit-complete.png" alt="" loading="lazy" /></span>
+            <span class="dropdown-text">
+              <span class="dropdown-title">Meet the New Creative Assistant in Sogni Studio / Pro</span>
+              <span class="dropdown-meta">Product · AI Workflows</span>
+            </span>
+            <svg class="dropdown-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a class="dropdown-item" data-c="violet" href="https://natalieart.github.io/frames/" target="_blank" rel="noopener" role="menuitem">
+            <span class="dropdown-thumb"><img src="https://natalieart.github.io/frames/assets/article-coffee-frames/banner-starting-ending-frames.png" alt="" loading="lazy" /></span>
+            <span class="dropdown-text">
+              <span class="dropdown-title">Starting &amp; Ending Frames</span>
+              <span class="dropdown-meta">Tutorial · Video &amp; Motion</span>
+            </span>
+            <svg class="dropdown-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a class="dropdown-foot" href="#blogs">View all blogs <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+
+      <!-- NEWSLETTERS dropdown -->
+      <div class="nav-item has-menu">
+        <button class="nav-link nav-toggle" aria-haspopup="true" aria-expanded="false">
+          Newsletters
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-head">
+            <span class="dropdown-eyebrow">// Sogni / Sync editions</span>
+          </div>
+          <a class="dropdown-item" data-c="lime" href="https://news.sogni.ai/sogni-sync/19.html" target="_blank" rel="noopener" role="menuitem">
+            <span class="dropdown-thumb"><img src="https://news.sogni.ai/sogni-sync/assets/19/sogni-time.jpg" alt="" loading="lazy" /></span>
+            <span class="dropdown-text">
+              <span class="dropdown-title">Season 6 is live</span>
+              <span class="dropdown-meta">Volume 19 · February '26</span>
+            </span>
+            <svg class="dropdown-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a class="dropdown-item" data-c="positive" href="https://news.sogni.ai/sogni-sync/18.html" target="_blank" rel="noopener" role="menuitem">
+            <span class="dropdown-thumb"><img src="https://news.sogni.ai/sogni-sync/assets/18/sogni_tzapac_overeasy_kontext.jpg" alt="" loading="lazy" /></span>
+            <span class="dropdown-text">
+              <span class="dropdown-title">2025: The Year Sogni Came Alive</span>
+              <span class="dropdown-meta">Volume 18 · January '26</span>
+            </span>
+            <svg class="dropdown-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a class="dropdown-foot" href="https://news.sogni.ai/sogni-sync/" target="_blank" rel="noopener">All editions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+
+      <a class="cta" href="https://www.sogni.ai/#wf-form-Marketing-Email-Signup" target="_blank" rel="noopener">Subscribe</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <div class="hero-meta">
+          <span class="pill">Learn with Sogni</span>
+          <span>A regular dose of knowledge</span>
+        </div>
+
+        <h1>
+          <span class="grad-1">Stories</span>
+          <span class="slash-deco">/</span>
+          from the <span class="grad-2">Supernet.</span>
+        </h1>
+
+        <p class="lead">
+          <strong>Hands-on tutorials, deep walkthroughs, and the monthly Sogni / Sync.</strong>
+          Written by artists for artists — pick up new techniques, see what just shipped,
+          and find your next idea.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-tile l"><b data-stat="creations">157M+</b><span>Creations</span></div>
+          <div class="stat-tile m"><b data-stat="artists">89.5K</b><span>Artists</span></div>
+          <div class="stat-tile c"><b data-stat="gpus">1.1K</b><span>GPUs</span></div>
+          <div class="stat-tile v"><b>5</b><span>Stories</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="showcase" data-current="0">
+          <div class="showcase-stage">
+            <video class="showcase-video active" data-i="0" src="assets/showcase-1.mp4" poster="assets/showcase-1.jpg" autoplay loop muted playsinline preload="metadata"></video>
+            <video class="showcase-video"        data-i="1" src="assets/showcase-2.mp4" poster="assets/showcase-2.jpg" loop muted playsinline preload="none"></video>
+            <video class="showcase-video"        data-i="2" src="assets/showcase-3.mp4" poster="assets/showcase-3.jpg" loop muted playsinline preload="none"></video>
+            <video class="showcase-video"        data-i="3" src="assets/showcase-4.mp4" poster="assets/showcase-4.jpg" loop muted playsinline preload="none"></video>
+            <video class="showcase-video"        data-i="4" src="assets/showcase-5.mp4" poster="assets/showcase-5.jpg" loop muted playsinline preload="none"></video>
+            <video class="showcase-video"        data-i="5" src="assets/showcase-6.mp4" poster="assets/showcase-6.jpg" loop muted playsinline preload="none"></video>
+          </div>
+
+          <!-- Caption overlay -->
+          <div class="showcase-overlay">
+            <div class="showcase-captions">
+              <span class="showcase-cap active" data-i="0" data-c="lime">Create freely.</span>
+              <span class="showcase-cap"        data-i="1" data-c="cyan">Power to the artists.</span>
+              <span class="showcase-cap"        data-i="2" data-c="magenta">Pro tools, anyone can master.</span>
+              <span class="showcase-cap"        data-i="3" data-c="violet">Private. Uncensored. Yours.</span>
+              <span class="showcase-cap"        data-i="4" data-c="cyan">Powered by the Supernet.</span>
+              <span class="showcase-cap"        data-i="5" data-c="lime">Freedom Coded.</span>
+            </div>
+            <div class="showcase-counter"><span class="showcase-counter-num">01</span><span class="showcase-counter-sep"> / </span><span class="showcase-counter-tot">06</span></div>
+          </div>
+
+          <!-- Prev / next arrows -->
+          <button class="showcase-arrow prev" type="button" aria-label="Previous">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="showcase-arrow next" type="button" aria-label="Next">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
+          <!-- Dots -->
+          <div class="showcase-dots" role="tablist" aria-label="Showcase navigation">
+            <button class="dot active" data-i="0" aria-label="Show 1" type="button"></button>
+            <button class="dot"        data-i="1" aria-label="Show 2" type="button"></button>
+            <button class="dot"        data-i="2" aria-label="Show 3" type="button"></button>
+            <button class="dot"        data-i="3" aria-label="Show 4" type="button"></button>
+            <button class="dot"        data-i="4" aria-label="Show 5" type="button"></button>
+            <button class="dot"        data-i="5" aria-label="Show 6" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>
+        <span class="dot"></span> Freedom to Create
+        <em>// Power to Earn</em>
+        <span class="dot alt"></span> Creative AI × DePIN
+        <em>// 100% Decentralized</em>
+        <span class="dot alt2"></span> Pro Tools That Anyone Can Master
+        <em>// Powered by the Supernet</em>
+        <span class="dot alt3"></span> Freedom Coded.
+        <em>// The artists are our stars</em>
+      </span>
+      <span aria-hidden="true">
+        <span class="dot"></span> Freedom to Create
+        <em>// Power to Earn</em>
+        <span class="dot alt"></span> Creative AI × DePIN
+        <em>// 100% Decentralized</em>
+        <span class="dot alt2"></span> Pro Tools That Anyone Can Master
+        <em>// Powered by the Supernet</em>
+        <span class="dot alt3"></span> Freedom Coded.
+        <em>// The artists are our stars</em>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOGS -->
+<section class="section" id="blogs">
+  <div class="container">
+    <div class="section-head blogs reveal">
+      <div class="num">SECTION <b>01</b></div>
+      <div class="heading">
+        <div class="label">// Blogs</div>
+        <h2>Read <span class="accent">/</span> Tutorials &amp; walkthroughs</h2>
+      </div>
+    </div>
+
+    <div class="bento">
+
+      <a class="card reveal" data-accent="magenta" href="https://natalieart.github.io/architectural-renders/" target="_blank" rel="noopener">
+        <div class="thumb">
+          <span class="card-num">No. 01</span>
+          <span class="badge magenta">Tutorial</span>
+          <video class="card-video" src="assets/preview-architectural.mp4" poster="assets/preview-architectural.jpg" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="body">
+          <div class="meta">
+            <span class="accent">Architecture</span><span class="dot"></span>
+            <span>From sketch to final product</span>
+          </div>
+          <h3>Why You No Longer Need to Outsource Your Architectural Renders</h3>
+          <p>Start with one sketch, turn it into a polished render, expand into multiple camera angles, finish with a reveal video.</p>
+          <span class="read">
+            Read blog
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="card reveal" data-accent="cyan" href="https://natalieart.github.io/creative-assistant/" target="_blank" rel="noopener">
+        <div class="thumb thumb-contain">
+          <span class="card-num">No. 02</span>
+          <span class="badge cyan">Product</span>
+          <img src="https://natalieart.github.io/creative-assistant/assets/5-edit-complete.png" alt="Meet the New Creative Assistant in Sogni Studio / Pro" loading="lazy" />
+        </div>
+        <div class="body">
+          <div class="meta">
+            <span class="accent">Studio</span><span class="dot"></span>
+            <span>AI Workflows</span>
+          </div>
+          <h3>Meet the New Creative Assistant in Sogni Studio / Pro</h3>
+          <p>Agent, Guided, and Manual modes — handle multi-step workflows and get ready outputs with suggested next actions.</p>
+          <span class="read">
+            Read blog
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="card reveal" data-accent="violet" href="https://natalieart.github.io/frames/" target="_blank" rel="noopener">
+        <div class="thumb">
+          <span class="card-num">No. 03</span>
+          <span class="badge violet">Tutorial</span>
+          <video class="card-video" src="assets/preview-frames.mp4" poster="assets/preview-frames.jpg" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="body">
+          <div class="meta">
+            <span class="accent">Video</span><span class="dot"></span>
+            <span>Frames Power</span>
+          </div>
+          <h3>Starting &amp; Ending Frames</h3>
+          <p>Anchor motion, maintain continuity across clips, and build longer sequences that stitch cleanly in Mixer and Timeline.</p>
+          <span class="read">
+            Read blog
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTERS -->
+<section class="section" id="newsletters">
+  <div class="container">
+    <div class="section-head news reveal">
+      <div class="num">SECTION <b>02</b></div>
+      <div class="heading">
+        <div class="label">// Newsletters</div>
+        <h2>Sogni <span class="accent">/</span> Sync</h2>
+      </div>
+      <div class="meta">Volumes 18 &amp; 19<br/>2026</div>
+    </div>
+
+    <div class="news-grid">
+
+      <a class="news-card reveal" data-accent="lime" href="https://news.sogni.ai/sogni-sync/19.html" target="_blank" rel="noopener">
+        <div class="cover">
+          <img src="https://news.sogni.ai/sogni-sync/assets/19/sogni-time.jpg" alt="Sogni Sync Volume 19 — February 2026" loading="lazy" />
+        </div>
+        <div class="top">
+          <span>Sogni / Sync</span>
+          <span class="vol">Vol 19</span>
+        </div>
+        <div class="bottom">
+          <div class="eyebrow">February '26 Edition</div>
+          <h3>Season 6 is live</h3>
+          <p>New video tools, Clip Mixer pro features, multi-angle Photobooth, Sogni 360 orbit videos, and faster, sharper models.</p>
+          <span class="read">
+            Read newsletter
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="news-card reveal" data-accent="positive" href="https://news.sogni.ai/sogni-sync/18.html" target="_blank" rel="noopener">
+        <div class="cover">
+          <img src="https://news.sogni.ai/sogni-sync/assets/18/sogni_tzapac_overeasy_kontext.jpg" alt="Sogni Sync Volume 18 — January 2026" loading="lazy" />
+        </div>
+        <div class="top">
+          <span>Sogni / Sync</span>
+          <span class="vol">Vol 18</span>
+        </div>
+        <div class="bottom">
+          <div class="eyebrow">January '26 Edition</div>
+          <h3>2025: The Year Sogni Came Alive</h3>
+          <p>From 1M to 150M creations, $4M raised, and 1,000+ GPUs — plus what's next for 2026.</p>
+          <span class="read">
+            Read newsletter
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="cta-strip reveal">
+      <div class="cta-strip-inner">
+        <div>
+          <h3>Get Sogni / Sync in your inbox.</h3>
+          <p>One short email a month. Product drops, tutorials, creator spotlights, and the network's biggest moments.</p>
+        </div>
+        <a class="btn" href="https://www.sogni.ai/#wf-form-Marketing-Email-Signup" target="_blank" rel="noopener">
+          Subscribe
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+  <!-- Closing statement / signoff -->
+  <div class="footer-hero">
+    <div class="container">
+      <p class="footer-eyebrow">// Stories from the Supernet</p>
+      <h2 class="footer-tagline">
+        <span>Create freely.</span>
+        <span>Read openly.</span>
+      </h2>
+      <a class="footer-cta" href="https://app.sogni.ai/create" target="_blank" rel="noopener">
+        Start creating
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Main footer grid -->
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand column -->
+        <div class="footer-col footer-brand-col">
+          <a href="https://www.sogni.ai" target="_blank" rel="noopener" class="footer-logo-link" aria-label="Go to sogni.ai">
+            <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 387 160" aria-hidden="true">
+              <path fill="currentColor" d="M17.2,106.99c5.33,2.29,11.3,3.41,17.95,3.41,7.03,0,13.11-1.33,18.23-3.98,5.23-2.75,9.17-6.34,11.82-10.81,2.76-4.44,4.12-9.19,4.12-14.2,0-6.24-1.47-11.22-4.43-14.92-2.86-3.8-6.36-6.57-10.53-8.37-4.09-1.8-9.4-3.59-15.96-5.39-4.94-1.34-8.83-2.57-11.69-3.7-2.86-1.13-5.23-2.64-7.13-4.54-1.8-1.98-2.7-4.49-2.7-7.52,0-4.44,1.47-7.86,4.4-10.22,2.94-2.36,6.75-3.54,11.41-3.54,5.12,0,9.27,1.28,12.39,3.83,3.14,2.57,4.84,5.62,5.12,9.24h17.95c-.67-8.34-4.09-14.87-10.25-19.62-6.08-4.83-13.9-7.24-23.51-7.24-6.75,0-12.67,1.13-17.82,3.41-5.12,2.29-9.11,5.55-11.97,9.81C1.73,26.91.31,31.89.31,37.56c0,6.16,1.42,11.09,4.27,14.76,2.86,3.7,6.28,6.44,10.25,8.24,4.09,1.69,9.35,3.42,15.81,5.11,5.12,1.34,9.11,2.57,11.97,3.7,2.94,1.13,5.36,2.75,7.26,4.83,1.98,2.08,2.99,4.78,2.99,8.09,0,4.26-1.57,7.75-4.71,10.5-3.14,2.64-7.49,3.98-13.11,3.98s-9.63-1.36-12.67-4.11c-2.94-2.75-4.61-6.24-5-10.5H0c0,5.67,1.52,10.66,4.56,14.92,3.04,4.26,7.21,7.57,12.54,9.94l.1-.03ZM102.48,105.71c5.97,3.31,12.67,4.98,20.08,4.98s14.34-1.67,20.52-4.98c6.28-3.42,11.2-8.19,14.83-14.35,3.6-6.16,5.41-13.22,5.41-21.16s-1.75-15.02-5.28-21.16c-3.53-6.14-8.32-10.89-14.39-14.2-6.08-3.31-12.87-4.98-20.37-4.98s-14.29,1.67-20.37,4.98c-6.08,3.31-10.87,8.06-14.39,14.2-3.53,6.16-5.28,13.22-5.28,21.16s1.7,15.15,5.12,21.31c3.42,6.06,8.11,10.81,14.11,14.2ZM134.25,93.64c-3.61,1.98-7.49,2.98-11.69,2.98-6.54,0-12.03-2.29-16.38-6.83-4.27-4.65-6.41-11.17-6.41-19.62,0-5.67,1.06-10.48,3.14-14.35,2.08-3.98,4.89-6.96,8.39-8.96,3.61-1.98,7.49-2.98,11.69-2.98s8.08,1,11.69,2.98c3.6,1.98,6.51,4.98,8.7,8.96,2.19,3.88,3.27,8.68,3.27,14.35s-1.13,10.5-3.42,14.48c-2.29,3.98-5.28,6.96-8.99,8.96v.03ZM227.1,33.53c-4.66-2.46-10.02-3.7-16.09-3.7-6.85,0-13.11,1.69-18.8,5.11-5.61,3.31-10.07,8.01-13.39,14.07-3.22,6.06-4.84,13.02-4.84,20.88s1.62,14.92,4.84,21.16c3.32,6.16,7.78,10.99,13.39,14.48,5.69,3.42,11.97,5.11,18.8,5.11,5.97,0,11.3-1.23,15.96-3.7,4.74-2.57,8.5-5.67,11.25-9.37v13.07c0,7.57-2.03,13.35-6.13,17.33-3.99,3.98-9.27,5.96-15.81,5.96-5.61,0-10.45-1.28-14.52-3.83-3.99-2.46-6.59-5.72-7.83-9.81h-16.09c.95,8.53,4.94,15.25,11.97,20.18,7.03,5.03,15.86,7.52,26.5,7.52,7.98,0,14.81-1.62,20.52-4.83,5.79-3.21,10.22-7.68,13.26-13.35,3.04-5.6,4.56-11.99,4.56-19.18V31.07h-16.38v11.37c-2.65-3.59-6.36-6.57-11.12-8.96l-.05.05ZM234.8,56.13c2.29,3.98,3.42,8.68,3.42,14.07s-1.13,10.14-3.42,14.2c-2.19,3.98-5.07,7.01-8.7,9.09-3.61,2.08-7.49,3.13-11.69,3.13s-7.98-1.05-11.69-3.13c-3.6-2.18-6.57-5.32-8.83-9.37-2.19-4.08-3.27-8.81-3.27-14.2s1.08-10.04,3.27-13.92c2.29-3.98,5.23-6.96,8.83-8.96,3.6-2.08,7.49-3.13,11.69-3.13s8.08,1.05,11.69,3.13c3.6,2.08,6.51,5.11,8.7,9.09ZM332.08,33.69c-4.84-2.57-10.35-3.83-16.53-3.83-4.66,0-9.06.9-13.26,2.7-4.09,1.8-7.47,4.31-10.12,7.52v-8.96h-16.25v78.29h16.25v-43.75c0-7.01,1.75-12.35,5.28-16.05,3.61-3.8,8.45-5.67,14.52-5.67s10.87,1.9,14.39,5.67c3.5,3.7,5.28,9.04,5.28,16.05v43.75h16.09v-46.17c0-7.11-1.37-13.17-4.12-18.18-2.76-5.03-6.59-8.81-11.54-11.37ZM369.34,17.77c1.98,1.98,4.45,2.98,7.42,2.98s5.28-1,7.26-2.98c1.98-1.98,2.99-4.44,2.99-7.39s-1-5.39-2.99-7.39c-1.98-1.98-4.43-2.98-7.26-2.98s-5.41,1-7.42,2.98c-1.98,1.98-2.99,4.44-2.99,7.39s1,5.39,2.99,7.39ZM384.71,109.41V31.12h-16.25v78.29h16.25Z"/>
+            </svg>
+          </a>
+          <p class="footer-about">A creative AI platform powered by a decentralized Supernet — where powerful image and video apps put privacy and self-expression first.</p>
+        </div>
+
+        <!-- Read column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Read</h4>
+          <ul class="footer-links">
+            <li><a href="#blogs">Latest blogs</a></li>
+            <li><a href="#newsletters">Newsletter editions</a></li>
+            <li><a href="https://news.sogni.ai/sogni-sync/" target="_blank" rel="noopener">Full archive</a></li>
+            <li><a href="https://www.sogni.ai/#wf-form-Marketing-Email-Signup" target="_blank" rel="noopener">Subscribe</a></li>
+          </ul>
+        </div>
+
+        <!-- Visit column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Visit</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.sogni.ai" target="_blank" rel="noopener">sogni.ai</a></li>
+            <li><a href="https://www.sogni.ai/super-apps" target="_blank" rel="noopener">Super Apps</a></li>
+            <li><a href="https://www.sogni.ai/supernet" target="_blank" rel="noopener">The Supernet</a></li>
+            <li><a href="https://www.sogni.ai/brand" target="_blank" rel="noopener">Brand kit</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow column -->
+        <div class="footer-col footer-social-col">
+          <h4 class="footer-heading">Follow</h4>
+          <div class="social-grid">
+            <a href="https://discord.com/invite/2JjzA2zrrc" target="_blank" rel="noopener" class="social-pill" aria-label="Discord">
+              <svg viewBox="0 0 253 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M89,0c.67,0,1.33,0,2,0,2.21,4.59,4.41,9.17,6.13,12.73h58.65c1.74-3.57,3.98-8.15,6.22-12.73.67,0,1.33,0,2,0,.57.29,1.11.74,1.71.84,15.76,2.73,30.84,7.64,45.41,14.15,1.58.7,3.25,1.85,4.18,3.26,19.16,28.94,32.05,60.27,35.79,95.01.85,7.89,1.29,15.83,1.92,23.74v2c-.34,5.61-.44,11.25-1.13,16.82-.25,2.02-1.43,4.58-3.01,5.66-7.4,5.03-14.77,10.29-22.76,14.23-12.1,5.97-24.71,10.92-37.1,16.3h-1c-4.62-7.16-9.24-14.31-13.85-21.47,7.79-3.82,14.43-7.08,21.26-10.43-2.83-3.92-5.28-4.68-9.33-2.98-39.7,16.7-79.52,16.71-119.21-.02-4.06-1.71-6.48-.85-9.37,2.98,7.01,3.43,13.78,6.74,21.37,10.46-4.72,7.31-9.3,14.39-13.87,21.46h-1c-.69-.37-1.34-.86-2.07-1.1-20.46-6.71-39.43-16.35-57.06-28.7-2.75-1.93-3.93-4.01-3.95-7.36C.88,149.22.33,143.61,0,138c0-.33,0-.67,0-1,.36-6.28.5-12.59,1.13-18.84,3.35-33.26,14.31-63.88,31.51-92.5,4.2-6.98,9.24-11.74,16.99-13.97C62.79,7.9,75.88,3.91,89,0ZM61.78,105.51c0,15.12,11.93,27.1,25.24,25.37,11.04-1.43,19.71-11.84,20.29-24.38.57-12.15-7.11-23.24-17.85-25.79-14.5-3.43-27.7,8.39-27.69,24.8ZM191.37,108.69c-.38-11.83-3.2-19.29-10.38-24.43-6.92-4.96-14.57-5.83-22.14-1.75-9.01,4.86-13.09,12.94-13.18,23.03-.1,10.97,6.61,21.05,15.94,24.24,8.78,3,18.34.43,23.85-7.69,3.23-4.77,4.76-10.68,5.92-13.4Z"/></svg>
+              <span>Discord</span>
+            </a>
+            <a href="https://t.me/sogniai" target="_blank" rel="noopener" class="social-pill" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M21.94,2.44c-.74-.52-1.68-.6-2.51-.21L1.94,11.45c-1.31.69-1.24,2.58.12,3.19.29.13.54.23.74.28l2.14.54c.74.19,1.53.05,2.17-.38l9.09-6.98c.21-.16.5-.13.67.06.18.19.18.48,0,.68l-6.54,7.17c-.29.29-.43.68-.38,1.07.04.39.26.73.59.94l.04.02,7.94,3.78c1.22.58,2.64-.22,2.79-1.56l1.69-15.53c.16-.91-.23-1.76-.97-2.28Z"/></svg>
+              <span>Telegram</span>
+            </a>
+            <a href="https://x.com/sogni_protocol" target="_blank" rel="noopener" class="social-pill" aria-label="X (Twitter)">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>X / Twitter</span>
+            </a>
+            <a href="https://www.youtube.com/@SogniAI?sub_confirmation=1" target="_blank" rel="noopener" class="social-pill" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>YouTube</span>
+            </a>
+            <a href="https://www.instagram.com/sogni.ai/" target="_blank" rel="noopener" class="social-pill" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.linkedin.com/company/sogni-ai/" target="_blank" rel="noopener" class="social-pill" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://medium.com/sogni" target="_blank" rel="noopener" class="social-pill" aria-label="Medium">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+              <span>Medium</span>
+            </a>
+            <a href="https://www.tiktok.com/@sogni.ai" target="_blank" rel="noopener" class="social-pill" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+              <span>TikTok</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal bar -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <div class="footer-legal-text">
+        <span>© 2026 WE&amp;ROBOT PTE. LTD.</span>
+        <span class="dot-sep">·</span>
+        <span>#60 Paya Lebar Road #07-54, Singapore 409051</span>
+      </div>
+      <div class="footer-legal-links">
+        <a href="https://www.sogni.ai/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+        <span class="dot-sep">·</span>
+        <a href="https://www.sogni.ai/privacy-policy" target="_blank" rel="noopener">Terms</a>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ===== Live stats from sogni.ai leaderboard =====
+  // Endpoint: api.sogni.ai/v1/analytics/lifetime
+  // CORS allows requests from https://sogni.ai — when this page is served from
+  // any other origin, the fetch will fail and the seeded fallback numbers
+  // (set in HTML) remain visible. No errors surfaced to the user.
+  (async function loadLiveStats() {
+    try {
+      const url = 'https://api.sogni.ai/v1/analytics/lifetime?keys=usignupAddress,jobCompleteWorker,uloginWorkerAddress';
+      const res = await fetch(url, { mode: 'cors', credentials: 'omit' });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json || json.status !== 'success' || !json.data) return;
+
+      const fmt = (n) => {
+        n = Number(n);
+        if (!isFinite(n) || n <= 0) return null;
+        if (n >= 1e9) return (n/1e9).toFixed(1).replace(/\.0$/,'') + 'B+';
+        if (n >= 1e6) return Math.round(n/1e6) + 'M+';
+        if (n >= 1e3) return (n/1e3).toFixed(1).replace(/\.0$/,'') + 'K';
+        return String(n);
+      };
+
+      const map = {
+        creations: fmt(json.data.jobCompleteWorker),
+        artists:   fmt(json.data.usignupAddress),
+        gpus:      fmt(json.data.uloginWorkerAddress),
+      };
+
+      Object.entries(map).forEach(([key, value]) => {
+        if (!value) return;
+        const el = document.querySelector('[data-stat="' + key + '"]');
+        if (!el || el.textContent === value) return;
+        // gentle fade-swap so the change is noticeable but not jarring
+        el.style.transition = 'opacity .25s ease';
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.textContent = value;
+          el.style.opacity = '1';
+        }, 250);
+      });
+    } catch (_) {
+      /* CORS / network error — keep seeded fallback values */
+    }
+  })();
+
+  // ===== Card preview videos: pause when offscreen =====
+  const cardVidObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting) { v.play().catch(()=>{}); }
+      else { v.pause(); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.card-video').forEach(v => cardVidObs.observe(v));
+
+  // ===== Showcase auto-cycler =====
+  const showcase = document.querySelector('.showcase');
+  if (showcase) {
+    const videos  = Array.from(showcase.querySelectorAll('.showcase-video'));
+    const caps    = Array.from(showcase.querySelectorAll('.showcase-cap'));
+    const dots    = Array.from(showcase.querySelectorAll('.showcase-dots .dot'));
+    const counter = showcase.querySelector('.showcase-counter-num');
+    let i = 0, timer = null;
+    const total = videos.length;
+    const INTERVAL = 5200; // ~5s per clip + crossfade
+
+    function go(next) {
+      if (next === i) return;
+      const prev = i;
+      i = (next + total) % total;
+
+      // swap active class
+      videos[prev].classList.remove('active');
+      caps[prev].classList.remove('active');
+      dots[prev].classList.remove('active');
+      videos[i].classList.add('active');
+      caps[i].classList.add('active');
+      dots[i].classList.add('active');
+
+      // pause prev, play current (force-load src if not loaded)
+      try {
+        videos[prev].pause();
+        videos[prev].currentTime = 0;
+      } catch(_) {}
+      try {
+        if (videos[i].preload === 'none') videos[i].preload = 'auto';
+        const p = videos[i].play();
+        if (p && p.catch) p.catch(()=>{});
+      } catch(_) {}
+
+      // counter
+      if (counter) counter.textContent = String(i + 1).padStart(2, '0');
+    }
+
+    function tick() { go(i + 1); }
+
+    function start() {
+      stop();
+      timer = setInterval(tick, INTERVAL);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    // start when in view, pause when out
+    const sObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          videos[i].play().catch(()=>{});
+          start();
+        } else {
+          videos.forEach(v => v.pause());
+          stop();
+        }
+      });
+    }, { threshold: 0.15 });
+    sObs.observe(showcase);
+
+    // dot navigation
+    dots.forEach(d => {
+      d.addEventListener('click', () => { go(parseInt(d.dataset.i, 10)); start(); });
+    });
+
+    // arrow buttons
+    const prevBtn = showcase.querySelector('.showcase-arrow.prev');
+    const nextBtn = showcase.querySelector('.showcase-arrow.next');
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); go(i - 1); start(); });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); go(i + 1); start(); });
+
+    // swipe / drag (touch + mouse)
+    let dragStartX = null, dragDx = 0, dragging = false;
+    const SWIPE_THRESHOLD = 40;
+
+    function dragStart(x) {
+      dragStartX = x; dragDx = 0; dragging = true;
+      showcase.classList.add('dragging');
+      stop(); // pause autoplay during interaction
+    }
+    function dragMove(x) {
+      if (!dragging || dragStartX == null) return;
+      dragDx = x - dragStartX;
+    }
+    function dragEnd() {
+      if (!dragging) return;
+      showcase.classList.remove('dragging');
+      if (Math.abs(dragDx) > SWIPE_THRESHOLD) {
+        if (dragDx < 0) go(i + 1); else go(i - 1);
+      }
+      dragStartX = null; dragDx = 0; dragging = false;
+      start();
+    }
+
+    // touch
+    showcase.addEventListener('touchstart', (e) => dragStart(e.touches[0].clientX), { passive: true });
+    showcase.addEventListener('touchmove',  (e) => dragMove(e.touches[0].clientX),  { passive: true });
+    showcase.addEventListener('touchend',   dragEnd);
+    showcase.addEventListener('touchcancel',dragEnd);
+
+    // mouse drag (only if not on a button)
+    showcase.addEventListener('mousedown', (e) => {
+      if (e.target.closest('button')) return;
+      e.preventDefault();
+      dragStart(e.clientX);
+    });
+    window.addEventListener('mousemove', (e) => dragMove(e.clientX));
+    window.addEventListener('mouseup',   dragEnd);
+
+    // keyboard arrows when showcase is focused/hovered
+    showcase.tabIndex = 0;
+    showcase.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { go(i - 1); start(); }
+      if (e.key === 'ArrowRight') { go(i + 1); start(); }
+    });
+
+    // pause autoplay on hover (so people can read), resume on leave
+    showcase.addEventListener('mouseenter', stop);
+    showcase.addEventListener('mouseleave', () => { if (!dragging) start(); });
+  }
+
+  // Nav dropdowns: click to toggle (works on touch + keyboard).
+  // Hover already handled in CSS for mouse users.
+  const navItems = document.querySelectorAll('.nav-item.has-menu');
+  navItems.forEach(item => {
+    const btn = item.querySelector('.nav-toggle');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      // close siblings
+      navItems.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+  // click outside to close
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item.has-menu')) {
+      navItems.forEach(item => {
+        item.classList.remove('open');
+        item.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+  // ESC to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      navItems.forEach(item => {
+        item.classList.remove('open');
+        item.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
