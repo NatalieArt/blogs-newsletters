@@ -1056,26 +1056,16 @@
   .footer-legal-links a:hover { color: var(--lime); }
 
   /* ----- Inline reader overlay ----- */
-  .reader-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 120;
-    display: grid;
-    place-items: center;
-    padding: 18px;
-    background:
-      linear-gradient(180deg, rgba(5,7,9,0.76), rgba(5,7,9,0.92)),
-      radial-gradient(circle at top, rgba(0,255,157,0.10), transparent 42%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+  .reader-section {
+    padding: 18px 0 0;
   }
-  .reader-overlay[hidden] { display: none; }
+  .reader-section[hidden] { display: none; }
   .reader-shell {
-    width: min(1320px, 100%);
-    height: min(92vh, 980px);
+    width: 100%;
+    min-height: 720px;
     display: grid;
     grid-template-rows: auto 1fr;
-    overflow: hidden;
+    overflow: clip;
     border-radius: 22px;
     border: 1px solid rgba(255,255,255,0.10);
     background:
@@ -1160,9 +1150,13 @@
   }
   .reader-frame {
     width: 100%;
-    height: 100%;
+    min-height: 78vh;
     border: 0;
     background: #fff;
+  }
+  .reader-links-active {
+    border-color: rgba(0,255,157,0.32) !important;
+    box-shadow: 0 0 0 1px rgba(0,255,157,0.22), 0 16px 44px rgba(0,255,157,0.08);
   }
 
   /* ----- Footer responsive ----- */
@@ -1190,8 +1184,7 @@
     .footer-social-col { grid-column: 1 / -1; }
     .social-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-bottom-inner { justify-content: flex-start; }
-    .reader-overlay { padding: 10px; }
-    .reader-shell { height: 94vh; border-radius: 18px; }
+    .reader-shell { min-height: 640px; border-radius: 18px; }
     .reader-topbar {
       flex-direction: column;
       align-items: flex-start;
@@ -1202,8 +1195,7 @@
   }
   @media (max-width: 480px) {
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    .reader-overlay { padding: 6px; }
-    .reader-shell { height: 95vh; border-radius: 16px; }
+    .reader-shell { min-height: 560px; border-radius: 16px; }
     .reader-title { font-size: 16px; }
     .reader-url { font-size: 11px; }
   }
@@ -1695,6 +1687,25 @@
   </div>
 </section>
 
+<section class="section reader-section" id="readerSection" hidden>
+  <div class="container">
+    <div class="reader-shell">
+      <div class="reader-topbar">
+        <div class="reader-meta">
+          <span class="reader-kicker">Inline Reader</span>
+          <strong class="reader-title" id="readerTitle">Loading…</strong>
+          <span class="reader-url" id="readerUrl"></span>
+        </div>
+        <div class="reader-actions">
+          <a class="reader-link" id="readerOpenFull" href="#" rel="noopener">Open full page</a>
+          <button class="reader-btn" id="readerClose" type="button">Close</button>
+        </div>
+      </div>
+      <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="site-footer">
 
@@ -1809,24 +1820,6 @@
   </div>
 
 </footer>
-
-<div class="reader-overlay" id="readerOverlay" hidden aria-hidden="true">
-  <div class="reader-shell" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
-    <div class="reader-topbar">
-      <div class="reader-meta">
-        <span class="reader-kicker">Inline Reader</span>
-        <strong class="reader-title" id="readerTitle">Loading…</strong>
-        <span class="reader-url" id="readerUrl"></span>
-      </div>
-      <div class="reader-actions">
-        <a class="reader-link" id="readerOpenFull" href="#" rel="noopener">Open full page</a>
-        <button class="reader-btn" id="readerClose" type="button">Close</button>
-      </div>
-    </div>
-    <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
-  </div>
-</div>
-
 <script>
   // Reveal-on-scroll
   const io = new IntersectionObserver((entries) => {
@@ -2058,7 +2051,7 @@
     'a[href^="https://news.sogni.ai/sogni-sync/"]'
   ];
   const readerLinks = Array.from(document.querySelectorAll(readerTargets.join(',')));
-  const readerOverlay = document.getElementById('readerOverlay');
+  const readerSection = document.getElementById('readerSection');
   const readerFrame = document.getElementById('readerFrame');
   const readerClose = document.getElementById('readerClose');
   const readerOpenFull = document.getElementById('readerOpenFull');
@@ -2067,11 +2060,10 @@
   let readerTrigger = null;
 
   function closeReader() {
-    if (!readerOverlay) return;
-    readerOverlay.hidden = true;
-    readerOverlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    if (!readerSection) return;
+    readerSection.hidden = true;
     readerFrame.src = 'about:blank';
+    readerLinks.forEach((link) => link.classList.remove('reader-links-active'));
     if (readerTrigger) readerTrigger.focus();
   }
 
@@ -2084,10 +2076,14 @@
     readerUrl.textContent = href;
     readerOpenFull.href = href;
     readerFrame.src = href;
-    readerOverlay.hidden = false;
-    readerOverlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    readerClose.focus();
+    readerSection.hidden = false;
+    readerLinks.forEach((item) => item.classList.toggle('reader-links-active', item === link));
+    navItems.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+    });
+    readerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => readerClose.focus(), 220);
   }
 
   readerLinks.forEach((link) => {
@@ -2099,11 +2095,8 @@
   });
 
   readerClose.addEventListener('click', closeReader);
-  readerOverlay.addEventListener('click', (e) => {
-    if (e.target === readerOverlay) closeReader();
-  });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !readerOverlay.hidden) closeReader();
+    if (e.key === 'Escape' && readerSection && !readerSection.hidden) closeReader();
   });
 </script>
 
