@@ -138,12 +138,16 @@
     transition: filter .2s ease, opacity .15s ease;
   }
   .brand:hover { opacity: 0.92; }
-  .brand:hover .brand-logo { filter: drop-shadow(0 0 14px rgba(0,255,157,0.55)); }
+  .brand:hover .brand-logo {
+    animation-duration: 3.2s;
+    filter: drop-shadow(0 0 16px currentColor);
+  }
   .brand-logo {
     height: 24px; width: auto; display: block;
     color: #00FF9D;
-    filter: drop-shadow(0 0 10px rgba(0,255,157,0.35));
-    transition: filter .2s ease;
+    filter: drop-shadow(0 0 10px currentColor);
+    transition: filter .2s ease, opacity .2s ease;
+    animation: brandLogoShift 9s ease-in-out infinite;
     flex-shrink: 0;
   }
   .brand-divider {
@@ -163,6 +167,40 @@
     .brand-logo { height: 20px; }
     .brand-divider { font-size: 18px; }
     .brand-sub { font-size: 10px; }
+  }
+
+  @keyframes brandLogoShift {
+    0%, 18% {
+      color: #00FF9D;
+      filter: drop-shadow(0 0 10px rgba(0,255,157,0.34));
+    }
+    27%, 43% {
+      color: #00D3FF;
+      filter: drop-shadow(0 0 12px rgba(0,211,255,0.34));
+    }
+    52%, 68% {
+      color: #FF00CF;
+      filter: drop-shadow(0 0 12px rgba(255,0,207,0.28));
+    }
+    77%, 90% {
+      color: #4D40FE;
+      filter: drop-shadow(0 0 12px rgba(77,64,254,0.30));
+    }
+    100% {
+      color: #00FF9D;
+      filter: drop-shadow(0 0 10px rgba(0,255,157,0.34));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-logo {
+      animation: none;
+      color: #00FF9D;
+      filter: drop-shadow(0 0 10px rgba(0,255,157,0.34));
+    }
+    .brand:hover .brand-logo {
+      filter: drop-shadow(0 0 14px rgba(0,255,157,0.45));
+    }
   }
 
   .topnav {
