@@ -1055,6 +1055,116 @@
   }
   .footer-legal-links a:hover { color: var(--lime); }
 
+  /* ----- Inline reader overlay ----- */
+  .reader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    background:
+      linear-gradient(180deg, rgba(5,7,9,0.76), rgba(5,7,9,0.92)),
+      radial-gradient(circle at top, rgba(0,255,157,0.10), transparent 42%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .reader-overlay[hidden] { display: none; }
+  .reader-shell {
+    width: min(1320px, 100%);
+    height: min(92vh, 980px);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background:
+      linear-gradient(180deg, rgba(22,26,31,0.97), rgba(9,11,14,0.99));
+    box-shadow: 0 40px 140px rgba(0,0,0,0.55);
+  }
+  .reader-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,0.03);
+  }
+  .reader-meta {
+    min-width: 0;
+    display: grid;
+    gap: 6px;
+  }
+  .reader-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .reader-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .reader-url {
+    font-size: 12px;
+    color: var(--text-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .reader-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .reader-btn,
+  .reader-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform .2s ease, border-color .25s ease, color .25s ease, background .25s ease;
+  }
+  .reader-btn {
+    background: linear-gradient(180deg, #9DFF3A 0%, #7CFF00 100%);
+    border-color: rgba(157,255,58,0.65);
+    color: #001b00;
+  }
+  .reader-link {
+    color: var(--text);
+    background: rgba(255,255,255,0.02);
+  }
+  .reader-btn:hover,
+  .reader-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.22);
+  }
+  .reader-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+  }
+
   /* ----- Footer responsive ----- */
   @media (max-width: 1080px) {
     .footer-grid {
@@ -1080,9 +1190,22 @@
     .footer-social-col { grid-column: 1 / -1; }
     .social-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-bottom-inner { justify-content: flex-start; }
+    .reader-overlay { padding: 10px; }
+    .reader-shell { height: 94vh; border-radius: 18px; }
+    .reader-topbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 14px;
+    }
+    .reader-actions { width: 100%; }
+    .reader-actions > * { flex: 1 1 100%; }
   }
   @media (max-width: 480px) {
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .reader-overlay { padding: 6px; }
+    .reader-shell { height: 95vh; border-radius: 16px; }
+    .reader-title { font-size: 16px; }
+    .reader-url { font-size: 11px; }
   }
 
   /* ============================================================
@@ -1687,6 +1810,23 @@
 
 </footer>
 
+<div class="reader-overlay" id="readerOverlay" hidden aria-hidden="true">
+  <div class="reader-shell" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+    <div class="reader-topbar">
+      <div class="reader-meta">
+        <span class="reader-kicker">Inline Reader</span>
+        <strong class="reader-title" id="readerTitle">Loading…</strong>
+        <span class="reader-url" id="readerUrl"></span>
+      </div>
+      <div class="reader-actions">
+        <a class="reader-link" id="readerOpenFull" href="#" rel="noopener">Open full page</a>
+        <button class="reader-btn" id="readerClose" type="button">Close</button>
+      </div>
+    </div>
+    <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
+  </div>
+</div>
+
 <script>
   // Reveal-on-scroll
   const io = new IntersectionObserver((entries) => {
@@ -1908,6 +2048,62 @@
         item.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
       });
     }
+  });
+
+  // Inline reader for blogs and newsletters
+  const readerTargets = [
+    'a[href^="https://natalieart.github.io/architectural-renders/"]',
+    'a[href^="https://natalieart.github.io/creative-assistant/"]',
+    'a[href^="https://natalieart.github.io/frames/"]',
+    'a[href^="https://news.sogni.ai/sogni-sync/"]'
+  ];
+  const readerLinks = Array.from(document.querySelectorAll(readerTargets.join(',')));
+  const readerOverlay = document.getElementById('readerOverlay');
+  const readerFrame = document.getElementById('readerFrame');
+  const readerClose = document.getElementById('readerClose');
+  const readerOpenFull = document.getElementById('readerOpenFull');
+  const readerTitle = document.getElementById('readerTitle');
+  const readerUrl = document.getElementById('readerUrl');
+  let readerTrigger = null;
+
+  function closeReader() {
+    if (!readerOverlay) return;
+    readerOverlay.hidden = true;
+    readerOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    readerFrame.src = 'about:blank';
+    if (readerTrigger) readerTrigger.focus();
+  }
+
+  function openReader(link) {
+    const href = link.getAttribute('href');
+    const titleSource = link.querySelector('h3, .dropdown-title') || link;
+    const titleText = titleSource.textContent.trim().replace(/\s+/g, ' ');
+    readerTrigger = link;
+    readerTitle.textContent = titleText || 'Reader';
+    readerUrl.textContent = href;
+    readerOpenFull.href = href;
+    readerFrame.src = href;
+    readerOverlay.hidden = false;
+    readerOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    readerClose.focus();
+  }
+
+  readerLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      openReader(link);
+    });
+  });
+
+  readerClose.addEventListener('click', closeReader);
+  readerOverlay.addEventListener('click', (e) => {
+    if (e.target === readerOverlay) closeReader();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !readerOverlay.hidden) closeReader();
   });
 </script>
 
