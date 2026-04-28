@@ -1055,16 +1055,22 @@
   }
   .footer-legal-links a:hover { color: var(--lime); }
 
-  /* ----- Inline reader overlay ----- */
+  /* ----- Inline reader ----- */
+  .reader-anchor {
+    margin-top: 28px;
+  }
+  .reader-anchor:empty {
+    display: none;
+  }
   .reader-section {
-    padding: 18px 0 0;
+    width: 100%;
   }
   .reader-section[hidden] { display: none; }
   .reader-shell {
     width: 100%;
-    min-height: 720px;
+    min-height: 760px;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     overflow: clip;
     border-radius: 22px;
     border: 1px solid rgba(255,255,255,0.10);
@@ -1073,93 +1079,144 @@
     box-shadow: 0 40px 140px rgba(0,0,0,0.55);
   }
   .reader-topbar {
-    position: sticky;
-    top: 58px;
-    z-index: 4;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 18px;
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--line);
-    background: rgba(255,255,255,0.03);
+    padding: 22px 22px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
   }
   .reader-meta {
     min-width: 0;
     display: grid;
-    gap: 6px;
+    gap: 8px;
   }
   .reader-kicker {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--text-soft);
   }
   .reader-title {
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: clamp(20px, 2.3vw, 28px);
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
-  .reader-url {
-    font-size: 12px;
+  .reader-caption {
+    font-size: 13px;
     color: var(--text-soft);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 56ch;
   }
   .reader-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
-  .reader-btn,
-  .reader-link {
+  .reader-close,
+  .reader-tab {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    min-height: 42px;
+    min-height: 40px;
     padding: 0 16px;
     border-radius: 999px;
     border: 1px solid var(--line);
+    background: rgba(255,255,255,0.03);
+    color: var(--text);
     font-family: var(--font-display);
     font-size: 13px;
     font-weight: 600;
     letter-spacing: -0.01em;
     cursor: pointer;
+    text-decoration: none;
     transition: transform .2s ease, border-color .25s ease, color .25s ease, background .25s ease;
   }
-  .reader-btn {
-    background: linear-gradient(180deg, #9DFF3A 0%, #7CFF00 100%);
-    border-color: rgba(157,255,58,0.65);
-    color: #001b00;
-  }
-  .reader-link {
-    color: var(--text);
-    background: rgba(255,255,255,0.02);
-  }
-  .reader-btn:hover,
-  .reader-link:hover {
+  .reader-close:hover,
+  .reader-tab:hover {
     transform: translateY(-1px);
-    border-color: rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.24);
+    background: rgba(255,255,255,0.07);
+  }
+  .reader-close {
+    gap: 8px;
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .reader-close::before {
+    content: "<";
+    line-height: 1;
+  }
+  .reader-close:hover {
+    transform: none;
+    border-color: transparent;
+    background: transparent;
+    color: var(--text);
+  }
+  .reader-close:focus,
+  .reader-close:focus-visible,
+  .reader-close:active {
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+  }
+  .reader-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 0 22px 18px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .reader-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .reader-tabs:empty {
+    display: none;
+  }
+  .reader-tab {
+    flex: 0 0 auto;
+    max-width: min(42ch, 72vw);
+    padding: 0 14px;
+    background: rgba(255,255,255,0.02);
+    color: var(--text-soft);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .reader-tab.is-active {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.28);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
   }
   .reader-frame {
     width: 100%;
-    min-height: 78vh;
+    height: min(1180px, 80vh);
+    min-height: 760px;
     border: 0;
     background: #fff;
   }
   .reader-links-active {
-    border-color: rgba(0,255,157,0.32) !important;
-    box-shadow: 0 0 0 1px rgba(0,255,157,0.22), 0 16px 44px rgba(0,255,157,0.08);
+    border-color: rgba(255,255,255,0.28) !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 20px 48px rgba(0,0,0,0.22);
   }
 
   /* ----- Footer responsive ----- */
@@ -1187,20 +1244,22 @@
     .footer-social-col { grid-column: 1 / -1; }
     .social-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-bottom-inner { justify-content: flex-start; }
+    .reader-anchor { margin-top: 22px; }
     .reader-shell { min-height: 640px; border-radius: 18px; }
     .reader-topbar {
       flex-direction: column;
       align-items: flex-start;
-      padding: 14px;
+      padding: 18px 16px 12px;
     }
-    .reader-actions { width: 100%; }
-    .reader-actions > * { flex: 1 1 100%; }
+    .reader-actions { width: auto; }
+    .reader-tabs { padding: 0 16px 14px; gap: 8px; }
+    .reader-frame { min-height: 68vh; height: 70vh; }
   }
   @media (max-width: 480px) {
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .reader-shell { min-height: 560px; border-radius: 16px; }
     .reader-title { font-size: 16px; }
-    .reader-url { font-size: 11px; }
+    .reader-caption { font-size: 12px; }
   }
 
   /* ============================================================
@@ -1544,22 +1603,20 @@
   </div>
 </section>
 
-<section class="section reader-section" id="readerSection" hidden>
-  <div class="container">
-    <div class="reader-shell">
-      <div class="reader-topbar">
-        <div class="reader-meta">
-          <span class="reader-kicker">Inline Reader</span>
-          <strong class="reader-title" id="readerTitle">Loading…</strong>
-          <span class="reader-url" id="readerUrl"></span>
-        </div>
-        <div class="reader-actions">
-          <a class="reader-link" id="readerOpenFull" href="#" rel="noopener">Open full page</a>
-          <a class="reader-btn" id="readerClose" href="#pageTop">Back to start</a>
-        </div>
+<section class="reader-section" id="readerSection" hidden aria-live="polite">
+  <div class="reader-shell">
+    <div class="reader-topbar">
+      <div class="reader-meta">
+        <span class="reader-kicker" id="readerKicker">Reading now</span>
+        <strong class="reader-title" id="readerTitle">Loading…</strong>
+        <span class="reader-caption" id="readerCaption">Switch stories here without leaving the page.</span>
       </div>
-      <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
+      <div class="reader-actions">
+        <a class="reader-close" id="readerClose" href="#blogs">Back</a>
+      </div>
     </div>
+    <div class="reader-tabs" id="readerTabs" role="tablist" aria-label="Stories on this page"></div>
+    <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
   </div>
 </section>
 
@@ -1637,6 +1694,8 @@
       </a>
 
     </div>
+
+    <div class="reader-anchor" id="blogReaderAnchor"></div>
   </div>
 </section>
 
@@ -1693,6 +1752,8 @@
       </a>
 
     </div>
+
+    <div class="reader-anchor" id="newsReaderAnchor"></div>
 
     <div class="cta-strip reveal">
       <div class="cta-strip-inner">
@@ -2048,21 +2109,34 @@
 
   // Inline reader for blogs and newsletters
   const readerTargets = [
-    'a[href^="https://natalieart.github.io/architectural-renders/"]',
-    'a[href^="https://natalieart.github.io/creative-assistant/"]',
-    'a[href^="https://natalieart.github.io/frames/"]',
-    'a[href^="https://news.sogni.ai/sogni-sync/"]'
+    '.dropdown-item[href^="https://natalieart.github.io/architectural-renders/"]',
+    '.dropdown-item[href^="https://natalieart.github.io/creative-assistant/"]',
+    '.dropdown-item[href^="https://natalieart.github.io/frames/"]',
+    '.dropdown-item[href^="https://news.sogni.ai/sogni-sync/"]',
+    '#blogs .card[href^="https://natalieart.github.io/architectural-renders/"]',
+    '#blogs .card[href^="https://natalieart.github.io/creative-assistant/"]',
+    '#blogs .card[href^="https://natalieart.github.io/frames/"]',
+    '#newsletters .news-card[href^="https://news.sogni.ai/sogni-sync/"]'
   ];
   const readerLinks = Array.from(document.querySelectorAll(readerTargets.join(',')));
+  const readerGroups = {
+    blog: Array.from(document.querySelectorAll('#blogs .card[href]')),
+    newsletter: Array.from(document.querySelectorAll('#newsletters .news-card[href]'))
+  };
   const readerSection = document.getElementById('readerSection');
   const readerFrame = document.getElementById('readerFrame');
   const readerClose = document.getElementById('readerClose');
-  const readerOpenFull = document.getElementById('readerOpenFull');
+  const readerTabs = document.getElementById('readerTabs');
+  const readerKicker = document.getElementById('readerKicker');
   const readerTitle = document.getElementById('readerTitle');
-  const readerUrl = document.getElementById('readerUrl');
+  const readerCaption = document.getElementById('readerCaption');
   const homeFocus = document.querySelector('.brand');
-  const heroSection = document.querySelector('.hero');
+  const blogSection = document.getElementById('blogs');
+  const newsletterSection = document.getElementById('newsletters');
+  const blogReaderAnchor = document.getElementById('blogReaderAnchor');
+  const newsReaderAnchor = document.getElementById('newsReaderAnchor');
   let readerTrigger = null;
+  let currentReaderGroup = null;
 
   function scrollWithTopOffset(el, offset = 72) {
     if (!el) return;
@@ -2070,34 +2144,100 @@
     window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
   }
 
-  function closeReader() {
-    if (!readerSection) return;
-    readerSection.hidden = true;
-    readerFrame.src = 'about:blank';
-    readerLinks.forEach((link) => link.classList.remove('reader-links-active'));
-    scrollWithTopOffset(heroSection, 0);
-    window.setTimeout(() => {
-      if (homeFocus) homeFocus.focus();
-    }, 260);
+  function getReaderTitle(link) {
+    const titleSource = link.querySelector('h3, .dropdown-title') || link;
+    return titleSource.textContent.trim().replace(/\s+/g, ' ');
   }
 
-  function openReader(link) {
+  function getReaderGroup(link) {
+    return link.href.startsWith('https://news.sogni.ai/sogni-sync/') ? 'newsletter' : 'blog';
+  }
+
+  function getReaderAnchor(group) {
+    return group === 'newsletter' ? newsReaderAnchor : blogReaderAnchor;
+  }
+
+  function getReaderOverview(group) {
+    return group === 'newsletter' ? newsletterSection : blogSection;
+  }
+
+  function syncReaderState(activeHref = '') {
+    readerLinks.forEach((item) => {
+      item.classList.toggle('reader-links-active', Boolean(activeHref) && item.href === activeHref);
+    });
+    Array.from(readerTabs.querySelectorAll('.reader-tab')).forEach((tab) => {
+      const isActive = tab.dataset.href === activeHref;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', String(isActive));
+    });
+  }
+
+  function placeReader(group) {
+    const anchor = getReaderAnchor(group);
+    if (anchor && readerSection.parentElement !== anchor) {
+      anchor.appendChild(readerSection);
+    }
+  }
+
+  function buildReaderTabs(group, activeHref) {
+    readerTabs.innerHTML = '';
+    readerGroups[group].forEach((item) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'reader-tab';
+      button.dataset.href = item.href;
+      button.setAttribute('role', 'tab');
+      button.textContent = getReaderTitle(item);
+      button.addEventListener('click', () => {
+        const target = readerLinks.find((link) => link.href === item.href) || item;
+        openReader(target, { keepPosition: true });
+      });
+      readerTabs.appendChild(button);
+    });
+    syncReaderState(activeHref);
+  }
+
+  function closeReader() {
+    if (!readerSection) return;
+    const overviewTarget = getReaderOverview(currentReaderGroup);
+    readerSection.hidden = true;
+    readerSection.removeAttribute('data-group');
+    readerFrame.src = 'about:blank';
+    readerTabs.innerHTML = '';
+    syncReaderState('');
+    scrollWithTopOffset(overviewTarget, 74);
+    window.setTimeout(() => {
+      const focusTarget = readerTrigger && readerTrigger.matches('.card, .news-card') ? readerTrigger : homeFocus;
+      if (focusTarget) focusTarget.focus();
+    }, 260);
+    readerTrigger = null;
+    currentReaderGroup = null;
+  }
+
+  function openReader(link, options = {}) {
     const href = link.getAttribute('href');
-    const titleSource = link.querySelector('h3, .dropdown-title') || link;
-    const titleText = titleSource.textContent.trim().replace(/\s+/g, ' ');
+    const titleText = getReaderTitle(link);
+    const group = getReaderGroup(link);
     readerTrigger = link;
+    currentReaderGroup = group;
+    readerSection.dataset.group = group;
+    placeReader(group);
+    buildReaderTabs(group, href);
+    readerClose.setAttribute('href', group === 'newsletter' ? '#newsletters' : '#blogs');
+    readerKicker.textContent = group === 'newsletter' ? 'Newsletter edition' : 'Blog article';
+    readerCaption.textContent = group === 'newsletter'
+      ? 'Switch editions here without leaving the page.'
+      : 'Switch articles here without leaving the page.';
     readerTitle.textContent = titleText || 'Reader';
-    readerUrl.textContent = href;
-    readerOpenFull.href = href;
+    readerFrame.title = titleText || 'Reader';
     readerFrame.src = href;
     readerSection.hidden = false;
-    readerLinks.forEach((item) => item.classList.toggle('reader-links-active', item === link));
+    syncReaderState(href);
     navItems.forEach(item => {
       item.classList.remove('open');
       item.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
     });
-    scrollWithTopOffset(readerSection, 66);
-    window.setTimeout(() => readerClose.focus(), 220);
+    if (!options.keepPosition) scrollWithTopOffset(readerSection, 86);
   }
 
   readerLinks.forEach((link) => {
