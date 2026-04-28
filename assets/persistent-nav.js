@@ -1,15 +1,15 @@
 (() => {
   const previewMap = {
     "blog-architectural-renders": {
-      src: "https://natalieart.github.io/blogs-newsletters/assets/preview-architectural.jpg",
+      src: "https://natalieart.github.io/blogs-newsletters/assets/avatar-architectural.jpg?v=avatarswap10",
       alt: "Architectural renders article preview",
     },
     "blog-creative-assistant": {
-      src: "https://natalieart.github.io/creative-assistant/assets/5-edit-complete.png",
+      src: "https://natalieart.github.io/blogs-newsletters/assets/avatar-creative-assistant.jpg?v=avatarswap10",
       alt: "Creative Assistant article preview",
     },
     "blog-starting-ending-frames": {
-      src: "https://natalieart.github.io/blogs-newsletters/assets/preview-frames.jpg",
+      src: "https://natalieart.github.io/blogs-newsletters/assets/avatar-frames.jpg?v=avatarswap10",
       alt: "Starting and Ending Frames article preview",
     },
     "newsletter-19": {
