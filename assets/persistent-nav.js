@@ -1,7 +1,7 @@
 (() => {
   const previewMap = {
     "blog-architectural-renders": {
-      src: "https://natalieart.github.io/architectural-renders/assets/banner-start.png",
+      src: "https://natalieart.github.io/blogs-newsletters/assets/preview-architectural.jpg",
       alt: "Architectural renders article preview",
     },
     "blog-creative-assistant": {
@@ -9,7 +9,7 @@
       alt: "Creative Assistant article preview",
     },
     "blog-starting-ending-frames": {
-      src: "https://natalieart.github.io/frames/assets/article-coffee-frames/banner-starting-ending-frames.png",
+      src: "https://natalieart.github.io/blogs-newsletters/assets/preview-frames.jpg",
       alt: "Starting and Ending Frames article preview",
     },
     "newsletter-19": {
