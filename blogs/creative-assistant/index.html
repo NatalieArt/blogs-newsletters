@@ -1,31 +1,2235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Redirecting...</title>
-<meta http-equiv="refresh" content="0; url=https://natalieart.github.io/creative-assistant/" />
-<link rel="canonical" href="https://natalieart.github.io/creative-assistant/" />
-<script>
-window.location.replace("https://natalieart.github.io/creative-assistant/");
-</script>
-<style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  font-family: Inter, system-ui, sans-serif;
-  background: #07111a;
-  color: #f5f8fb;
-}
-a {
-  color: #97f5b8;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the New Creative Assistant in Sogni Studio / Pro | Sogni</title>
+  <base href="https://natalieart.github.io/creative-assistant/">
+  <meta name="description" content="The new Creative Assistant in Sogni Studio and Sogni Pocket introduces Agent, Guided, and Manual modes, handles multi-step workflows, and returns ready outputs with suggested next actions.">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Meet the New Creative Assistant in Sogni Studio / Pro">
+  <meta property="og:description" content="The new Creative Assistant in Sogni Studio and Sogni Pocket introduces Agent, Guided, and Manual modes, handles multi-step workflows, and returns ready outputs with suggested next actions.">
+  <meta property="og:image" content="https://natalieart.github.io/creative-assistant/assets/5-edit-complete.png">
+  <meta property="og:image:width" content="1868">
+  <meta property="og:image:height" content="1600">
+  <meta property="og:url" content="https://natalieart.github.io/creative-assistant/">
+  <meta property="og:site_name" content="Sogni AI">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meet the New Creative Assistant in Sogni Studio / Pro">
+  <meta name="twitter:description" content="The new Creative Assistant in Sogni Studio and Sogni Pocket introduces Agent, Guided, and Manual modes, handles multi-step workflows, and returns ready outputs with suggested next actions.">
+  <meta name="twitter:image" content="https://natalieart.github.io/creative-assistant/assets/5-edit-complete.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050704;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(0, 255, 157, 0.24);
+      --text: #f6f8f4;
+      --muted: #a5ae9f;
+      --muted-strong: #d6ddd2;
+      --accent: #00ff9d;
+      --accent-soft: rgba(0, 255, 157, 0.1);
+      --accent-glow: rgba(0, 255, 157, 0.18);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --radius-sm: 14px;
+      --radius-md: 24px;
+      --radius-lg: 34px;
+      --font-main: "Inter", sans-serif;
+      --font-mono: "Space Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at top, rgba(0, 255, 157, 0.08), transparent 34%),
+        linear-gradient(180deg, #060805 0%, #050704 56%, #040503 100%);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 92%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1460px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      margin-bottom: 18px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .brand svg {
+      width: 118px;
+      height: auto;
+      display: block;
+    }
+
+    .brand-note {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .button,
+    .button-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: #04120b;
+      box-shadow: 0 12px 30px rgba(0, 255, 157, 0.18);
+    }
+
+    .button-ghost {
+      border: 1px solid var(--line-strong);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+    }
+
+    .button:hover,
+    .button-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .banner-hero {
+      margin-bottom: 28px;
+    }
+
+    .banner-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.03);
+      min-height: 336px;
+    }
+
+    .banner-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(4, 8, 5, 0.1) 0%, rgba(4, 8, 5, 0.16) 34%, rgba(4, 8, 5, 0.82) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.22) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .banner-visual,
+    .banner-screen {
+      position: relative;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .banner-screen img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 63%;
+    }
+
+    .banner-copy {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 24px;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+      gap: 24px;
+      align-items: end;
+    }
+
+    .banner-kicker,
+    .eyebrow,
+    .step-number,
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .banner-kicker,
+    .eyebrow {
+      padding: 9px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    .banner-kicker::before,
+    .eyebrow::before,
+    .step-number::before,
+    .section-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .banner-kicker {
+      margin-bottom: 12px;
+    }
+
+    .banner-copy h1 {
+      margin: 0;
+      max-width: 620px;
+      font-size: clamp(1.92rem, 4.1vw, 3.46rem);
+      line-height: 1.02;
+      text-align: left;
+      text-wrap: balance;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 4px 32px rgba(0, 0, 0, 0.5), 0 0 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .banner-stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .banner-stat {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 11, 8, 0.56);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+    }
+
+    .banner-stat strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 3px;
+    }
+
+    .banner-stat span {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .mode-list {
+      list-style: none;
+      margin: 18px 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mode-list li {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02)),
+        linear-gradient(135deg, rgba(0, 255, 157, 0.06), transparent 60%);
+      display: grid;
+      gap: 6px;
+    }
+
+    .mode-list strong {
+      display: block;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      text-transform: none;
+    }
+
+    .mode-accent {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .mode-list span {
+      color: var(--muted-strong);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 28px;
+      padding: 0 0 36px;
+      align-items: start;
+    }
+
+    .hero-card,
+    .hero-side,
+    .source-block,
+    .step,
+    .closing {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(16, 20, 12, 0.82), rgba(8, 10, 7, 0.96));
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+    }
+
+    .hero-card .eyebrow {
+      margin-top: -10px;
+      margin-bottom: 12px;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      top: -140px;
+      right: -140px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 255, 157, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 16px;
+      max-width: 880px;
+      font-size: clamp(1.52rem, 2.65vw, 2.34rem);
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+      text-align: left;
+      text-wrap: balance;
+      hyphens: auto;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(1.04rem, 1.3vw, 1.22rem);
+      color: var(--muted-strong);
+      text-align: left;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+      align-items: stretch;
+    }
+
+    .meta-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 184px;
+      padding: 24px 22px 22px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      display: grid;
+      align-content: start;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        linear-gradient(135deg, rgba(0, 255, 157, 0.08), transparent 55%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .meta-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(0, 255, 157, 0));
+    }
+
+    .meta-label {
+      display: block;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .meta-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .hero-side {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .side-label {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .side-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .side-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--muted-strong);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .side-list a span:last-child {
+      font-size: 0.92rem;
+      line-height: 1.28;
+    }
+
+    .side-list a:hover {
+      border-color: var(--line-strong);
+      background: rgba(0, 255, 157, 0.06);
+    }
+
+    .side-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 29px;
+      height: 29px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      flex: none;
+    }
+
+    .hero-side p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    .source-block,
+    .step {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
+      gap: 34px;
+      margin-bottom: 24px;
+      padding: 30px;
+      scroll-margin-top: 96px;
+    }
+
+    .source-copy h2,
+    .step h3,
+    .closing h2 {
+      margin: 14px 0 14px;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    .source-copy h2 {
+      font-size: clamp(1.48rem, 2.2vw, 1.98rem);
+    }
+
+    .step h3 {
+      font-size: clamp(1.32rem, 1.8vw, 1.78rem);
+    }
+
+    .closing h2 {
+      font-size: clamp(1.5rem, 2.2vw, 2.08rem);
+    }
+
+    .source-copy h2,
+    .step h3,
+    .closing h2 {
+      text-align: left;
+      text-wrap: balance;
+      hyphens: auto;
+    }
+
+    .source-copy p,
+    .step p,
+    .closing p,
+    .note-card,
+    .media-panel figcaption,
+    .compare-note {
+      color: var(--muted-strong);
+    }
+
+    .source-copy p,
+    .step p,
+    .closing p {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .source-copy p:last-child,
+    .step p:last-child,
+    .closing p:last-child {
+      margin-bottom: 0;
+    }
+
+    .step strong,
+    .source-copy strong,
+    .closing strong {
+      color: var(--text);
+    }
+
+    .note-card,
+    .prompt-block,
+    .compare-note {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .note-card {
+      text-align: left;
+    }
+
+    .prompt-shell {
+      position: relative;
+      margin-top: 18px;
+    }
+
+    .prompt-intro {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .prompt-intro::before {
+      content: "↓";
+      font-size: 0.96rem;
+      line-height: 1;
+    }
+
+    .prompt-block {
+      margin-top: 0;
+      padding: 12px 14px;
+      border-color: var(--line-strong);
+      background:
+        linear-gradient(180deg, rgba(0, 255, 157, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(255, 255, 255, 0.02);
+      word-break: break-word;
+      white-space: normal;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      line-height: 1.62;
+      color: var(--muted-strong);
+      text-align: left;
+    }
+
+    .copy-button {
+      position: absolute;
+      bottom: -18px;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(4, 10, 6, 0.74);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .copy-button:hover {
+      transform: translateY(-1px);
+      background: rgba(0, 255, 157, 0.12);
+    }
+
+    .step ul {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      color: var(--muted-strong);
+    }
+
+    .step li + li {
+      margin-top: 8px;
+    }
+
+    .article-grid {
+      display: grid;
+      gap: 0;
+    }
+
+    .step-copy,
+    .source-copy {
+      min-width: 0;
+    }
+
+    .step-copy.distributed {
+      display: grid;
+      align-content: start;
+      gap: 24px;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 14px;
+    }
+
+    .copy-block > :first-child {
+      margin-top: 0;
+    }
+
+    .copy-block > :last-child {
+      margin-bottom: 0;
+    }
+
+    .step-media,
+    .media-stack {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .step.step-paired-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .step-paired {
+      display: grid;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .step-paired-row {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .step-paired-copy {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .step-paired-copy > :first-child {
+      margin-top: 0;
+    }
+
+    .step-paired-copy > :last-child {
+      margin-bottom: 0;
+    }
+
+    .media-stack.double {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .media-stack.single {
+      grid-template-columns: 1fr;
+    }
+
+    .media-span {
+      grid-column: 1 / -1;
+    }
+
+    .media-panel,
+    .compare-panel {
+      margin: 0;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+        linear-gradient(135deg, rgba(0, 255, 157, 0.06), transparent 48%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    @media (min-width: 901px) {
+      .source-block > .media-panel,
+      .step-media > .media-panel,
+      .step-media > .compare-panel,
+      .step-media > .compare-layout,
+      .step-paired-row > .media-panel,
+      .step-paired-row > .compare-panel {
+        width: min(100%, 94%);
+        justify-self: center;
+      }
+    }
+
+    .asset-frame {
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #020302;
+    }
+
+    .asset-frame.landscape {
+      aspect-ratio: 5 / 3;
+    }
+
+    .asset-frame img,
+    .asset-frame video {
+      width: 100%;
+      height: auto;
+    }
+
+    .asset-frame.landscape img {
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .asset-frame.screen-frame {
+      aspect-ratio: auto;
+      background:
+        linear-gradient(180deg, rgba(12, 16, 13, 0.96), rgba(5, 8, 6, 0.98)),
+        #020302;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.26);
+    }
+
+    .asset-frame.screen-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .asset-frame video {
+      background: #000;
+    }
+
+    .media-panel figcaption {
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .compare-layout {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .compare-support {
+      display: grid;
+      gap: 14px;
+    }
+
+    .compare-support p {
+      margin: 0;
+    }
+
+    .activity-secondary-copy {
+      margin-top: 22px !important;
+    }
+
+    .activity-lead-copy {
+      margin-top: 24px !important;
+    }
+
+    .media-panel.activity-panel {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .media-panel.activity-panel figcaption {
+      margin-top: 0;
+    }
+
+    .activity-window-card {
+      width: min(100%, 240px);
+      margin: 8px 0 0;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(20, 29, 41, 0.98), rgba(13, 19, 27, 0.98)),
+        #101925;
+      box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      transform: scale(0.96);
+      transform-origin: top left;
+    }
+
+    .activity-window-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .media-panel-project-name .asset-frame {
+      width: min(100%, 430px);
+      margin: 0 auto;
+    }
+
+    .media-panel-angle-preset .asset-frame {
+      width: min(100%, 620px);
+      margin: 0 auto;
+    }
+
+    .compare-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .compare-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted-strong);
+    }
+
+    .badge-accent {
+      border-color: var(--line-strong);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .compare-title {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1rem;
+    }
+
+    .compare {
+      --position: 52%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #020302;
+      isolation: isolate;
+      touch-action: none;
+      cursor: ew-resize;
+    }
+
+    .compare img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .compare-after {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      clip-path: inset(0 calc(100% - var(--position)) 0 0);
+    }
+
+    .compare-after img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .compare-chip {
+      position: absolute;
+      top: 16px;
+      z-index: 1;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(4, 10, 6, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .compare-chip.before {
+      left: 16px;
+    }
+
+    .compare-chip.after {
+      right: 16px;
+    }
+
+    .compare-handle {
+      position: absolute;
+      inset: 0 auto 0 calc(var(--position) - 1px);
+      width: 2px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 0 0 1px rgba(0, 255, 157, 0.18);
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .compare-handle::before {
+      content: "↔";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(4, 10, 6, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--text);
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    @keyframes compare-hint {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-18px);
+      }
+
+      45% {
+        transform: translateX(16px);
+      }
+
+      70% {
+        transform: translateX(-9px);
+      }
+
+      85% {
+        transform: translateX(8px);
+      }
+    }
+
+    .compare.is-hinting .compare-handle {
+      animation: compare-hint 1.45s cubic-bezier(0.22, 1, 0.36, 1) 0.18s 1;
+    }
+
+    .compare input[type="range"] {
+      position: absolute;
+      inset: auto 16px 16px 16px;
+      width: calc(100% - 32px);
+      appearance: none;
+      background: transparent;
+      z-index: 2;
+      cursor: ew-resize;
+    }
+
+    .compare input[type="range"]::-webkit-slider-runnable-track {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .compare input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-top: -7px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #04120b;
+      box-shadow: 0 0 0 8px rgba(0, 255, 157, 0.18);
+    }
+
+    .compare input[type="range"]::-moz-range-track {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .compare input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #04120b;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(0, 255, 157, 0.18);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .compare.is-hinting .compare-handle {
+        animation: none;
+      }
+    }
+
+    .closing {
+      margin-top: 24px;
+      padding: 34px;
+    }
+
+    .step-paired > .note-card {
+      margin-top: 0;
+    }
+
+    .closing-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .closing-actions + p {
+      margin-top: clamp(36px, 4vw, 48px);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .link-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      text-decoration: none;
+      display: block;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .link-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .link-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(0, 255, 157, 0.08);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-create {
+      color: #00ff9d;
+      border-color: rgba(0, 255, 157, 0.26);
+      background: rgba(0, 255, 157, 0.08);
+    }
+
+    .badge-360 {
+      color: #8cc9ff;
+      border-color: rgba(140, 201, 255, 0.24);
+      background: rgba(140, 201, 255, 0.1);
+    }
+
+    .badge-studio {
+      color: #ffd07a;
+      border-color: rgba(255, 208, 122, 0.26);
+      background: rgba(255, 208, 122, 0.1);
+    }
+
+    .badge-main {
+      color: #ff87da;
+      border-color: rgba(255, 135, 218, 0.26);
+      background: rgba(255, 135, 218, 0.1);
+    }
+
+    .moon-mark {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.92) 0 10%, transparent 11%),
+        conic-gradient(from 210deg, #00ffa0, #38d1ff, #8f73ff, #ff6fd8, #ffb347, #00ffa0);
+      box-shadow:
+        0 0 26px rgba(0, 255, 157, 0.16),
+        inset 0 0 18px rgba(255, 255, 255, 0.15);
+      flex: none;
+    }
+
+    .moon-mark::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      right: 3px;
+      width: 19px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(4, 7, 4, 0.95);
+      box-shadow: -1px 0 10px rgba(255, 255, 255, 0.06);
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: rgba(0, 255, 157, 0.06);
+    }
+
+    .link-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .link-card-create strong,
+    .link-card-360 strong,
+    .link-card-studio strong,
+    .link-card-main strong {
+      color: #00ff9d;
+    }
+
+    .link-card span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .footer-brand .moon-mark {
+      width: 34px;
+      height: 34px;
+    }
+
+    .footer-brand .moon-mark::after {
+      top: 4px;
+      right: 4px;
+      width: 21px;
+      height: 24px;
+    }
+
+    .site-footer {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .footer-brand svg {
+      width: 118px;
+      height: auto;
+      display: block;
+      color: var(--accent);
+    }
+
+    .footer-meta,
+    .footer-copy {
+      margin: 0;
+    }
+
+    .footer-meta a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    @media (max-width: 1180px) {
+      .hero,
+      .source-block,
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .source-block,
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .banner-copy {
+        position: static;
+        padding: 24px;
+        background: linear-gradient(180deg, transparent, rgba(5, 8, 4, 0.9));
+        grid-template-columns: 1fr;
+      }
+
+      .banner-frame::after {
+        background: linear-gradient(180deg, rgba(5, 8, 4, 0.12), rgba(5, 8, 4, 0.3));
+      }
+
+      .step-paired-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-meta,
+      .media-stack.double,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        padding: 0 14px 64px;
+      }
+
+      .topbar {
+        position: static;
+        padding: 16px 0 8px;
+      }
+
+      .topbar,
+      .topbar-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .topbar-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .button,
+      .button-ghost {
+        padding: 11px 16px;
+        font-size: 0.85rem;
+      }
+
+      .brand svg {
+        width: 96px;
+      }
+
+      .brand-note {
+        font-size: 0.68rem;
+      }
+
+      .hero-card,
+      .hero-side,
+      .source-block,
+      .step,
+      .closing {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .banner-hero {
+        margin-bottom: 20px;
+      }
+
+      .banner-frame {
+        min-height: unset;
+        border-radius: 20px;
+      }
+
+      .banner-copy {
+        padding: 18px;
+        gap: 10px;
+      }
+
+      .banner-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .banner-copy h1 {
+        font-size: clamp(1.6rem, 7.5vw, 2.6rem);
+        letter-spacing: -0.04em;
+      }
+
+      .banner-stats {
+        gap: 6px;
+      }
+
+      .banner-stat {
+        padding: 12px 14px;
+        border-radius: 14px;
+      }
+
+      .banner-stat strong {
+        font-size: 0.86rem;
+      }
+
+      .banner-stat span {
+        font-size: 0.76rem;
+      }
+
+      .hero-card h2 {
+        font-size: clamp(1.3rem, 5vw, 1.8rem);
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+
+      .hero-meta {
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .meta-card {
+        min-height: unset;
+        padding: 18px 16px 16px;
+      }
+
+      .source-copy h2 {
+        font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      }
+
+      .step h3 {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+      }
+
+      .closing h2 {
+        font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      }
+
+      .source-copy p,
+      .step p,
+      .closing p {
+        font-size: 0.92rem;
+      }
+
+      .source-block,
+      .step {
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .step-paired-row {
+        gap: 20px;
+      }
+
+      .prompt-block {
+        font-size: 0.55rem;
+        padding: 10px 12px;
+      }
+
+      .media-panel,
+      .compare-panel {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .asset-frame {
+        border-radius: 16px;
+      }
+
+      .compare {
+        border-radius: 16px;
+      }
+
+      .compare-chip {
+        padding: 6px 10px;
+        font-size: 0.64rem;
+        top: 10px;
+      }
+
+      .compare-chip.before {
+        left: 10px;
+      }
+
+      .compare-chip.after {
+        right: 10px;
+      }
+
+      .compare-handle::before {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+      }
+
+      .link-grid {
+        gap: 10px;
+      }
+
+      .link-card {
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .link-card strong {
+        font-size: 0.92rem;
+      }
+
+      .link-card span {
+        font-size: 0.85rem;
+      }
+
+      .side-list a {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+
+      .side-index {
+        width: 28px;
+        height: 28px;
+        font-size: 0.72rem;
+      }
+
+      .hero-side p {
+        font-size: 0.88rem;
+      }
+
+      .note-card {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+      }
+
+      .eyebrow,
+      .banner-kicker {
+        font-size: 0.68rem;
+        padding: 7px 12px;
+      }
+
+      .step-number,
+      .section-label {
+        font-size: 0.7rem;
+      }
+
+      .site-footer {
+        font-size: 0.85rem;
+        padding-top: 20px;
+      }
+
+      .footer-brand svg {
+        width: 96px;
+      }
+
+      .media-panel figcaption {
+        margin-top: 10px;
+        font-size: 0.85rem;
+      }
+
+      .compare-note {
+        font-size: 0.85rem;
+        padding: 12px 14px;
+      }
+
+      .copy-button {
+        font-size: 0.6rem;
+        padding: 6px 10px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .shell {
+        padding: 0 10px 56px;
+      }
+
+      .hero-card,
+      .hero-side,
+      .source-block,
+      .step,
+      .closing {
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .banner-frame {
+        border-radius: 16px;
+      }
+
+      .banner-visual {
+        min-height: 220px;
+        padding: 0;
+      }
+
+      .banner-copy {
+        padding: 0;
+      }
+
+      .banner-copy h1 {
+        font-size: clamp(1.4rem, 7vw, 2.2rem);
+      }
+
+      .hero-card h2 {
+        font-size: 1.2rem;
+      }
+
+      .lead {
+        font-size: 0.92rem;
+      }
+
+      .meta-card {
+        padding: 14px 12px 12px;
+      }
+
+      .meta-card p {
+        font-size: 0.88rem;
+      }
+
+      .source-block,
+      .step {
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .media-panel,
+      .compare-panel {
+        padding: 10px;
+        border-radius: 14px;
+      }
+
+      .asset-frame {
+        border-radius: 12px;
+      }
+
+      .topbar-actions {
+        gap: 8px;
+      }
+
+      .button,
+      .button-ghost {
+        padding: 10px 14px;
+        font-size: 0.82rem;
+      }
+
+      .step-paired {
+        gap: 14px;
+      }
+
+      .step-paired-row {
+        gap: 16px;
+      }
+
+      .compare-layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .link-card {
+        padding: 14px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="../../assets/persistent-nav.css">
+  <script src="../../assets/persistent-nav.js" defer></script>
 </head>
-<body>
-<p>Redirecting to <a href="https://natalieart.github.io/creative-assistant/">the article</a>...</p>
+<body data-bn-current="blog-creative-assistant">
+
+<div class="bn-header">
+  <div class="bn-header-inner">
+    <a class="bn-brand" href="https://natalieart.github.io/blogs-newsletters/">
+      <span class="bn-brand-word">Sogni</span>
+      <span class="bn-brand-divider">/</span>
+      <span class="bn-brand-sub">Blogs &amp; Newsletters</span>
+    </a>
+    <nav class="bn-nav" aria-label="Blogs and newsletters">
+      <div class="bn-menu" data-bn-menu>
+        <button class="bn-trigger" type="button" aria-expanded="false">
+          <span>Blogs</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><polyline points="6 9 12 15 18 9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </button>
+        <div class="bn-dropdown">
+          <a class="bn-drop-link" data-bn-page="blog-architectural-renders" href="https://natalieart.github.io/blogs-newsletters/blogs/architectural-renders/">
+            <span class="bn-drop-title">Why You No Longer Need to Outsource Your Architectural Renders</span>
+            <span class="bn-drop-meta">Blog · Architecture</span>
+          </a>
+          <a class="bn-drop-link" data-bn-page="blog-creative-assistant" href="https://natalieart.github.io/blogs-newsletters/blogs/creative-assistant/">
+            <span class="bn-drop-title">Meet the New Creative Assistant in Sogni Studio / Pro</span>
+            <span class="bn-drop-meta">Blog · AI Workflows</span>
+          </a>
+          <a class="bn-drop-link" data-bn-page="blog-starting-ending-frames" href="https://natalieart.github.io/blogs-newsletters/blogs/starting-ending-frames/">
+            <span class="bn-drop-title">Starting &amp; Ending Frames</span>
+            <span class="bn-drop-meta">Blog · Video &amp; Motion</span>
+          </a>
+        </div>
+      </div>
+      <div class="bn-menu" data-bn-menu>
+        <button class="bn-trigger" type="button" aria-expanded="false">
+          <span>Newsletters</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><polyline points="6 9 12 15 18 9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </button>
+        <div class="bn-dropdown">
+          <a class="bn-drop-link" data-bn-page="newsletter-19" href="https://natalieart.github.io/blogs-newsletters/newsletters/19/">
+            <span class="bn-drop-title">Season 6 is live</span>
+            <span class="bn-drop-meta">Newsletter · Volume 19</span>
+          </a>
+          <a class="bn-drop-link" data-bn-page="newsletter-18" href="https://natalieart.github.io/blogs-newsletters/newsletters/18/">
+            <span class="bn-drop-title">2025: The Year Sogni Came Alive</span>
+            <span class="bn-drop-meta">Newsletter · Volume 18</span>
+          </a>
+        </div>
+      </div>
+      <a class="bn-subscribe" href="https://www.sogni.ai/#wf-form-Marketing-Email-Signup" target="_blank" rel="noopener">Subscribe</a>
+    </nav>
+  </div>
+</div>
+  <div class="shell">
+<section class="banner-hero">
+      <div class="banner-frame">
+        <div class="banner-visual">
+          <div class="banner-screen">
+            <img src="assets/banner-full-panel.png" alt="Creative Assistant interface shown as a full hero panel in Sogni Studio.">
+          </div>
+        </div>
+        <div class="banner-copy">
+          <div>
+            <h1>Meet the New Creative Assistant.</h1>
+          </div>
+          <div class="banner-stats">
+            <div class="banner-stat">
+              <strong>3 modes</strong>
+              <span>Agent, Guided, and Manual creation flows.</span>
+            </div>
+            <div class="banner-stat">
+              <strong>Image to video</strong>
+              <span>Start with an edit, then turn the same result into a speaking clip with a second prompt.</span>
+            </div>
+            <div class="banner-stat">
+              <strong>Live preview</strong>
+              <span>Track what the agent is doing in Activity while the job is still running.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Chat-first creation, guided controls, or full manual mode</div>
+        <h2>Tell it what you want. <span style="white-space: nowrap;">Or guide it.</span> <span style="display: block;">Or take the wheel yourself.</span></h2>
+        <p class="lead">
+          The new <strong>Creative Assistant</strong> is now available in <strong>Sogni</strong>.
+          It introduces three ways to create: <strong class="mode-accent">Agent mode</strong> for chat-first creation, <strong class="mode-accent">Guided mode</strong> for chat with controls,
+          and <strong class="mode-accent">Manual mode</strong> for the classic workflow.
+        </p>
+        <p>
+          You bring the imagination. The Assistant helps with image generation, editing, video and music creation, prompt writing,
+          model selection, settings, media analysis, and multi-step workflows. It also understands the Sogni UI, Supernet, assets,
+          and system logic while respecting your safety filter settings.
+        </p>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span class="meta-label">Modes</span>
+            <p>Agent for chat-first creation, Guided for assisted controls, Manual for the classic workflow.</p>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Assistant Handles</span>
+            <p>Model picking, prompt writing, settings, media analysis, and multi-step creative flows.</p>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">You Handle</span>
+            <p>The idea, the direction, and the decision of when to chat, when to guide, and when to go fully manual.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <span class="side-label">What you'll do</span>
+        <ol class="side-list">
+          <li><a href="#source"><span class="side-index">00</span><span>Meet the three modes</span></a></li>
+          <li><a href="#step-1"><span class="side-index">01</span><span>Attach media and get analysis</span></a></li>
+          <li><a href="#step-2"><span class="side-index">02</span><span>Ask for the edit in plain language</span></a></li>
+          <li><a href="#step-3"><span class="side-index">03</span><span>Let it resolve technical settings</span></a></li>
+          <li><a href="#step-4"><span class="side-index">04</span><span>Review the image output and continue</span></a></li>
+          <li><a href="#step-5"><span class="side-index">05</span><span>Animate it with a second prompt &amp; peek into the background activity anytime</span></a></li>
+          <li><a href="#step-7"><span class="side-index">06</span><span>Review the finished video result</span></a></li>
+        </ol>
+
+      </aside>
+    </section>
+
+    <section class="source-block" id="source">
+      <div class="source-copy">
+        <div class="section-label">Meet the modes</div>
+        <h2>The new assistant gives you three ways to create without locking you into one workflow.</h2>
+        <ul class="mode-list">
+          <li>
+            <strong>Agent mode</strong>
+            <span>Chat-first creation when you want to describe the idea and let the assistant shape the setup for you.</span>
+          </li>
+          <li>
+            <strong>Guided mode</strong>
+            <span>Keeps the conversation visible while still giving you direct controls, so chat and settings stay in the same flow.</span>
+          </li>
+          <li>
+            <strong>Manual mode</strong>
+            <span>Leaves the assistant behind and returns you to the classic hands-on workflow whenever you want more precision.</span>
+          </li>
+        </ul>
+        <p>
+          That means you can start with a conversation, let the assistant help shape the setup, and then move into direct controls
+          whenever you want more precision. It is flexible on purpose.
+        </p>
+        <div class="note-card">
+          <span class="mode-accent">Guided mode</span> makes the value obvious right away: the assistant can suggest tasks like analyzing an image, enhancing a prompt,
+          creating an article cover, transferring motion to a character, or answering product questions before you even type.
+        </div>
+      </div>
+      <figure class="media-panel">
+        <div class="asset-frame">
+          <img src="assets/1-guided-mode.png" alt="Guided mode in Sogni Studio showing suggested actions and the chat panel beside the creation controls.">
+        </div>
+        <figcaption>Guided mode keeps the assistant conversation visible next to the generation controls, so you can chat and steer the workflow at the same time.</figcaption>
+      </figure>
+    </section>
+
+    <main class="article-grid">
+      <section class="step" id="step-1">
+        <div class="step-copy">
+          <div class="step-number">Step 1</div>
+          <h3>Attach an image and the assistant immediately starts making sense of it.</h3>
+          <p>
+            In this example, one image is attached to the conversation and the assistant reads the scene back in plain language.
+            It identifies the subject, the setting, the expression, and the overall context without needing a separate prompt.
+          </p>
+          <p>
+            Then it gives you ready-made next moves like <strong>Animate</strong>, <strong>Create Video</strong>, or <strong>Change Angle</strong>.
+            You do not have to guess what the product can do next, because it already turns the image into actionable options.
+          </p>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/2-image-analysis.png" alt="Creative Assistant analyzing an attached image and offering follow-up actions like Animate, Create Video, and Change Angle.">
+            </div>
+            <figcaption>The assistant reads the attached media, summarizes what it sees, and immediately offers useful next actions.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="step" id="step-2">
+        <div class="step-copy">
+          <div class="step-number">Step 2</div>
+          <h3>Ask for the transformation in plain language and let the assistant turn it into an editing workflow.</h3>
+          <p>
+            The request here is completely conversational. It does not mention models, advanced parameters, or internal tool choices.
+            It simply describes the desired result.
+          </p>
+          <p>
+            That is the point of the Creative Assistant. You say what should happen, and it starts setting up the right path for image editing on its own.
+          </p>
+          <div class="prompt-intro">Be sure to test the viral balloon prompt for yourself.</div>
+          <div class="prompt-shell">
+            <div class="prompt-block" id="assistant-edit-prompt">Transform the person in the scene into a glossy inflatable plastic balloon character, while preserving their facial features as detailed 3D balloon-like forms.</div>
+            <button class="copy-button" type="button" data-copy-target="assistant-edit-prompt">Copy image prompt</button>
+          </div>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/3-edit-request.png" alt="Conversation in Sogni Studio showing a natural-language request to transform the subject into a glossy balloon-like character.">
+            </div>
+            <figcaption>A normal sentence is enough. The assistant treats it as a creative instruction, not as a technical setup problem.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="step" id="step-3">
+        <div class="step-copy">
+          <div class="step-number">Step 3</div>
+          <h3>When a technical choice matters, the assistant pauses and asks the smallest useful question.</h3>
+          <p>
+            Here the source image does not match the current aspect ratio, so the assistant stops the flow briefly and asks how the size should be handled.
+            It offers concrete options instead of dropping you into a wall of settings.
+          </p>
+          <p>
+            The answer can be just as simple: <strong>Match the source image aspect ratio</strong>. The assistant then applies the setting and continues the edit.
+          </p>
+          <div class="note-card"><strong>What you should have now:</strong> The assistant has already interpreted the task, chosen the editing path, and resolved the image-size mismatch with one quick confirmation.</div>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/4-size-match.png" alt="Creative Assistant asking whether to match the source image aspect ratio before completing an image edit.">
+            </div>
+            <figcaption>The assistant handles the setup automatically, but still surfaces one concise choice when the image size needs confirmation.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-4">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 4</div>
+              <h3>The assistant finishes the image edit and returns a ready output with smart follow-up suggestions.</h3>
+              <p>
+                This is where the whole promise becomes visible. The assistant edits the image, shows the completed result in the main canvas,
+                and then suggests what you might want to do next.
+              </p>
+              <p>
+                In this example, it proposes <strong>Animate it</strong>, <strong>Try a different style</strong>, <strong>Upscale it</strong>, and <strong>Change angle</strong>.
+                The output is not a dead end. It becomes the start of the next move.
+              </p>
+            </div>
+            <div class="step-media">
+              <figure class="media-panel">
+                <div class="asset-frame">
+                  <img src="assets/5-edit-complete.png" alt="Creative Assistant showing the completed balloon-style image edit together with follow-up suggestions like Animate it and Upscale it.">
+                </div>
+                <figcaption>The assistant completes the edit, shows the final image, and keeps the workflow moving with clear suggested actions.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="step-paired-row">
+            <div class="compare-support">
+              <p>If you want to show the transformation more clearly, this is also the perfect moment to compare the original source image with the balloon version side by side.</p>
+              <div class="note-card"><strong>What you should have now:</strong> A finished edited image, the reasoning behind the result, and a set of guided suggestions for the next creative step.</div>
+            </div>
+            <div class="compare-panel">
+              <div class="compare-header">
+                <div class="compare-title">Before / After</div>
+                <div class="compare-badges">
+                  <span class="badge">Before</span>
+                  <span class="badge badge-accent">After</span>
+                </div>
+              </div>
+              <div class="compare" data-compare>
+                <span class="compare-chip before">Before</span>
+                <span class="compare-chip after">After</span>
+                <img src="assets/8-source-before-square.png" alt="Original source photo before the Creative Assistant transformed it into a balloon character.">
+                <div class="compare-after">
+                  <img src="assets/8-balloon-after.png" alt="Balloon-style result after the Creative Assistant transformed the source image.">
+                </div>
+                <div class="compare-handle"></div>
+                <input type="range" min="0" max="100" value="52" aria-label="Adjust before and after comparison">
+              </div>
+              <div class="compare-note">Drag anywhere on the image or use the slider to compare the original photo with the finished balloon transformation.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-5">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 5</div>
+              <h3>Use the finished image as the source, ask for the video in one more plain-language prompt, and peek into the background activity anytime.</h3>
+              <p>
+                Once the balloon-style image is ready, you can keep the same conversation going and ask the assistant to animate that exact result.
+                You are still working in natural language. You are not switching into a separate technical workflow just to get motion.
+              </p>
+              <p>
+                This is what makes the Creative Assistant feel cohesive: one result becomes the input for the next step. The assistant keeps the
+                character, the look, and the context in place while moving you from still image to video.
+              </p>
+              <p>
+                The same conversation carries the image into video, keeping the prompt, the generated clip, and the next actions visible in one place.
+              </p>
+              <div class="prompt-shell">
+                <div class="prompt-block" id="assistant-video-prompt">A balloon version of a charismatic Trump says: "Everyone should immediately start using Sogni's AI agents, they will handle everything for you, absolutely everything. Incredible!"</div>
+                <button class="copy-button" type="button" data-copy-target="assistant-video-prompt">Copy video prompt</button>
+              </div>
+              <p class="activity-secondary-copy">
+                And if you want to check what is happening in the background while the job runs, you can always open the Activity view.
+                It shows what is active, what is ready for review, what was already reviewed, and the queue details without breaking the flow.
+              </p>
+              <p class="activity-lead-copy">
+                Activity gives you a live view of what the agent is imagining now, what is ready next, and how the queue is moving.
+              </p>
+              <div class="note-card"><strong>What you can check here anytime:</strong> A live preview of the running job, plus enough system feedback to understand what the agent is doing without leaving the workflow.</div>
+            </div>
+            <div class="step-media">
+              <figure class="media-panel">
+                <div class="asset-frame screen-frame">
+                  <img src="assets/9-step5-video-screen.png" alt="Creative Assistant showing the finished balloon character video preview together with follow-up actions like Generate voiceover, Create more clips, and Make a visualizer.">
+                </div>
+              </figure>
+              <figure class="media-panel activity-panel">
+                <div class="asset-frame screen-frame">
+                  <img src="assets/6-preview-activity.png" alt="Activity view in Sogni Studio showing the Supernet queue with one active generation, ready items, and reviewed items.">
+                </div>
+                <figcaption>Activity view in Sogni Studio showing the Supernet queue with one active generation, ready items, and reviewed items.</figcaption>
+                <div class="activity-window-card">
+                  <img src="assets/6-activity-window-card.png" alt="Activity window card showing that items are rendering in the background queue and can be opened from the Activity window.">
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-7">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 6</div>
+              <h3>The assistant returns the finished video, explains the result, and gives you the next actions immediately.</h3>
+              <p>
+                When the animation is done, the assistant does not stop at the render. It summarizes what it created, keeps the finished clip
+                visible in the main canvas, and suggests the next useful actions right away.
+              </p>
+              <p>
+                In this example, the follow-up ideas are <strong>Generate voiceover</strong>, <strong>Create more clips</strong>, and <strong>Make a visualizer</strong>.
+                That keeps the workflow open and expandable instead of making you start over from scratch after every output.
+              </p>
+              <div class="note-card"><strong>What you should have now:</strong> A finished animated clip, a readable summary of what the assistant produced, and guided next-step options for building on top of it.</div>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <video data-final-video autoplay muted loop controls playsinline preload="auto" poster="assets/8-balloon-after.png">
+                  <source src="assets/balloon-trump-video.mp4" type="video/mp4">
+                </video>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="closing">
+      <div class="section-label">Next step</div>
+      <h2>The Creative Assistant handles the setup. You stay focused on the idea.</h2>
+      <p>
+        This is the real shift: you can begin with conversation, move from image edit to video prompt, watch the agent work live in Activity,
+        and still drop back into manual mode whenever you want.
+      </p>
+      <p>
+        Use the assistant when you want momentum. Use <span class="mode-accent">Guided mode</span> when you want help plus controls. Use <span class="mode-accent">Manual mode</span> when you want the classic hands-on path.
+      </p>
+      <div class="closing-actions">
+        <a class="button" href="https://www.sogni.ai/studio" target="_blank" rel="noreferrer">Open Sogni Studio</a>
+      </div>
+      <p>Keep the workflow moving with:</p>
+      <div class="link-grid">
+        <a class="link-card link-card-360" href="https://www.sogni.ai/studio" target="_blank" rel="noreferrer">
+          <div class="link-top">
+            <span class="link-badge badge-360">Studio</span>
+          </div>
+          <strong>Sogni Studio</strong>
+          <span>Use the Creative Assistant when you want chat-first creation, guided help, and deeper desktop control.</span>
+        </a>
+        <a class="link-card link-card-studio" href="https://app.sogni.ai/create" target="_blank" rel="noreferrer">
+          <div class="link-top">
+            <span class="link-badge badge-studio">Create</span>
+          </div>
+          <strong>Sogni Create</strong>
+          <span>Jump into fast generation and editing workflows when you want the web-first Sogni experience.</span>
+        </a>
+        <a class="link-card link-card-main" href="https://www.sogni.ai/" target="_blank" rel="noreferrer">
+          <div class="link-top">
+            <span class="link-badge badge-main">Main</span>
+          </div>
+          <strong>Sogni AI</strong>
+          <span>Explore Studio, Pocket, Supernet, downloads, and the wider Sogni ecosystem.</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <a class="footer-brand" href="https://www.sogni.ai/" target="_blank" rel="noreferrer" aria-label="Sogni">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 387 160" aria-hidden="true">
+          <path fill="currentColor" d="M17.2,106.99c5.33,2.29,11.3,3.41,17.95,3.41,7.03,0,13.11-1.33,18.23-3.98,5.23-2.75,9.17-6.34,11.82-10.81,2.76-4.44,4.12-9.19,4.12-14.2,0-6.24-1.47-11.22-4.43-14.92-2.86-3.8-6.36-6.57-10.53-8.37-4.09-1.8-9.4-3.59-15.96-5.39-4.94-1.34-8.83-2.57-11.69-3.7-2.86-1.13-5.23-2.64-7.13-4.54-1.8-1.98-2.7-4.49-2.7-7.52,0-4.44,1.47-7.86,4.4-10.22,2.94-2.36,6.75-3.54,11.41-3.54,5.12,0,9.27,1.28,12.39,3.83,3.14,2.57,4.84,5.62,5.12,9.24h17.95c-.67-8.34-4.09-14.87-10.25-19.62-6.08-4.83-13.9-7.24-23.51-7.24-6.75,0-12.67,1.13-17.82,3.41-5.12,2.29-9.11,5.55-11.97,9.81C1.73,26.91.31,31.89.31,37.56c0,6.16,1.42,11.09,4.27,14.76,2.86,3.7,6.28,6.44,10.25,8.24,4.09,1.69,9.35,3.42,15.81,5.11,5.12,1.34,9.11,2.57,11.97,3.7,2.94,1.13,5.36,2.75,7.26,4.83,1.98,2.08,2.99,4.78,2.99,8.09,0,4.26-1.57,7.75-4.71,10.5-3.14,2.64-7.49,3.98-13.11,3.98s-9.63-1.36-12.67-4.11c-2.94-2.75-4.61-6.24-5-10.5H0c0,5.67,1.52,10.66,4.56,14.92,3.04,4.26,7.21,7.57,12.54,9.94l.1-.03ZM102.48,105.71c5.97,3.31,12.67,4.98,20.08,4.98s14.34-1.67,20.52-4.98c6.28-3.42,11.2-8.19,14.83-14.35,3.6-6.16,5.41-13.22,5.41-21.16s-1.75-15.02-5.28-21.16c-3.53-6.14-8.32-10.89-14.39-14.2-6.08-3.31-12.87-4.98-20.37-4.98s-14.29,1.67-20.37,4.98c-6.08,3.31-10.87,8.06-14.39,14.2-3.53,6.16-5.28,13.22-5.28,21.16s1.7,15.15,5.12,21.31c3.42,6.06,8.11,10.81,14.11,14.2ZM134.25,93.64c-3.61,1.98-7.49,2.98-11.69,2.98-6.54,0-12.03-2.29-16.38-6.83-4.27-4.65-6.41-11.17-6.41-19.62,0-5.67,1.06-10.48,3.14-14.35,2.08-3.98,4.89-6.96,8.39-8.96,3.61-1.98,7.49-2.98,11.69-2.98s8.08,1,11.69,2.98c3.6,1.98,6.51,4.98,8.7,8.96,2.19,3.88,3.27,8.68,3.27,14.35s-1.13,10.5-3.42,14.48c-2.29,3.98-5.28,6.96-8.99,8.96v.03ZM227.1,33.53c-4.66-2.46-10.02-3.7-16.09-3.7-6.85,0-13.11,1.69-18.8,5.11-5.61,3.31-10.07,8.01-13.39,14.07-3.22,6.06-4.84,13.02-4.84,20.88s1.62,14.92,4.84,21.16c3.32,6.16,7.78,10.99,13.39,14.48,5.69,3.42,11.97,5.11,18.8,5.11,5.97,0,11.3-1.23,15.96-3.7,4.74-2.57,8.5-5.67,11.25-9.37v13.07c0,7.57-2.03,13.35-6.13,17.33-3.99,3.98-9.27,5.96-15.81,5.96-5.61,0-10.45-1.28-14.52-3.83-3.99-2.46-6.59-5.72-7.83-9.81h-16.09c.95,8.53,4.94,15.25,11.97,20.18,7.03,5.03,15.86,7.52,26.5,7.52,7.98,0,14.81-1.62,20.52-4.83,5.79-3.21,10.22-7.68,13.26-13.35,3.04-5.6,4.56-11.99,4.56-19.18V31.07h-16.38v11.37c-2.65-3.59-6.36-6.57-11.12-8.96l-.05.05ZM234.8,56.13c2.29,3.98,3.42,8.68,3.42,14.07s-1.13,10.14-3.42,14.2c-2.19,3.98-5.07,7.01-8.7,9.09-3.61,2.08-7.49,3.13-11.69,3.13s-7.98-1.05-11.69-3.13c-3.6-2.18-6.57-5.32-8.83-9.37-2.19-4.08-3.27-8.81-3.27-14.2s1.08-10.04,3.27-13.92c2.29-3.98,5.23-6.96,8.83-8.96,3.6-2.08,7.49-3.13,11.69-3.13s8.08,1.05,11.69,3.13c3.6,2.08,6.51,5.11,8.7,9.09ZM332.08,33.69c-4.84-2.57-10.35-3.83-16.53-3.83-4.66,0-9.06.9-13.26,2.7-4.09,1.8-7.47,4.31-10.12,7.52v-8.96h-16.25v78.29h16.25v-43.75c0-7.01,1.75-12.35,5.28-16.05,3.61-3.8,8.45-5.67,14.52-5.67s10.87,1.9,14.39,5.67c3.5,3.7,5.28,9.04,5.28,16.05v43.75h16.09v-46.17c0-7.11-1.37-13.17-4.12-18.18-2.76-5.03-6.59-8.81-11.54-11.37ZM369.34,17.77c1.98,1.98,4.45,2.98,7.42,2.98s5.28-1,7.26-2.98c1.98-1.98,2.99-4.44,2.99-7.39s-1-5.39-2.99-7.39c-1.98-1.98-4.43-2.98-7.26-2.98s-5.41,1-7.42,2.98c-1.98,1.98-2.99,4.44-2.99,7.39s1,5.39,2.99,7.39ZM384.71,109.41V31.12h-16.25v78.29h16.25Z"/>
+        </svg>
+      </a>
+      <p class="footer-meta">Sogni Article · Creative Assistant · <a href="https://www.sogni.ai/" target="_blank" rel="noreferrer">sogni.ai</a></p>
+      <p class="footer-copy">© 2026 Sogni. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compareHintObserver = !prefersReducedMotion.matches && "IntersectionObserver" in window
+      ? new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const compare = entry.target;
+            if (compare.dataset.hintPlayed === "true") {
+              observer.unobserve(compare);
+              return;
+            }
+
+            compare.dataset.hintPlayed = "true";
+            compare.classList.add("is-hinting");
+
+            window.setTimeout(() => {
+              compare.classList.remove("is-hinting");
+            }, 1700);
+
+            observer.unobserve(compare);
+          });
+        }, { threshold: 0.55 })
+      : null;
+
+    document.querySelectorAll("[data-compare]").forEach((compare) => {
+      const input = compare.querySelector("input[type='range']");
+      let dragging = false;
+
+      const sync = (value) => {
+        const bounded = Math.max(0, Math.min(100, value));
+        compare.style.setProperty("--position", bounded + "%");
+        input.value = bounded;
+      };
+
+      const updateFromClientX = (clientX) => {
+        const rect = compare.getBoundingClientRect();
+        const value = ((clientX - rect.left) / rect.width) * 100;
+        sync(value);
+      };
+
+      input.addEventListener("input", () => sync(Number(input.value)));
+
+      compare.addEventListener("pointerdown", (event) => {
+        if (event.target === input) return;
+        dragging = true;
+        compare.setPointerCapture(event.pointerId);
+        updateFromClientX(event.clientX);
+      });
+
+      compare.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        updateFromClientX(event.clientX);
+      });
+
+      const stopDragging = () => {
+        dragging = false;
+      };
+
+      compare.addEventListener("pointerup", stopDragging);
+      compare.addEventListener("pointercancel", stopDragging);
+      compare.addEventListener("pointerleave", stopDragging);
+
+      sync(Number(input.value));
+
+      if (compareHintObserver) {
+        compareHintObserver.observe(compare);
+      }
+    });
+
+    document.querySelectorAll("[data-copy-target]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        if (!target) return;
+
+        const original = button.textContent;
+
+        try {
+          await navigator.clipboard.writeText(target.textContent.trim());
+          button.textContent = "Copied";
+        } catch {
+          button.textContent = "Copy failed";
+        }
+
+        window.setTimeout(() => {
+          button.textContent = original;
+        }, 1800);
+      });
+    });
+
+    const finalVideo = document.querySelector("[data-final-video]");
+
+    if (finalVideo) {
+      let userTookControl = false;
+      let autoplayPrepared = false;
+      let videoObserver = null;
+
+      const stopAutoManagement = () => {
+        userTookControl = true;
+        if (videoObserver) {
+          videoObserver.disconnect();
+          videoObserver = null;
+        }
+      };
+
+      const tryAutoplay = () => {
+        if (userTookControl) return;
+
+        if (!autoplayPrepared) {
+          finalVideo.defaultMuted = true;
+          finalVideo.muted = true;
+          finalVideo.playsInline = true;
+          autoplayPrepared = true;
+        }
+
+        if (!finalVideo.paused) return;
+
+        const playAttempt = finalVideo.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(() => {});
+        }
+      };
+
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+          tryAutoplay();
+        }
+      };
+
+      if (document.readyState === "complete") {
+        tryAutoplay();
+      } else {
+        window.addEventListener("load", tryAutoplay, { once: true });
+      }
+
+      finalVideo.addEventListener("loadeddata", tryAutoplay);
+      finalVideo.addEventListener("canplay", tryAutoplay);
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      ["pointerdown", "touchstart", "keydown"].forEach((eventName) => {
+        finalVideo.addEventListener(eventName, stopAutoManagement, { once: true });
+      });
+
+      finalVideo.addEventListener("volumechange", () => {
+        if (!autoplayPrepared) return;
+        if (!finalVideo.muted || finalVideo.volume !== 1) {
+          stopAutoManagement();
+        }
+      });
+
+      if ("IntersectionObserver" in window) {
+        videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tryAutoplay();
+            }
+          });
+        }, { threshold: 0.35 });
+
+        videoObserver.observe(finalVideo);
+      }
+    }
+  </script>
 </body>
 </html>

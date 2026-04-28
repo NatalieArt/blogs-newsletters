@@ -1,31 +1,2156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Redirecting...</title>
-<meta http-equiv="refresh" content="0; url=https://natalieart.github.io/architectural-renders/" />
-<link rel="canonical" href="https://natalieart.github.io/architectural-renders/" />
-<script>
-window.location.replace("https://natalieart.github.io/architectural-renders/");
-</script>
-<style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  font-family: Inter, system-ui, sans-serif;
-  background: #07111a;
-  color: #f5f8fb;
-}
-a {
-  color: #97f5b8;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why You No Longer Need to Outsource Your Architectural Renders | Sogni</title>
+  <base href="https://natalieart.github.io/architectural-renders/">
+  <meta name="description" content="Start with one sketch, turn it into a polished architectural render in Sogni, expand it into multiple camera angles, and finish with a presentation-ready reveal video.">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why You No Longer Need to Outsource Your Architectural Renders">
+  <meta property="og:description" content="Start with one sketch, turn it into a polished architectural render in Sogni, expand it into multiple camera angles, and finish with a presentation-ready reveal video.">
+  <meta property="og:image" content="https://natalieart.github.io/architectural-renders/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://natalieart.github.io/architectural-renders/">
+  <meta property="og:site_name" content="Sogni AI">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why You No Longer Need to Outsource Your Architectural Renders">
+  <meta name="twitter:description" content="Start with one sketch, turn it into a polished architectural render in Sogni, expand it into multiple camera angles, and finish with a presentation-ready reveal video.">
+  <meta name="twitter:image" content="https://natalieart.github.io/architectural-renders/assets/og-image.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050704;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(0, 255, 157, 0.24);
+      --text: #f6f8f4;
+      --muted: #a5ae9f;
+      --muted-strong: #d6ddd2;
+      --accent: #00ff9d;
+      --accent-soft: rgba(0, 255, 157, 0.1);
+      --accent-glow: rgba(0, 255, 157, 0.18);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --radius-sm: 14px;
+      --radius-md: 24px;
+      --radius-lg: 34px;
+      --font-main: "Inter", sans-serif;
+      --font-mono: "Space Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at top, rgba(0, 255, 157, 0.08), transparent 34%),
+        linear-gradient(180deg, #060805 0%, #050704 56%, #040503 100%);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 92%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1460px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      margin-bottom: 18px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .brand svg {
+      width: 118px;
+      height: auto;
+      display: block;
+    }
+
+    .brand-note {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .button,
+    .button-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: #04120b;
+      box-shadow: 0 12px 30px rgba(0, 255, 157, 0.18);
+    }
+
+    .button-ghost {
+      border: 1px solid var(--line-strong);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+    }
+
+    .button:hover,
+    .button-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .banner-hero {
+      margin-bottom: 28px;
+    }
+
+    .banner-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.03);
+      min-height: 340px;
+    }
+
+    .banner-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5, 8, 4, 0.05) 0%, rgba(5, 8, 4, 0.1) 40%, rgba(5, 8, 4, 0.84) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.48) 0%, transparent 50%, rgba(0, 0, 0, 0.16) 100%);
+      pointer-events: none;
+    }
+
+    .banner-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-copy {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 24px;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+      gap: 24px;
+      align-items: end;
+    }
+
+    .banner-kicker,
+    .eyebrow,
+    .step-number,
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .banner-kicker,
+    .eyebrow {
+      padding: 9px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    .banner-kicker::before,
+    .eyebrow::before,
+    .step-number::before,
+    .section-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .banner-kicker {
+      margin-bottom: 14px;
+    }
+
+    .banner-copy h1 {
+      margin: 0;
+      max-width: 620px;
+      font-size: clamp(1.92rem, 4.1vw, 3.46rem);
+      line-height: 1.02;
+      text-align: left;
+      text-wrap: balance;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 4px 32px rgba(0, 0, 0, 0.5), 0 0 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .banner-stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .banner-stat {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(4, 8, 5, 0.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .banner-stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .banner-stat span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 28px;
+      padding: 0 0 36px;
+      align-items: start;
+    }
+
+    .hero-card,
+    .hero-side,
+    .source-block,
+    .step,
+    .closing {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(16, 20, 12, 0.82), rgba(8, 10, 7, 0.96));
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+    }
+
+    .hero-card .eyebrow {
+      margin-top: -10px;
+      margin-bottom: 12px;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      top: -140px;
+      right: -140px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 255, 157, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 16px;
+      max-width: 880px;
+      font-size: clamp(1.52rem, 2.65vw, 2.34rem);
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+      text-align: left;
+      text-wrap: balance;
+      hyphens: auto;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(1.04rem, 1.3vw, 1.22rem);
+      color: var(--muted-strong);
+      text-align: left;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+      align-items: stretch;
+    }
+
+    .meta-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 184px;
+      padding: 24px 22px 22px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      display: grid;
+      align-content: start;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        linear-gradient(135deg, rgba(0, 255, 157, 0.08), transparent 55%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .meta-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(0, 255, 157, 0));
+    }
+
+    .meta-label {
+      display: block;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .meta-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .hero-side {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .side-label {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .side-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .side-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--muted-strong);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .side-list a span:last-child {
+      font-size: 0.92rem;
+      line-height: 1.28;
+    }
+
+    .side-list a:hover {
+      border-color: var(--line-strong);
+      background: rgba(0, 255, 157, 0.06);
+    }
+
+    .side-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 29px;
+      height: 29px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      flex: none;
+    }
+
+    .hero-side p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    .source-block,
+    .step {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.76fr) minmax(0, 1.24fr);
+      gap: 34px;
+      margin-bottom: 24px;
+      padding: 30px;
+      scroll-margin-top: 96px;
+    }
+
+    .source-copy h2,
+    .step h3,
+    .closing h2 {
+      margin: 14px 0 14px;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    .source-copy h2 {
+      font-size: clamp(1.48rem, 2.2vw, 1.98rem);
+    }
+
+    .step h3 {
+      font-size: clamp(1.32rem, 1.8vw, 1.78rem);
+    }
+
+    .closing h2 {
+      font-size: clamp(1.5rem, 2.2vw, 2.08rem);
+    }
+
+    .source-copy h2,
+    .step h3,
+    .closing h2 {
+      text-align: left;
+      text-wrap: balance;
+      hyphens: auto;
+    }
+
+    .source-copy p,
+    .step p,
+    .closing p,
+    .note-card,
+    .media-panel figcaption,
+    .compare-note {
+      color: var(--muted-strong);
+    }
+
+    .source-copy p,
+    .step p,
+    .closing p {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .source-copy p:last-child,
+    .step p:last-child,
+    .closing p:last-child {
+      margin-bottom: 0;
+    }
+
+    .step strong,
+    .source-copy strong,
+    .closing strong {
+      color: var(--text);
+    }
+
+    .note-card,
+    .prompt-block,
+    .compare-note {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .note-card {
+      text-align: left;
+    }
+
+    .prompt-shell {
+      position: relative;
+      margin-top: 18px;
+    }
+
+    .prompt-block {
+      margin-top: 0;
+      padding: 12px 14px;
+      border-color: var(--line-strong);
+      background:
+        linear-gradient(180deg, rgba(0, 255, 157, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(255, 255, 255, 0.02);
+      word-break: break-word;
+      white-space: normal;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      line-height: 1.62;
+      color: var(--muted-strong);
+      text-align: left;
+    }
+
+    .copy-button {
+      position: absolute;
+      bottom: -18px;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(4, 10, 6, 0.74);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .copy-button:hover {
+      transform: translateY(-1px);
+      background: rgba(0, 255, 157, 0.12);
+    }
+
+    .step ul {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      color: var(--muted-strong);
+    }
+
+    .step li + li {
+      margin-top: 8px;
+    }
+
+    .article-grid {
+      display: grid;
+      gap: 0;
+    }
+
+    .step-copy,
+    .source-copy {
+      min-width: 0;
+    }
+
+    .step-copy.distributed {
+      display: grid;
+      align-content: start;
+      gap: 24px;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 14px;
+    }
+
+    .copy-block > :first-child {
+      margin-top: 0;
+    }
+
+    .copy-block > :last-child {
+      margin-bottom: 0;
+    }
+
+    .step-media,
+    .media-stack {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .step.step-paired-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .step-paired {
+      display: grid;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .step-paired-row {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.76fr) minmax(0, 1.24fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .step-paired-copy {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .step-paired-copy > :first-child {
+      margin-top: 0;
+    }
+
+    .step-paired-copy > :last-child {
+      margin-bottom: 0;
+    }
+
+    .media-stack.double {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .media-stack.single {
+      grid-template-columns: 1fr;
+    }
+
+    .media-span {
+      grid-column: 1 / -1;
+    }
+
+    .media-panel,
+    .compare-panel {
+      margin: 0;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+        linear-gradient(135deg, rgba(0, 255, 157, 0.06), transparent 48%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .asset-frame {
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #020302;
+    }
+
+    .asset-frame.landscape {
+      aspect-ratio: 5 / 3;
+    }
+
+    .asset-frame img,
+    .asset-frame video {
+      width: 100%;
+      height: auto;
+    }
+
+    .asset-frame.landscape img {
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .asset-frame video {
+      background: #000;
+    }
+
+    .media-panel figcaption {
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .media-panel-project-name .asset-frame {
+      width: min(100%, 430px);
+      margin: 0 auto;
+    }
+
+    .media-panel-angle-preset .asset-frame {
+      width: min(100%, 620px);
+      margin: 0 auto;
+    }
+
+    .compare-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .compare-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted-strong);
+    }
+
+    .badge-accent {
+      border-color: var(--line-strong);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .compare-title {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1rem;
+    }
+
+    .compare {
+      --position: 52%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #020302;
+      isolation: isolate;
+      touch-action: none;
+      cursor: ew-resize;
+    }
+
+    .compare img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .compare-after {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      clip-path: inset(0 calc(100% - var(--position)) 0 0);
+    }
+
+    .compare-after img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .compare-chip {
+      position: absolute;
+      top: 16px;
+      z-index: 1;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(4, 10, 6, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .compare-chip.before {
+      left: 16px;
+    }
+
+    .compare-chip.after {
+      right: 16px;
+    }
+
+    .compare-handle {
+      position: absolute;
+      inset: 0 auto 0 calc(var(--position) - 1px);
+      width: 2px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 0 0 1px rgba(0, 255, 157, 0.18);
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .compare-handle::before {
+      content: "↔";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(4, 10, 6, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--text);
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    @keyframes compare-hint {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-18px);
+      }
+
+      45% {
+        transform: translateX(16px);
+      }
+
+      70% {
+        transform: translateX(-9px);
+      }
+
+      85% {
+        transform: translateX(8px);
+      }
+    }
+
+    .compare.is-hinting .compare-handle {
+      animation: compare-hint 1.45s cubic-bezier(0.22, 1, 0.36, 1) 0.18s 1;
+    }
+
+    .compare input[type="range"] {
+      position: absolute;
+      inset: auto 16px 16px 16px;
+      width: calc(100% - 32px);
+      appearance: none;
+      background: transparent;
+      z-index: 2;
+      cursor: ew-resize;
+    }
+
+    .compare input[type="range"]::-webkit-slider-runnable-track {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .compare input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-top: -7px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #04120b;
+      box-shadow: 0 0 0 8px rgba(0, 255, 157, 0.18);
+    }
+
+    .compare input[type="range"]::-moz-range-track {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .compare input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #04120b;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(0, 255, 157, 0.18);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .compare.is-hinting .compare-handle {
+        animation: none;
+      }
+    }
+
+    .closing {
+      margin-top: 24px;
+      padding: 34px;
+    }
+
+    .step-paired > .note-card {
+      margin-top: 0;
+    }
+
+    .closing-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .closing-actions + p {
+      margin-top: clamp(36px, 4vw, 48px);
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .link-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      text-decoration: none;
+      display: block;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .link-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .link-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(0, 255, 157, 0.08);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-create {
+      color: #00ff9d;
+      border-color: rgba(0, 255, 157, 0.26);
+      background: rgba(0, 255, 157, 0.08);
+    }
+
+    .badge-360 {
+      color: #8cc9ff;
+      border-color: rgba(140, 201, 255, 0.24);
+      background: rgba(140, 201, 255, 0.1);
+    }
+
+    .badge-studio {
+      color: #ffd07a;
+      border-color: rgba(255, 208, 122, 0.26);
+      background: rgba(255, 208, 122, 0.1);
+    }
+
+    .badge-main {
+      color: #ff87da;
+      border-color: rgba(255, 135, 218, 0.26);
+      background: rgba(255, 135, 218, 0.1);
+    }
+
+    .moon-mark {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.92) 0 10%, transparent 11%),
+        conic-gradient(from 210deg, #00ffa0, #38d1ff, #8f73ff, #ff6fd8, #ffb347, #00ffa0);
+      box-shadow:
+        0 0 26px rgba(0, 255, 157, 0.16),
+        inset 0 0 18px rgba(255, 255, 255, 0.15);
+      flex: none;
+    }
+
+    .moon-mark::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      right: 3px;
+      width: 19px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(4, 7, 4, 0.95);
+      box-shadow: -1px 0 10px rgba(255, 255, 255, 0.06);
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: rgba(0, 255, 157, 0.06);
+    }
+
+    .link-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .link-card-create strong,
+    .link-card-360 strong,
+    .link-card-studio strong,
+    .link-card-main strong {
+      color: #00ff9d;
+    }
+
+    .link-card span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .footer-brand .moon-mark {
+      width: 34px;
+      height: 34px;
+    }
+
+    .footer-brand .moon-mark::after {
+      top: 4px;
+      right: 4px;
+      width: 21px;
+      height: 24px;
+    }
+
+    .site-footer {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .footer-brand svg {
+      width: 118px;
+      height: auto;
+      display: block;
+      color: var(--accent);
+    }
+
+    .footer-meta,
+    .footer-copy {
+      margin: 0;
+    }
+
+    .footer-meta a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    @media (max-width: 1180px) {
+      .banner-copy,
+      .hero,
+      .source-block,
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .source-block,
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .banner-copy {
+        position: static;
+        padding: 24px;
+        background: linear-gradient(180deg, transparent, rgba(5, 8, 4, 0.9));
+      }
+
+      .banner-frame::after {
+        background: linear-gradient(180deg, rgba(5, 8, 4, 0.12), rgba(5, 8, 4, 0.3));
+      }
+
+      .step-paired-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-meta,
+      .media-stack.double,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        padding: 0 14px 64px;
+      }
+
+      .topbar {
+        position: static;
+        padding: 16px 0 8px;
+      }
+
+      .topbar,
+      .topbar-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .topbar-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .button,
+      .button-ghost {
+        padding: 11px 16px;
+        font-size: 0.85rem;
+      }
+
+      .brand svg {
+        width: 96px;
+      }
+
+      .brand-note {
+        font-size: 0.68rem;
+      }
+
+      .hero-card,
+      .hero-side,
+      .source-block,
+      .step,
+      .closing {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .banner-hero {
+        margin-bottom: 20px;
+      }
+
+      .banner-frame {
+        min-height: unset;
+        border-radius: 20px;
+      }
+
+      .banner-copy {
+        padding: 18px;
+      }
+
+      .banner-copy h1 {
+        font-size: clamp(1.6rem, 7.5vw, 2.6rem);
+        letter-spacing: -0.04em;
+      }
+
+      .banner-stats {
+        gap: 8px;
+      }
+
+      .banner-stat {
+        padding: 12px 14px;
+        border-radius: 14px;
+      }
+
+      .banner-stat strong {
+        font-size: 0.9rem;
+      }
+
+      .banner-stat span {
+        font-size: 0.8rem;
+      }
+
+      .hero-card h2 {
+        font-size: clamp(1.3rem, 5vw, 1.8rem);
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+
+      .hero-meta {
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .meta-card {
+        min-height: unset;
+        padding: 18px 16px 16px;
+      }
+
+      .source-copy h2 {
+        font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      }
+
+      .step h3 {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+      }
+
+      .closing h2 {
+        font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      }
+
+      .source-copy p,
+      .step p,
+      .closing p {
+        font-size: 0.92rem;
+      }
+
+      .source-block,
+      .step {
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .step-paired-row {
+        gap: 20px;
+      }
+
+      .prompt-block {
+        font-size: 0.55rem;
+        padding: 10px 12px;
+      }
+
+      .media-panel,
+      .compare-panel {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .asset-frame {
+        border-radius: 16px;
+      }
+
+      .compare {
+        border-radius: 16px;
+      }
+
+      .compare-chip {
+        padding: 6px 10px;
+        font-size: 0.64rem;
+        top: 10px;
+      }
+
+      .compare-chip.before {
+        left: 10px;
+      }
+
+      .compare-chip.after {
+        right: 10px;
+      }
+
+      .compare-handle::before {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+      }
+
+      .link-grid {
+        gap: 10px;
+      }
+
+      .link-card {
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .link-card strong {
+        font-size: 0.92rem;
+      }
+
+      .link-card span {
+        font-size: 0.85rem;
+      }
+
+      .side-list a {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+
+      .side-index {
+        width: 28px;
+        height: 28px;
+        font-size: 0.72rem;
+      }
+
+      .hero-side p {
+        font-size: 0.88rem;
+      }
+
+      .note-card {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+      }
+
+      .eyebrow,
+      .banner-kicker {
+        font-size: 0.68rem;
+        padding: 7px 12px;
+      }
+
+      .step-number,
+      .section-label {
+        font-size: 0.7rem;
+      }
+
+      .site-footer {
+        font-size: 0.85rem;
+        padding-top: 20px;
+      }
+
+      .footer-brand svg {
+        width: 96px;
+      }
+
+      .media-panel figcaption {
+        margin-top: 10px;
+        font-size: 0.85rem;
+      }
+
+      .compare-note {
+        font-size: 0.85rem;
+        padding: 12px 14px;
+      }
+
+      .copy-button {
+        font-size: 0.6rem;
+        padding: 6px 10px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .shell {
+        padding: 0 10px 56px;
+      }
+
+      .hero-card,
+      .hero-side,
+      .source-block,
+      .step,
+      .closing {
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .banner-frame {
+        border-radius: 16px;
+      }
+
+      .banner-copy {
+        padding: 14px;
+      }
+
+      .banner-copy h1 {
+        font-size: clamp(1.4rem, 7vw, 2.2rem);
+      }
+
+      .hero-card h2 {
+        font-size: 1.2rem;
+      }
+
+      .lead {
+        font-size: 0.92rem;
+      }
+
+      .meta-card {
+        padding: 14px 12px 12px;
+      }
+
+      .meta-card p {
+        font-size: 0.88rem;
+      }
+
+      .source-block,
+      .step {
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .media-panel,
+      .compare-panel {
+        padding: 10px;
+        border-radius: 14px;
+      }
+
+      .asset-frame {
+        border-radius: 12px;
+      }
+
+      .topbar-actions {
+        gap: 8px;
+      }
+
+      .button,
+      .button-ghost {
+        padding: 10px 14px;
+        font-size: 0.82rem;
+      }
+
+      .step-paired {
+        gap: 14px;
+      }
+
+      .step-paired-row {
+        gap: 16px;
+      }
+
+      .link-card {
+        padding: 14px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="../../assets/persistent-nav.css">
+  <script src="../../assets/persistent-nav.js" defer></script>
 </head>
-<body>
-<p>Redirecting to <a href="https://natalieart.github.io/architectural-renders/">the article</a>...</p>
+<body data-bn-current="blog-architectural-renders">
+
+<div class="bn-header">
+  <div class="bn-header-inner">
+    <a class="bn-brand" href="https://natalieart.github.io/blogs-newsletters/">
+      <span class="bn-brand-word">Sogni</span>
+      <span class="bn-brand-divider">/</span>
+      <span class="bn-brand-sub">Blogs &amp; Newsletters</span>
+    </a>
+    <nav class="bn-nav" aria-label="Blogs and newsletters">
+      <div class="bn-menu" data-bn-menu>
+        <button class="bn-trigger" type="button" aria-expanded="false">
+          <span>Blogs</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><polyline points="6 9 12 15 18 9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </button>
+        <div class="bn-dropdown">
+          <a class="bn-drop-link" data-bn-page="blog-architectural-renders" href="https://natalieart.github.io/blogs-newsletters/blogs/architectural-renders/">
+            <span class="bn-drop-title">Why You No Longer Need to Outsource Your Architectural Renders</span>
+            <span class="bn-drop-meta">Blog · Architecture</span>
+          </a>
+          <a class="bn-drop-link" data-bn-page="blog-creative-assistant" href="https://natalieart.github.io/blogs-newsletters/blogs/creative-assistant/">
+            <span class="bn-drop-title">Meet the New Creative Assistant in Sogni Studio / Pro</span>
+            <span class="bn-drop-meta">Blog · AI Workflows</span>
+          </a>
+          <a class="bn-drop-link" data-bn-page="blog-starting-ending-frames" href="https://natalieart.github.io/blogs-newsletters/blogs/starting-ending-frames/">
+            <span class="bn-drop-title">Starting &amp; Ending Frames</span>
+            <span class="bn-drop-meta">Blog · Video &amp; Motion</span>
+          </a>
+        </div>
+      </div>
+      <div class="bn-menu" data-bn-menu>
+        <button class="bn-trigger" type="button" aria-expanded="false">
+          <span>Newsletters</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><polyline points="6 9 12 15 18 9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </button>
+        <div class="bn-dropdown">
+          <a class="bn-drop-link" data-bn-page="newsletter-19" href="https://natalieart.github.io/blogs-newsletters/newsletters/19/">
+            <span class="bn-drop-title">Season 6 is live</span>
+            <span class="bn-drop-meta">Newsletter · Volume 19</span>
+          </a>
+          <a class="bn-drop-link" data-bn-page="newsletter-18" href="https://natalieart.github.io/blogs-newsletters/newsletters/18/">
+            <span class="bn-drop-title">2025: The Year Sogni Came Alive</span>
+            <span class="bn-drop-meta">Newsletter · Volume 18</span>
+          </a>
+        </div>
+      </div>
+      <a class="bn-subscribe" href="https://www.sogni.ai/#wf-form-Marketing-Email-Signup" target="_blank" rel="noopener">Subscribe</a>
+    </nav>
+  </div>
+</div>
+  <div class="shell">
+<section class="banner-hero">
+      <div class="banner-frame">
+        <img src="assets/banner-start.png" alt="Banner collage showing the source sketch, the final luxury house result, and an alternate camera angle.">
+        <div class="banner-copy">
+          <div>
+            <h1>Why you no longer need to outsource your architectural renders.</h1>
+          </div>
+          <div class="banner-stats">
+            <div class="banner-stat">
+              <strong>1 sketch</strong>
+              <span>Start from one concept image.</span>
+            </div>
+            <div class="banner-stat">
+              <strong>Unlimited angles</strong>
+              <span>Expand the same idea as far as you want.</span>
+            </div>
+            <div class="banner-stat">
+              <strong>Full motion</strong>
+              <span>Turn stills into cinematic reveals.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">From concept to presentation</div>
+        <h2>Take complete control of your architectural presentations.</h2>
+        <p class="lead">
+          Start with one sketch, turn it into a polished architectural render, expand it into multiple camera angles,
+          and finish with a presentation-ready reveal video. This walkthrough shows the exact sequence inside <strong>Sogni</strong>
+          from the first image to the final output.
+        </p>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span class="meta-label">Input</span>
+            <p>One sketch or concept image.</p>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Process</span>
+            <p>Edit in Sogni Create, then expand the result in 360 by Sogni.</p>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Outcome</span>
+            <p>A presentation-ready still set or reveal video.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <span class="side-label">What you'll do</span>
+        <ol class="side-list">
+          <li><a href="#source"><span class="side-index">00</span><span>Before you start</span></a></li>
+          <li><a href="#step-1"><span class="side-index">01</span><span>Start in Sogni Create</span></a></li>
+          <li><a href="#step-2"><span class="side-index">02</span><span>Start with Qwen Image Edit</span></a></li>
+          <li><a href="#step-3"><span class="side-index">03</span><span>Upload your reference image</span></a></li>
+          <li><a href="#step-4"><span class="side-index">04</span><span>Write the prompt</span></a></li>
+          <li><a href="#step-5"><span class="side-index">05</span><span>Enhance your best still</span></a></li>
+          <li><a href="#step-6"><span class="side-index">06</span><span>Open 360 by Sogni</span></a></li>
+          <li><a href="#step-7"><span class="side-index">07</span><span>Review the still set</span></a></li>
+          <li><a href="#step-8"><span class="side-index">08</span><span>Optional: Generate transitions</span></a></li>
+          <li><a href="#step-9"><span class="side-index">09</span><span>Optional: Render the video</span></a></li>
+          <li><a href="#step-10"><span class="side-index">10</span><span>Optional: Create the reveal</span></a></li>
+        </ol>
+
+      </aside>
+    </section>
+
+    <section class="source-block" id="source">
+      <div class="source-copy">
+        <div class="section-label">Before you start</div>
+        <h2>Bring one sketch or concept image. That is enough to begin.</h2>
+        <p>
+          You need one sketch or concept image, access to <strong>Sogni Create</strong>, access to <strong>360 by Sogni</strong>,
+          and a first-pass direction for materials, lighting, landscaping, and mood.
+        </p>
+        <p>
+          This walkthrough starts with one unfinished architectural concept, then builds it into a polished still set and an optional
+          motion sequence while keeping the original structure intact.
+        </p>
+        <div class="note-card">
+          This workflow doesn't replace technical architecture. It removes the slow, expensive visualization back-and-forth
+          and gives you a creator-controlled process you can run yourself.
+        </div>
+      </div>
+      <figure class="media-panel">
+        <div class="asset-frame landscape">
+          <img src="assets/article-x-houses/0.jpg" alt="White architectural source sketch of the house before any Sogni enhancement.">
+        </div>
+        <figcaption>The original concept sketch that becomes the foundation for the entire workflow.</figcaption>
+      </figure>
+    </section>
+
+    <main class="article-grid">
+      <section class="step" id="step-1">
+        <div class="step-copy">
+          <div class="step-number">Step 1</div>
+          <h3>Start in Sogni Create.</h3>
+          <p>
+            For the clearest first pass, start in Sogni Create in the browser. If you prefer a desktop workflow,
+            you can move to Studio later, and mobile is available when you need it.
+          </p>
+          <p>
+            The advantage is speed. You can enter the workflow immediately, keep creative control, and avoid waiting
+            for a separate visualization round.
+          </p>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/article-x-houses/1.png" alt="Sogni Create landing screen in the browser.">
+            </div>
+            <figcaption>Open the app and jump straight into the image workflow.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="step" id="step-2">
+        <div class="step-copy">
+          <div class="step-number">Step 2</div>
+          <h3>Start with Qwen Image Edit, then choose the pace that fits the job.</h3>
+          <p>
+            For this walkthrough, start with <strong>Qwen Image Edit</strong>. Choose ultra-fast or standard depending on whether you need
+            rapid conceptual feedback or a more deliberate, refined pass.
+          </p>
+          <p>
+            Use <strong>Flux 2</strong> when you want to work from multiple reference images at once. Otherwise,
+            Qwen Image Edit is the simplest place to begin.
+          </p>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/article-x-houses/2.png" alt="Model selection screen showing Qwen Image Edit and Flux 2 options.">
+            </div>
+            <figcaption>Qwen Image Edit is a strong starting point, while Flux 2 helps when you want multiple reference inputs.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="step" id="step-3">
+        <div class="step-copy">
+          <div class="step-number">Step 3</div>
+          <h3>Upload your sketch as a reference.</h3>
+          <p>
+            This is where everything starts. Upload your sketch here and adjust the image size accordingly. You can leave the rest of the
+            settings, such as <strong>Steps</strong> and <strong>Guidance</strong>, at their default values.
+          </p>
+          <p>
+            At this stage, you are protecting the original structure and composition. Once that foundation is locked in,
+            you can push the project toward realism without losing the idea.
+          </p>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/article-x-houses/3.png" alt="Reference image uploaded in Sogni Create with the sketch visible on the left.">
+            </div>
+            <figcaption>Upload the sketch, confirm the size, and keep the default controls for the first pass.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="step" id="step-4">
+        <div class="step-copy">
+          <div class="step-number">Step 4</div>
+          <h3>Enter the prompt like a design brief.</h3>
+          <p>
+            Focus first on materials, lighting, landscaping, and overall mood. Those choices create the biggest visual shift
+            and give the model a clear direction.
+          </p>
+          <p>
+            Leave minor details for later refinement, then choose how many images you want to generate. You can select a style
+            like <strong>Architectural</strong>, but leaving it on <strong>Default</strong> will also deliver strong results.
+          </p>
+          <div class="note-card"><strong>What you should have now:</strong> A first-pass prompt that clearly defines materials, lighting, environment, and mood for your initial image set.</div>
+        </div>
+        <div class="step-media">
+          <figure class="media-panel">
+            <div class="asset-frame">
+              <img src="assets/article-x-houses/4.png" alt="Prompt and generated results grid in Sogni Create.">
+            </div>
+            <figcaption>The prompt defines the materials, pool, lighting, landscaping, realism, and overall archviz mood.</figcaption>
+          </figure>
+          <div class="prompt-shell">
+            <div class="prompt-block" id="main-prompt">Transform this architectural concept into a highly realistic modern luxury house. Add a large infinity swimming pool in front of the building, with realistic water reflections and subtle ripples. Use high-end materials such as white concrete, natural wood panels, glass walls, and metal details. Enhance lighting to golden hour with warm sunlight, soft shadows, and realistic ambient occlusion. Add natural landscaping with grass, trees, and subtle terrain details. Improve textures and details to achieve photorealism, including reflections on glass, interior lighting, and outdoor furniture. Keep the original structure and composition but make it look like a real built house. Ultra realistic, 8k, cinematic, high detail, archviz style.</div>
+            <button class="copy-button" type="button" data-copy-target="main-prompt">Copy prompt</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-5">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 5</div>
+              <h3>Choose the output you like the most, then push it further with Enhance.</h3>
+              <p>
+                There are multiple tools available, but in this case the following work especially well:
+              </p>
+              <ul>
+                <li><strong>Boost Realism</strong></li>
+                <li><strong>Fine Details</strong> such as <strong>Refine Fine Details</strong> or <strong>Enrich Scene Details</strong></li>
+              </ul>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/5.png" alt="Enhance menu in Sogni Create showing realism and fine-detail options.">
+              </div>
+              <figcaption>Use the Enhance tools to move the house from a good render to a premium presentation image.</figcaption>
+            </figure>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                This is where the visualization becomes much more compelling, with richer colors, stronger reflections,
+                and refined details. You can also use <strong>Undo</strong> and <strong>Redo</strong> to compare results and keep experimenting.
+              </p>
+              <p>
+                Once you have one polished still you trust, you are ready to expand it into a full presentation set.
+              </p>
+              <div class="note-card"><strong>What you should have now:</strong> One enhanced still image you can use as the foundation for angles, transitions, or the final reveal.</div>
+            </div>
+            <div class="compare-panel">
+              <div class="compare-header">
+                <div class="compare-title">Before / After</div>
+                <div class="compare-badges">
+                  <span class="badge">Before</span>
+                  <span class="badge badge-accent">After</span>
+                </div>
+              </div>
+              <div class="compare" data-compare>
+                <span class="compare-chip before">Before</span>
+                <span class="compare-chip after">After</span>
+                <img src="assets/article-x-houses/6przed.jpg" alt="Before enhancement image of the luxury house.">
+                <div class="compare-after">
+                  <img src="assets/article-x-houses/7po.png" alt="After enhancement image of the luxury house.">
+                </div>
+                <div class="compare-handle"></div>
+                <input type="range" min="0" max="100" value="52" aria-label="Adjust before and after comparison">
+              </div>
+              <div class="compare-note">Drag anywhere on the image or use the slider to compare the pre-enhanced frame with the refined version.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-6">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 6</div>
+              <h3>Open <a href="https://360.sogni.ai/" target="_blank" rel="noreferrer">360 by Sogni</a> and generate your first angle set.</h3>
+              <p>
+                Take your best enhanced still into 360 by Sogni and use it to generate a full angle set from one image.
+              </p>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/8.png" alt="Landing screen of Sogni 360 ready for image upload.">
+              </div>
+            </figure>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                <strong>1.</strong> Set the image size, name the project, and save it so you can return to it later without rebuilding the setup.
+              </p>
+            </div>
+            <figure class="media-panel media-panel-project-name">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/8.1.png" alt="Project naming dialog in Sogni 360.">
+              </div>
+            </figure>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                <strong>2.</strong> Choose a preset camera path. For a first pass, use <strong>360 Spin High+Wide (9)</strong>.
+                You can define your own camera path once the base angle set is working.
+              </p>
+            </div>
+            <figure class="media-panel media-panel-angle-preset">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/9.png" alt="Preset selection screen in Sogni 360 with 360 Spin High+Wide selected.">
+              </div>
+            </figure>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                <strong>3.</strong> Click <strong>Generate 8 Angles</strong>. In about a minute, one polished still becomes a presentation-ready
+                set of viewpoints.
+              </p>
+              <div class="note-card"><strong>What you should have now:</strong> A reusable set of still images from multiple camera angles, ready for delivery or for motion.</div>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/10.png" alt="Generated angle set in Sogni 360 ready for download or transition generation.">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="step-7">
+        <div class="step-copy">
+          <div class="step-number">Step 7</div>
+          <h3>Build a polished still-image set.</h3>
+          <p>
+            At this point, you already have something valuable: polished stills that can become a catalog, a presentation insert,
+            a client-facing concept sheet, or the visual foundation for a more cinematic piece.
+          </p>
+          <p>
+            You can stop here and deliver a strong still-image package. Continue below only if you want to turn the angle set into motion.
+          </p>
+        </div>
+        <div class="step-media">
+          <div class="media-stack double">
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/11.png" alt="Low angle still image of the luxury house.">
+              </div>
+              <figcaption>One of the polished client-ready angles from the generated set.</figcaption>
+            </figure>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/12.png" alt="Top-down still image of the luxury house.">
+              </div>
+              <figcaption>A second finished frame that works equally well in a catalog or a concept presentation.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-8">
+        <div class="step-paired">
+          <div class="note-card"><strong>Optional next step:</strong> The still-image workflow is complete after Step 7. Continue below only if you want to build motion from the angle set.</div>
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 8</div>
+              <h3>Generate transitions and define how the visual story should move.</h3>
+              <p>
+                <strong>Recommended first pass:</strong> Use the default transition settings, choose one video model,
+                and render a short draft before customizing prompts, audio, or higher-quality settings.
+              </p>
+              <p>
+                Once the base motion works, you can customize transition prompts, choose the video model,
+                set duration and resolution, and add audio if needed.
+              </p>
+              <ul>
+                <li>Pick the transition type or write a custom prompt.</li>
+                <li>Choose the video model: <strong>LTX</strong> or <strong>Wan</strong>.</li>
+                <li>Set the duration, quality, and resolution.</li>
+                <li>Upload your own audio or generate music with Sogni Super Apps.</li>
+              </ul>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/13.png" alt="Transition configuration modal in Sogni 360.">
+              </div>
+            </figure>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                Your transitions will be ready quickly. The generation time depends on quality and clip length,
+                but the system shows real-time progress as everything is created.
+              </p>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/14.png" alt="Transition rendering progress inside Sogni 360.">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-9">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 9</div>
+              <h3>Fine-tune the pacing, then render.</h3>
+              <p>
+                You can make the motion slower or faster depending on the feel you want. Select the shots you like,
+                remove the rest or regenerate them, and then stitch everything into one cohesive film that is ready to publish.
+              </p>
+            </div>
+            <div class="media-stack double">
+              <figure class="media-panel">
+                <div class="asset-frame">
+                  <video autoplay muted loop playsinline controls preload="metadata">
+                    <source src="assets/article-x-houses/15.1.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>One pacing option for the transition sequence.</figcaption>
+              </figure>
+              <figure class="media-panel">
+                <div class="asset-frame">
+                  <video autoplay muted loop playsinline controls preload="metadata">
+                    <source src="assets/article-x-houses/15.2.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>A second pacing variation for comparison before you commit to the final cut.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                Because the project stays editable, you can return, replace shots, and regenerate the final video without restarting the workflow.
+                That keeps the creative loop in your hands from the first still to the finished motion piece.
+              </p>
+              <div class="note-card"><strong>What you should have now:</strong> A stitched draft video with the pacing and shot order you want to present or refine further.</div>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <video autoplay muted loop playsinline controls preload="metadata">
+                  <source src="assets/article-x-houses/16.2.mov" type="video/quicktime">
+                  <source src="assets/article-x-houses/16.1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>The stitched final video after you choose the best shots and render the finished piece.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="step step-paired-layout" id="step-10">
+        <div class="step-paired">
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <div class="step-number">Step 10</div>
+              <h3>Turn the sketch into a cinematic reveal.</h3>
+              <p>
+                <strong>Recommended first pass:</strong> Use your original sketch as the <strong>Start Frame</strong> and your best enhanced still as the
+                <strong>End Frame</strong>. Render a short clip first so you can judge the transformation before adding extra polish.
+              </p>
+              <p>
+                Choose <strong>LTX</strong> or <strong>Wan</strong> in image-to-video mode and describe how you want the reveal to unfold.
+                Once the motion feels right, refine duration, quality, and music to match the presentation.
+              </p>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <img src="assets/article-x-houses/17.png?v=2" alt="Image-to-video setup in Sogni Create showing the sketch and final architecture transition.">
+              </div>
+              <figcaption>Set the sketch as the start frame and your polished house render as the end frame.</figcaption>
+            </figure>
+          </div>
+
+          <div class="step-paired-row">
+            <div class="step-paired-copy">
+              <p>
+                It only takes a simple prompt to turn a static concept into a reveal that feels premium, cinematic, and memorable.
+              </p>
+            </div>
+            <figure class="media-panel">
+              <div class="asset-frame">
+                <video autoplay muted loop playsinline controls preload="metadata">
+                  <source src="assets/article-x-houses/18.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>The final reveal clip showing the concept transforming from sketch to finished luxury house.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="closing">
+      <div class="section-label">Next step</div>
+      <h2>Start with one sketch. Build the presentation yourself.</h2>
+      <p>
+        The value of this workflow is control. One concept image can become a polished render set, multiple camera angles,
+        and a finished reveal video without handing the project off for separate visualization rounds.
+      </p>
+      <p>
+        If you are following this guide for the first time, begin in Sogni Create, complete the still-image workflow,
+        and move into 360 or motion only when you need it.
+      </p>
+      <div class="closing-actions">
+        <a class="button" href="https://app.sogni.ai/create" target="_blank" rel="noreferrer">Start in Sogni Create</a>
+      </div>
+      <p>When you are ready, continue with the rest of the workflow:</p>
+      <div class="link-grid">
+        <a class="link-card link-card-360" href="https://360.sogni.ai/" target="_blank" rel="noreferrer">
+          <div class="link-top">
+            <span class="link-badge badge-360">360</span>
+          </div>
+          <strong>360 by Sogni</strong>
+          <span>Generate multiple camera angles from a single still.</span>
+        </a>
+        <a class="link-card link-card-studio" href="https://www.sogni.ai/studio" target="_blank" rel="noreferrer">
+          <div class="link-top">
+            <span class="link-badge badge-studio">Studio</span>
+          </div>
+          <strong>Sogni Studio</strong>
+          <span>Use a desktop workflow for deeper creative control.</span>
+        </a>
+        <a class="link-card link-card-main" href="https://www.sogni.ai/" target="_blank" rel="noreferrer">
+          <div class="link-top">
+            <span class="link-badge badge-main">Main</span>
+          </div>
+          <strong>Sogni AI</strong>
+          <span>Explore products, downloads, and the broader Sogni ecosystem.</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <a class="footer-brand" href="https://www.sogni.ai/" target="_blank" rel="noreferrer" aria-label="Sogni">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 387 160" aria-hidden="true">
+          <path fill="currentColor" d="M17.2,106.99c5.33,2.29,11.3,3.41,17.95,3.41,7.03,0,13.11-1.33,18.23-3.98,5.23-2.75,9.17-6.34,11.82-10.81,2.76-4.44,4.12-9.19,4.12-14.2,0-6.24-1.47-11.22-4.43-14.92-2.86-3.8-6.36-6.57-10.53-8.37-4.09-1.8-9.4-3.59-15.96-5.39-4.94-1.34-8.83-2.57-11.69-3.7-2.86-1.13-5.23-2.64-7.13-4.54-1.8-1.98-2.7-4.49-2.7-7.52,0-4.44,1.47-7.86,4.4-10.22,2.94-2.36,6.75-3.54,11.41-3.54,5.12,0,9.27,1.28,12.39,3.83,3.14,2.57,4.84,5.62,5.12,9.24h17.95c-.67-8.34-4.09-14.87-10.25-19.62-6.08-4.83-13.9-7.24-23.51-7.24-6.75,0-12.67,1.13-17.82,3.41-5.12,2.29-9.11,5.55-11.97,9.81C1.73,26.91.31,31.89.31,37.56c0,6.16,1.42,11.09,4.27,14.76,2.86,3.7,6.28,6.44,10.25,8.24,4.09,1.69,9.35,3.42,15.81,5.11,5.12,1.34,9.11,2.57,11.97,3.7,2.94,1.13,5.36,2.75,7.26,4.83,1.98,2.08,2.99,4.78,2.99,8.09,0,4.26-1.57,7.75-4.71,10.5-3.14,2.64-7.49,3.98-13.11,3.98s-9.63-1.36-12.67-4.11c-2.94-2.75-4.61-6.24-5-10.5H0c0,5.67,1.52,10.66,4.56,14.92,3.04,4.26,7.21,7.57,12.54,9.94l.1-.03ZM102.48,105.71c5.97,3.31,12.67,4.98,20.08,4.98s14.34-1.67,20.52-4.98c6.28-3.42,11.2-8.19,14.83-14.35,3.6-6.16,5.41-13.22,5.41-21.16s-1.75-15.02-5.28-21.16c-3.53-6.14-8.32-10.89-14.39-14.2-6.08-3.31-12.87-4.98-20.37-4.98s-14.29,1.67-20.37,4.98c-6.08,3.31-10.87,8.06-14.39,14.2-3.53,6.16-5.28,13.22-5.28,21.16s1.7,15.15,5.12,21.31c3.42,6.06,8.11,10.81,14.11,14.2ZM134.25,93.64c-3.61,1.98-7.49,2.98-11.69,2.98-6.54,0-12.03-2.29-16.38-6.83-4.27-4.65-6.41-11.17-6.41-19.62,0-5.67,1.06-10.48,3.14-14.35,2.08-3.98,4.89-6.96,8.39-8.96,3.61-1.98,7.49-2.98,11.69-2.98s8.08,1,11.69,2.98c3.6,1.98,6.51,4.98,8.7,8.96,2.19,3.88,3.27,8.68,3.27,14.35s-1.13,10.5-3.42,14.48c-2.29,3.98-5.28,6.96-8.99,8.96v.03ZM227.1,33.53c-4.66-2.46-10.02-3.7-16.09-3.7-6.85,0-13.11,1.69-18.8,5.11-5.61,3.31-10.07,8.01-13.39,14.07-3.22,6.06-4.84,13.02-4.84,20.88s1.62,14.92,4.84,21.16c3.32,6.16,7.78,10.99,13.39,14.48,5.69,3.42,11.97,5.11,18.8,5.11,5.97,0,11.3-1.23,15.96-3.7,4.74-2.57,8.5-5.67,11.25-9.37v13.07c0,7.57-2.03,13.35-6.13,17.33-3.99,3.98-9.27,5.96-15.81,5.96-5.61,0-10.45-1.28-14.52-3.83-3.99-2.46-6.59-5.72-7.83-9.81h-16.09c.95,8.53,4.94,15.25,11.97,20.18,7.03,5.03,15.86,7.52,26.5,7.52,7.98,0,14.81-1.62,20.52-4.83,5.79-3.21,10.22-7.68,13.26-13.35,3.04-5.6,4.56-11.99,4.56-19.18V31.07h-16.38v11.37c-2.65-3.59-6.36-6.57-11.12-8.96l-.05.05ZM234.8,56.13c2.29,3.98,3.42,8.68,3.42,14.07s-1.13,10.14-3.42,14.2c-2.19,3.98-5.07,7.01-8.7,9.09-3.61,2.08-7.49,3.13-11.69,3.13s-7.98-1.05-11.69-3.13c-3.6-2.18-6.57-5.32-8.83-9.37-2.19-4.08-3.27-8.81-3.27-14.2s1.08-10.04,3.27-13.92c2.29-3.98,5.23-6.96,8.83-8.96,3.6-2.08,7.49-3.13,11.69-3.13s8.08,1.05,11.69,3.13c3.6,2.08,6.51,5.11,8.7,9.09ZM332.08,33.69c-4.84-2.57-10.35-3.83-16.53-3.83-4.66,0-9.06.9-13.26,2.7-4.09,1.8-7.47,4.31-10.12,7.52v-8.96h-16.25v78.29h16.25v-43.75c0-7.01,1.75-12.35,5.28-16.05,3.61-3.8,8.45-5.67,14.52-5.67s10.87,1.9,14.39,5.67c3.5,3.7,5.28,9.04,5.28,16.05v43.75h16.09v-46.17c0-7.11-1.37-13.17-4.12-18.18-2.76-5.03-6.59-8.81-11.54-11.37ZM369.34,17.77c1.98,1.98,4.45,2.98,7.42,2.98s5.28-1,7.26-2.98c1.98-1.98,2.99-4.44,2.99-7.39s-1-5.39-2.99-7.39c-1.98-1.98-4.43-2.98-7.26-2.98s-5.41,1-7.42,2.98c-1.98,1.98-2.99,4.44-2.99,7.39s1,5.39,2.99,7.39ZM384.71,109.41V31.12h-16.25v78.29h16.25Z"/>
+        </svg>
+      </a>
+      <p class="footer-meta">Sogni Article · Architectural renders · <a href="https://www.sogni.ai/" target="_blank" rel="noreferrer">sogni.ai</a></p>
+      <p class="footer-copy">© 2026 Sogni. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compareHintObserver = !prefersReducedMotion.matches && "IntersectionObserver" in window
+      ? new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const compare = entry.target;
+            if (compare.dataset.hintPlayed === "true") {
+              observer.unobserve(compare);
+              return;
+            }
+
+            compare.dataset.hintPlayed = "true";
+            compare.classList.add("is-hinting");
+
+            window.setTimeout(() => {
+              compare.classList.remove("is-hinting");
+            }, 1700);
+
+            observer.unobserve(compare);
+          });
+        }, { threshold: 0.55 })
+      : null;
+
+    document.querySelectorAll("[data-compare]").forEach((compare) => {
+      const input = compare.querySelector("input[type='range']");
+      let dragging = false;
+
+      const sync = (value) => {
+        const bounded = Math.max(0, Math.min(100, value));
+        compare.style.setProperty("--position", bounded + "%");
+        input.value = bounded;
+      };
+
+      const updateFromClientX = (clientX) => {
+        const rect = compare.getBoundingClientRect();
+        const value = ((clientX - rect.left) / rect.width) * 100;
+        sync(value);
+      };
+
+      input.addEventListener("input", () => sync(Number(input.value)));
+
+      compare.addEventListener("pointerdown", (event) => {
+        if (event.target === input) return;
+        dragging = true;
+        compare.setPointerCapture(event.pointerId);
+        updateFromClientX(event.clientX);
+      });
+
+      compare.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        updateFromClientX(event.clientX);
+      });
+
+      const stopDragging = () => {
+        dragging = false;
+      };
+
+      compare.addEventListener("pointerup", stopDragging);
+      compare.addEventListener("pointercancel", stopDragging);
+      compare.addEventListener("pointerleave", stopDragging);
+
+      sync(Number(input.value));
+
+      if (compareHintObserver) {
+        compareHintObserver.observe(compare);
+      }
+    });
+
+    document.querySelectorAll("[data-copy-target]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        if (!target) return;
+
+        const original = button.textContent;
+
+        try {
+          await navigator.clipboard.writeText(target.textContent.trim());
+          button.textContent = "Copied";
+        } catch {
+          button.textContent = "Copy failed";
+        }
+
+        window.setTimeout(() => {
+          button.textContent = original;
+        }, 1800);
+      });
+    });
+  </script>
 </body>
 </html>
