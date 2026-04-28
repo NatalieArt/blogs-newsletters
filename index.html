@@ -1073,6 +1073,9 @@
     box-shadow: 0 40px 140px rgba(0,0,0,0.55);
   }
   .reader-topbar {
+    position: sticky;
+    top: 58px;
+    z-index: 4;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1345,7 +1348,7 @@
 </style>
 </head>
 
-<body>
+<body id="pageTop">
 
 <!-- Background FX -->
 <div class="bg-fx"></div>
@@ -1541,6 +1544,25 @@
   </div>
 </section>
 
+<section class="section reader-section" id="readerSection" hidden>
+  <div class="container">
+    <div class="reader-shell">
+      <div class="reader-topbar">
+        <div class="reader-meta">
+          <span class="reader-kicker">Inline Reader</span>
+          <strong class="reader-title" id="readerTitle">Loading…</strong>
+          <span class="reader-url" id="readerUrl"></span>
+        </div>
+        <div class="reader-actions">
+          <a class="reader-link" id="readerOpenFull" href="#" rel="noopener">Open full page</a>
+          <a class="reader-btn" id="readerClose" href="#pageTop">Back to start</a>
+        </div>
+      </div>
+      <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- BLOGS -->
 <section class="section" id="blogs">
   <div class="container">
@@ -1683,25 +1705,6 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section reader-section" id="readerSection" hidden>
-  <div class="container">
-    <div class="reader-shell">
-      <div class="reader-topbar">
-        <div class="reader-meta">
-          <span class="reader-kicker">Inline Reader</span>
-          <strong class="reader-title" id="readerTitle">Loading…</strong>
-          <span class="reader-url" id="readerUrl"></span>
-        </div>
-        <div class="reader-actions">
-          <a class="reader-link" id="readerOpenFull" href="#" rel="noopener">Open full page</a>
-          <button class="reader-btn" id="readerClose" type="button">Close</button>
-        </div>
-      </div>
-      <iframe class="reader-frame" id="readerFrame" title="Blog and newsletter reader" loading="eager"></iframe>
     </div>
   </div>
 </section>
@@ -2057,14 +2060,25 @@
   const readerOpenFull = document.getElementById('readerOpenFull');
   const readerTitle = document.getElementById('readerTitle');
   const readerUrl = document.getElementById('readerUrl');
+  const homeFocus = document.querySelector('.brand');
+  const heroSection = document.querySelector('.hero');
   let readerTrigger = null;
+
+  function scrollWithTopOffset(el, offset = 72) {
+    if (!el) return;
+    const y = window.scrollY + el.getBoundingClientRect().top - offset;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
 
   function closeReader() {
     if (!readerSection) return;
     readerSection.hidden = true;
     readerFrame.src = 'about:blank';
     readerLinks.forEach((link) => link.classList.remove('reader-links-active'));
-    if (readerTrigger) readerTrigger.focus();
+    scrollWithTopOffset(heroSection, 0);
+    window.setTimeout(() => {
+      if (homeFocus) homeFocus.focus();
+    }, 260);
   }
 
   function openReader(link) {
@@ -2082,7 +2096,7 @@
       item.classList.remove('open');
       item.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
     });
-    readerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollWithTopOffset(readerSection, 66);
     window.setTimeout(() => readerClose.focus(), 220);
   }
 
@@ -2094,7 +2108,10 @@
     });
   });
 
-  readerClose.addEventListener('click', closeReader);
+  readerClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeReader();
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && readerSection && !readerSection.hidden) closeReader();
   });
