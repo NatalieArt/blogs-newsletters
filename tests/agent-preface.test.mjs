@@ -36,13 +36,25 @@ test('root index features onboarding before preserving the three-card grid', () 
   assert.equal((indexHtml.match(/class="card reveal"/g) || []).length, 3);
 });
 
-test('agent proof uses one screenshot and four shared looping videos', () => {
+test('agent proof uses one screenshot and a dense mixed wall of shared results', () => {
   const mediaFiles = [
     'assets/agent/agent-claude-batch.jpg',
     'assets/agent/agent-result-shark-ceo.mp4',
     'assets/agent/agent-result-sumo-chihuahua.mp4',
     'assets/agent/agent-result-rollerskate-nun.mp4',
     'assets/agent/agent-result-boxing-ballerina.mp4',
+    'assets/agent/agent-still-dog-crown.jpg',
+    'assets/agent/agent-still-tv-popcorn.jpg',
+    'assets/agent/agent-still-mermaid-gym.jpg',
+    'assets/agent/agent-still-horse-selfie.jpg',
+    'assets/agent/agent-still-popcorn-cannonball.jpg',
+    'assets/agent/agent-still-breakdancer.jpg',
+    'assets/agent/agent-still-pigeon-chess.jpg',
+    'assets/agent/agent-still-chef-donuts.jpg',
+    'assets/agent/agent-poster-shark-ceo.jpg',
+    'assets/agent/agent-poster-sumo-chihuahua.jpg',
+    'assets/agent/agent-poster-rollerskate-nun.jpg',
+    'assets/agent/agent-poster-boxing-ballerina.jpg',
   ];
 
   for (const relativePath of mediaFiles) {
@@ -52,8 +64,16 @@ test('agent proof uses one screenshot and four shared looping videos', () => {
   }
 
   for (const html of [onboardingHtml, indexHtml]) {
+    assert.equal((html.match(/class="agent-result-tile/g) || []).length, 12);
+    assert.equal((html.match(/class="agent-result-image"/g) || []).length, 8);
     assert.equal((html.match(/class="agent-result-video"/g) || []).length, 4);
+    assert.equal((html.match(/class="agent-result-poster"/g) || []).length, 4);
     assert.match(html, /autoplay loop muted playsinline/);
+    assert.match(html, /1 prompt &middot; 30 assets generated in moments/);
     assert.doesNotMatch(html, /agent-campaign-mosaic\.jpg/);
   }
+});
+
+test('onboarding hero crop keeps the model mouth in frame', () => {
+  assert.match(onboardingHtml, /object-position:center 68%/);
 });
