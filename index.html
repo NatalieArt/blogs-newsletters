@@ -624,6 +624,77 @@
   }
 
   /* ============================================================
+     FEATURED GUIDE — agent-first onboarding
+     ============================================================ */
+  .featured-guide {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(330px, .8fr);
+    min-height: 390px;
+    margin: 0 0 22px;
+    overflow: hidden;
+    color: inherit;
+    background: linear-gradient(135deg, rgba(0,255,157,.09), var(--surface) 52%);
+    border: 1px solid rgba(0,255,157,.3);
+    border-radius: var(--radius);
+    transition: transform .3s cubic-bezier(.2,.7,.3,1.3), border-color .25s ease, box-shadow .25s ease;
+  }
+  .featured-guide:hover {
+    color: inherit;
+    transform: translateY(-4px);
+    border-color: var(--lime);
+    box-shadow: 0 20px 54px rgba(0,255,157,.15);
+  }
+  .featured-guide-visual {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    background: #080c03;
+  }
+  .featured-guide-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .7s cubic-bezier(.2,.7,.3,1);
+  }
+  .featured-guide:hover .featured-guide-visual img { transform: scale(1.025); }
+  .featured-guide-visual::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, transparent 58%, rgba(8,12,3,.3)), linear-gradient(180deg, transparent 64%, rgba(4,7,1,.5));
+  }
+  .featured-guide-badge {
+    position: absolute; z-index: 2; top: 18px; left: 18px;
+    padding: 7px 11px; border-radius: 999px;
+    background: var(--lime); color: #001b00;
+    font: 800 10px/1 var(--font-display);
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .featured-guide-body {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 36px 34px;
+  }
+  .featured-guide-meta {
+    margin-bottom: 15px; color: var(--lime);
+    font: 700 10px/1.4 var(--font-mono);
+    letter-spacing: .13em; text-transform: uppercase;
+  }
+  .featured-guide h3 {
+    margin: 0 0 14px;
+    color: var(--text);
+    font: 800 clamp(25px, 3vw, 38px)/1.08 var(--font-display);
+    letter-spacing: -.03em;
+  }
+  .featured-guide p {
+    margin: 0; color: var(--text-muted);
+    font-size: 14px; line-height: 1.68;
+  }
+  .featured-guide-read {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 25px; color: var(--lime);
+    font: 700 11px/1.2 var(--font-mono);
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .featured-guide-read svg { transition: transform .25s ease; }
+  .featured-guide:hover .featured-guide-read svg { transform: translateX(4px); }
+
+  /* ============================================================
      ARTICLE GRID — square previews, equal columns
      ============================================================ */
   .bento {
@@ -1092,6 +1163,7 @@
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-visual { order: -1; }
     .showcase { max-width: 480px; margin: 0 auto; }
+    .featured-guide { grid-template-columns: 1.15fr .85fr; }
     .bento { grid-template-columns: repeat(2, 1fr); }
   }
 
@@ -1099,6 +1171,11 @@
      MOBILE  ≤720px
      ============================================================ */
   @media (max-width: 720px) {
+    .featured-guide { grid-template-columns: 1fr; min-height: 0; }
+    .featured-guide-visual { min-height: 0; aspect-ratio: 16 / 9; }
+    .featured-guide-body { padding: 24px 20px 25px; }
+    .featured-guide h3 { font-size: 26px; }
+    .featured-guide-badge { top: 12px; left: 12px; font-size: 9px; }
     .bento { grid-template-columns: 1fr; }
     .news-grid { grid-template-columns: 1fr; max-width: 460px; }
     .nav-item { display: none; }
@@ -1436,6 +1513,22 @@
         <h2>Read <span class="accent">/</span> Tutorials &amp; walkthroughs</h2>
       </div>
     </div>
+
+    <a class="featured-guide reveal" href="onboarding/">
+      <div class="featured-guide-visual">
+        <span class="featured-guide-badge">New &middot; Complete guide</span>
+        <img src="assets/agent-campaign-mosaic.jpg" width="1600" height="900" loading="lazy" alt="Twelve coordinated Sogni campaign visuals created as one bold series" />
+      </div>
+      <div class="featured-guide-body">
+        <div class="featured-guide-meta">Getting started &middot; Agent-first</div>
+        <h3>Your first steps with Sogni</h3>
+        <p>The complete walkthrough from your first prompt to images, video and music — plus the faster Creative Agent route if you already use Claude, Codex or Hermes.</p>
+        <span class="featured-guide-read">
+          Read the complete guide
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
 
     <div class="bento">
 
