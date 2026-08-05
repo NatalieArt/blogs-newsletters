@@ -16,19 +16,21 @@ Make the onboarding guide steer experienced agent users toward the Sogni Creativ
 
 ## Visual treatment
 
-- Use the existing Sogni dark editorial palette, mint accent, panel borders, rounded corners, and typography.
+- Use the existing Sogni dark editorial palette, mint accent, and typography.
+- Present the onboarding preface as an open editorial section with no shared outer border, rounded container, background panel, or large shadow. Separate the copy and media columns with whitespace instead of a divider so the section follows the visual rhythm of the guide below it.
 - Build a wide two-column feature block: copy and command on the left, a readable Creative Agent workflow on the right.
 - Show one optimized screenshot of Claude invoking the Sogni Creative Agent Skill so the agent workflow is immediately recognizable.
 - Finish the Agent screenshot with a four-pixel dark inset, a one-pixel translucent mint frame, and a restrained shadow. Apply the same finish on the root-index feature for visual continuity.
 - Follow the screenshot with a dense wall of twelve native 16:9 results: eight optimized still images mixed with four short looping videos. Keep every tile at its source aspect ratio so none of the artwork is cropped.
 - Label the result wall `1 prompt · 30 assets generated in moments` to communicate batch scale and speed without adding explanatory copy.
-- Anchor the yellow result wall to the bottom edge of the onboarding feature so its last tile row meets the panel border exactly. Absorb any surplus column height above the result wall; never stretch or crop the 16:9 tiles.
+- Place the yellow result wall below the screenshot with a small, consistent gap and no enclosing panel edge. Never stretch or crop the 16:9 tiles.
 - Use a 4-by-3 result grid in the onboarding preface and a compact 6-by-2 grid on the root index. On narrow screens, place the media above the copy and use a readable 3- or 4-column grid based on available width.
 - Respect the existing page’s reduced-motion behavior by keeping all twelve tiles visible while replacing motion with the corresponding static frames when reduced motion is requested.
 
 ## Root index
 
 - Add the onboarding guide as a wide featured article directly above the existing three-card blog grid.
+- Keep the root-index feature as a framed card; the open editorial treatment applies only to the onboarding preface.
 - Reuse the Agent screenshot and the same mixed twelve-result wall so the index and article have one recognizable visual identity.
 - Use copy focused on the complete getting-started guide and the agent-first route.
 - Preserve the three existing article cards and their current numbering.
