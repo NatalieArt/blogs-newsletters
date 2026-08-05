@@ -121,21 +121,17 @@
   .agent-preface-actions .agent-primary{background:var(--accent);border:1px solid var(--accent);color:var(--on-accent)}
   .agent-preface-actions .agent-secondary{border:1px solid var(--line);color:var(--soft)}
   .agent-preface-actions .agent-secondary:hover{border-color:var(--accent);color:var(--accent)}
-  .agent-preface-visual{position:relative;isolation:isolate;min-height:430px;background:#090c09;overflow:hidden}
-  .agent-preface-visual::before{content:'';position:absolute;z-index:-1;inset:-18px;pointer-events:none;
-    background:url('assets/agent-campaign-mosaic.jpg') center/cover no-repeat;filter:blur(14px) brightness(.48);transform:scale(1.05)}
-  .agent-preface-visual img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;cursor:zoom-in}
-  .agent-preface-visual::after{content:'';position:absolute;z-index:2;inset:0;pointer-events:none;
-    background:linear-gradient(90deg,rgba(5,7,4,.3),transparent 24%),linear-gradient(180deg,transparent 54%,rgba(3,5,3,.78))}
-  .agent-preface-proof{position:absolute;z-index:3;left:22px;right:22px;bottom:19px;color:#fff;
-    text-shadow:0 2px 12px rgba(0,0,0,.9)}
-  .agent-preface-proof span{display:block;color:var(--accent);font:700 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;
-    letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
-  .agent-preface-proof strong{display:block;color:#fff;font-size:18px;line-height:1.2}
+  .agent-preface-media{display:flex;flex-direction:column;min-width:0;background:#050705;border-left:1px solid var(--line)}
+  .agent-demo-shot{position:relative;background:#202836;overflow:hidden}
+  .agent-demo-shot img{display:block;width:100%;height:auto;object-fit:contain;border:0;border-radius:0;cursor:zoom-in}
+  .agent-demo-label{position:absolute;left:14px;bottom:12px;padding:7px 10px;border:1px solid rgba(255,255,255,.16);
+    border-radius:999px;background:rgba(4,7,4,.82);color:#fff;backdrop-filter:blur(8px);
+    font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
+  .agent-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;padding:3px;background:#050705}
+  .agent-result-video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0a0d0a}
   @media(max-width:860px){
     .agent-preface-grid{grid-template-columns:1fr}
-    .agent-preface-visual{min-height:0;aspect-ratio:16/9;order:-1}
-    .agent-preface-visual::after{background:linear-gradient(180deg,transparent 48%,rgba(3,5,3,.8))}
+    .agent-preface-media{order:-1;border-left:0;border-bottom:1px solid var(--line)}
   }
   @media(max-width:520px){
     .agent-preface{margin-top:28px;border-radius:14px}
@@ -147,8 +143,10 @@
     .agent-copy{width:100%;padding:11px 13px}
     .agent-preface-actions{align-items:stretch;flex-direction:column}
     .agent-preface-actions a{width:100%}
-    .agent-preface-proof{left:15px;right:15px;bottom:13px}
-    .agent-preface-proof strong{font-size:15px}
+    .agent-demo-label{left:10px;bottom:9px;font-size:8px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .agent-result-grid{display:none}
   }
 
   /* figures */
@@ -1263,9 +1261,17 @@ body[data-bn-current^="newsletter"]::after {
         <a class="agent-secondary" href="#s0">No agent? Continue with the guide <span aria-hidden="true">&darr;</span></a>
       </div>
     </div>
-    <div class="agent-preface-visual">
-      <img src="assets/agent-campaign-mosaic.jpg" width="1600" height="900" loading="lazy" alt="A batch of twelve bold, coordinated Sogni campaign images generated as a visual series">
-      <div class="agent-preface-proof"><span>One brief &middot; one visual system</span><strong>A complete campaign of assets in moments.</strong></div>
+    <div class="agent-preface-media">
+      <div class="agent-demo-shot">
+        <img src="../assets/agent/agent-claude-batch.jpg" width="1400" height="754" loading="lazy" alt="Claude Code using the Sogni Creative Agent Skill to start a 30-image campaign batch">
+        <span class="agent-demo-label">One prompt &middot; animated results</span>
+      </div>
+      <div class="agent-result-grid" aria-label="Four animated results made with Sogni Creative Agent">
+        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: shark CEO"><source src="../assets/agent/agent-result-shark-ceo.mp4" type="video/mp4"></video>
+        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: sumo wrestler and chihuahua"><source src="../assets/agent/agent-result-sumo-chihuahua.mp4" type="video/mp4"></video>
+        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: roller-skating nun"><source src="../assets/agent/agent-result-rollerskate-nun.mp4" type="video/mp4"></video>
+        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: boxing ballerina"><source src="../assets/agent/agent-result-boxing-ballerina.mp4" type="video/mp4"></video>
+      </div>
     </div>
   </div>
 </section>

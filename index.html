@@ -645,19 +645,28 @@
     box-shadow: 0 20px 54px rgba(0,255,157,.15);
   }
   .featured-guide-visual {
-    position: relative;
+    display: flex; flex-direction: column;
     min-height: 390px;
     overflow: hidden;
     background: #080c03;
   }
-  .featured-guide-visual img {
-    width: 100%; height: 100%; object-fit: cover;
+  .featured-guide-shot {
+    position: relative; flex: 1; min-height: 0;
+    display: grid; place-items: center; overflow: hidden;
+    background: #202836;
+  }
+  .featured-guide-shot img {
+    display: block; width: 100%; height: 100%; object-fit: contain;
     transition: transform .7s cubic-bezier(.2,.7,.3,1);
   }
-  .featured-guide:hover .featured-guide-visual img { transform: scale(1.025); }
-  .featured-guide-visual::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(90deg, transparent 58%, rgba(8,12,3,.3)), linear-gradient(180deg, transparent 64%, rgba(4,7,1,.5));
+  .featured-guide:hover .featured-guide-shot img { transform: scale(1.015); }
+  .featured-guide-clips {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2px; padding-top: 2px; background: #050705;
+  }
+  .featured-guide-clips .agent-result-video {
+    display: block; width: 100%; aspect-ratio: 16 / 9;
+    object-fit: cover; background: #0a0d0a;
   }
   .featured-guide-badge {
     position: absolute; z-index: 2; top: 18px; left: 18px;
@@ -1172,7 +1181,9 @@
      ============================================================ */
   @media (max-width: 720px) {
     .featured-guide { grid-template-columns: 1fr; min-height: 0; }
-    .featured-guide-visual { min-height: 0; aspect-ratio: 16 / 9; }
+    .featured-guide-visual { min-height: 0; }
+    .featured-guide-shot { aspect-ratio: 1400 / 754; }
+    .featured-guide-clips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .featured-guide-body { padding: 24px 20px 25px; }
     .featured-guide h3 { font-size: 26px; }
     .featured-guide-badge { top: 12px; left: 12px; font-size: 9px; }
@@ -1294,6 +1305,7 @@
     .blob { animation: none !important; }
     .marquee-track { animation: none !important; }
     .showcase-video.active { transform: none !important; }
+    .featured-guide-clips { display: none; }
   }
 
   /* ============================================================
@@ -1516,8 +1528,16 @@
 
     <a class="featured-guide reveal" href="onboarding/">
       <div class="featured-guide-visual">
-        <span class="featured-guide-badge">New &middot; Complete guide</span>
-        <img src="assets/agent-campaign-mosaic.jpg" width="1600" height="900" loading="lazy" alt="Twelve coordinated Sogni campaign visuals created as one bold series" />
+        <div class="featured-guide-shot">
+          <span class="featured-guide-badge">New &middot; Complete guide</span>
+          <img src="assets/agent/agent-claude-batch.jpg" width="1400" height="754" loading="lazy" alt="Claude Code using the Sogni Creative Agent Skill to start a 30-image campaign batch" />
+        </div>
+        <div class="featured-guide-clips" aria-label="Four animated results made with Sogni Creative Agent">
+          <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: shark CEO"><source src="assets/agent/agent-result-shark-ceo.mp4" type="video/mp4" /></video>
+          <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: sumo wrestler and chihuahua"><source src="assets/agent/agent-result-sumo-chihuahua.mp4" type="video/mp4" /></video>
+          <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: roller-skating nun"><source src="assets/agent/agent-result-rollerskate-nun.mp4" type="video/mp4" /></video>
+          <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: boxing ballerina"><source src="assets/agent/agent-result-boxing-ballerina.mp4" type="video/mp4" /></video>
+        </div>
       </div>
       <div class="featured-guide-body">
         <div class="featured-guide-meta">Getting started &middot; Agent-first</div>

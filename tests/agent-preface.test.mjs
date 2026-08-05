@@ -22,7 +22,7 @@ test('agent-first preface exposes the install path and both routes', () => {
   assert.match(onboardingHtml, /aria-label="Copy install command"/);
   assert.match(onboardingHtml, /href="https:\/\/www\.sogni\.ai\/agent"/);
   assert.match(onboardingHtml, /href="#s0"/);
-  assert.match(onboardingHtml, /src="assets\/agent-campaign-mosaic\.jpg"/);
+  assert.match(onboardingHtml, /src="\.\.\/assets\/agent\/agent-claude-batch\.jpg"/);
 });
 
 test('root index features onboarding before preserving the three-card grid', () => {
@@ -32,17 +32,28 @@ test('root index features onboarding before preserving the three-card grid', () 
   assert.notEqual(featurePosition, -1, 'missing featured onboarding guide');
   assert.ok(featurePosition < gridPosition, 'featured guide must precede the existing card grid');
   assert.match(indexHtml, /href="onboarding\/"/);
-  assert.match(indexHtml, /src="assets\/agent-campaign-mosaic\.jpg"/);
+  assert.match(indexHtml, /src="assets\/agent\/agent-claude-batch\.jpg"/);
   assert.equal((indexHtml.match(/class="card reveal"/g) || []).length, 3);
 });
 
-test('optimized campaign mosaic exists for both page-relative paths', () => {
-  for (const relativePath of [
-    'onboarding/assets/agent-campaign-mosaic.jpg',
-    'assets/agent-campaign-mosaic.jpg',
-  ]) {
+test('agent proof uses one screenshot and four shared looping videos', () => {
+  const mediaFiles = [
+    'assets/agent/agent-claude-batch.jpg',
+    'assets/agent/agent-result-shark-ceo.mp4',
+    'assets/agent/agent-result-sumo-chihuahua.mp4',
+    'assets/agent/agent-result-rollerskate-nun.mp4',
+    'assets/agent/agent-result-boxing-ballerina.mp4',
+  ];
+
+  for (const relativePath of mediaFiles) {
     const absolutePath = join(repositoryRoot, relativePath);
     assert.ok(existsSync(absolutePath), `${relativePath} does not exist`);
     assert.ok(statSync(absolutePath).size > 0, `${relativePath} is empty`);
+  }
+
+  for (const html of [onboardingHtml, indexHtml]) {
+    assert.equal((html.match(/class="agent-result-video"/g) || []).length, 4);
+    assert.match(html, /autoplay loop muted playsinline/);
+    assert.doesNotMatch(html, /agent-campaign-mosaic\.jpg/);
   }
 });
