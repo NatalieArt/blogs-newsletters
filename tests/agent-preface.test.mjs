@@ -75,6 +75,8 @@ test('agent proof uses one screenshot and a dense mixed wall of shared results',
     assert.match(html, /1 prompt &middot; 30 assets generated in moments/);
     assert.doesNotMatch(html, /agent-campaign-mosaic\.jpg/);
   }
+
+  assert.match(onboardingHtml, /\.agent-result-grid\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
 });
 
 test('onboarding hero crop keeps the model mouth in frame', () => {
