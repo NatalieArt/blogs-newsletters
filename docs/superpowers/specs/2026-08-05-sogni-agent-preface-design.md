@@ -22,6 +22,7 @@ Make the onboarding guide steer experienced agent users toward the Sogni Creativ
 - Finish the Agent screenshot with a four-pixel dark inset, a one-pixel translucent mint frame, and a restrained shadow. Apply the same finish on the root-index feature for visual continuity.
 - Follow the screenshot with a dense wall of twelve native 16:9 results: eight optimized still images mixed with four short looping videos. Keep every tile at its source aspect ratio so none of the artwork is cropped.
 - Label the result wall `1 prompt · 30 assets generated in moments` to communicate batch scale and speed without adding explanatory copy.
+- Anchor the yellow result wall to the bottom edge of the onboarding feature so its last tile row meets the panel border exactly. Absorb any surplus column height above the result wall; never stretch or crop the 16:9 tiles.
 - Use a 4-by-3 result grid in the onboarding preface and a compact 6-by-2 grid on the root index. On narrow screens, place the media above the copy and use a readable 3- or 4-column grid based on available width.
 - Respect the existing page’s reduced-motion behavior by keeping all twelve tiles visible while replacing motion with the corresponding static frames when reduced motion is requested.
 
