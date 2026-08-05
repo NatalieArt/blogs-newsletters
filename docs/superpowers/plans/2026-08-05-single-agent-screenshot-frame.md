@@ -28,29 +28,34 @@
 - Consumes: Existing screenshot wrappers and child images on onboarding and the root index.
 - Produces: One wrapper-owned border, radius, clipping boundary, and shadow with a borderless child image.
 
-- [ ] **Step 1: Update the frame regression test**
+- [ ] **Step 1: Remove brittle source-style frame assertions**
 
-Replace the current screenshot-frame assertions in `tests/agent-preface.test.mjs` so they require the one-frame contract:
+The visual frame must be tested from rendered computed styles, not by matching CSS source text. Reduce the existing test to its remaining behavioral contract:
 
 ```js
-test('secondary route is text-only and Agent screenshots use one outer frame', () => {
+test('secondary route is text-only', () => {
   assert.match(onboardingHtml, /\.agent-preface-actions \.agent-secondary\{min-height:0;border:0;border-radius:0;background:transparent/);
-  assert.match(onboardingHtml, /\.agent-demo-shot\{[^}]*padding:4px[^}]*border:1px solid rgba\(0,255,157,\.3\)[^}]*border-radius:10px[^}]*box-shadow:/);
-  assert.match(onboardingHtml, /\.agent-demo-shot img\{[^}]*border:0[^}]*border-radius:6px[^}]*box-shadow:none/);
-  assert.match(indexHtml, /\.featured-guide-shot\s*\{[^}]*padding:4px;[^}]*border:1px solid rgba\(0,255,157,\.3\);[^}]*border-radius:10px;[^}]*box-shadow:/);
-  assert.match(indexHtml, /\.featured-guide-shot img\s*\{[^}]*border:0;[^}]*border-radius:6px;[^}]*box-shadow:none/);
 });
 ```
 
-- [ ] **Step 2: Verify the test fails for the current double frame**
+- [ ] **Step 2: Capture the failing rendered frame contract**
 
-Run:
+Open both pages in Chrome and evaluate the real wrappers and child images:
 
-```bash
-node --test --test-name-pattern="one outer frame" tests/agent-preface.test.mjs
+```js
+const wrapper = document.querySelector('.agent-demo-shot, .featured-guide-shot');
+const image = wrapper.querySelector('img');
+const wrapperStyle = getComputedStyle(wrapper);
+const imageStyle = getComputedStyle(image);
+({
+  wrapperBorder: wrapperStyle.borderTopWidth,
+  wrapperShadow: wrapperStyle.boxShadow,
+  imageBorder: imageStyle.borderTopWidth,
+  imageShadow: imageStyle.boxShadow,
+});
 ```
 
-Expected: FAIL because the wrapper has no border or shadow and the child image still owns both.
+Expected before implementation: the rendered contract is RED because `wrapperBorder` is `0px`, `wrapperShadow` is `none`, `imageBorder` is `1px`, and `imageShadow` is not `none`.
 
 - [ ] **Step 3: Implement the single-frame CSS**
 
@@ -89,4 +94,3 @@ Expected: all 6 tests pass. In Chrome on both `/onboarding/` and `/`, verify tha
 git add tests/agent-preface.test.mjs onboarding/index.html index.html
 git commit -m "fix: unify agent screenshot frame"
 ```
-
