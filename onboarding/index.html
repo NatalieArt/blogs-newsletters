@@ -48,6 +48,7 @@
   .wrap{max-width:var(--colw);margin:0 auto;padding:34px 22px 90px}
   .agent-first-wrap{max-width:var(--colw);margin:0 auto;padding:18px 22px 20px}
   .agent-first-wrap .agent-preface{margin:0}
+  .wrap > .agent-first-wrap{max-width:none;margin:0;padding:36px 0 12px}
 
   /* hero banner */
   .hero-banner{position:relative;margin:0 auto;max-width:var(--maxw);border-radius:var(--radius);
@@ -1201,55 +1202,7 @@ body[data-bn-current^="newsletter"]::after {
       <a class="bn-subscribe" href="https://www.sogni.ai/#wf-form-Marketing-Email-Signup" target="_blank" rel="noopener">Subscribe</a>
     </nav>
   </div>
-</div>
-
-
-
-<!-- AGENT-FIRST INTRO -->
-<div class="agent-first-wrap">
-<section class="agent-preface" aria-labelledby="agent-preface-title">
-  <span class="agent-preface-label">The fastest way to create with Sogni</span>
-  <div class="agent-preface-grid">
-    <div class="agent-preface-copy">
-      <h2 id="agent-preface-title">Already use Claude, Codex or Hermes? Start here.</h2>
-      <p>If you already have a powerful personal agent, the <strong>Sogni Creative Agent Skill</strong> is the easiest and most capable way into the platform. Ask in plain English and your agent plans the job, generates the assets, and delivers finished images, video, and music straight to your workspace.</p>
-      <div class="agent-command" aria-label="Installation command">
-        <code>npx setup-sogni-agent-skill</code>
-        <button class="agent-copy" type="button" aria-label="Copy install command">Copy</button>
-      </div>
-      <div class="agent-preface-actions">
-        <a class="agent-primary" href="https://www.sogni.ai/agent" target="_blank" rel="noopener">Explore Creative Agent <span aria-hidden="true">&nearr;</span></a>
-        <a class="agent-secondary" href="#s0">No agent? Continue with the guide <span aria-hidden="true">&darr;</span></a>
-      </div>
-    </div>
-    <div class="agent-preface-media">
-      <div class="agent-demo-shot">
-        <img src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-claude-batch.jpg" width="1400" height="754" loading="eager" fetchpriority="high" alt="Claude Code using the Sogni Creative Agent Skill to start a 30-image campaign batch">
-        <span class="agent-demo-label">Creative Agent &middot; Claude</span>
-      </div>
-      <div class="agent-result-wall">
-        <div class="agent-result-caption">1 prompt &middot; 30 assets generated in moments</div>
-        <div class="agent-result-grid" aria-label="Twelve images and animated results made with Sogni Creative Agent">
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-dog-crown.jpg" width="480" height="270" loading="eager" alt="Sogni result: dog wearing a crown"></div>
-          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-shark-ceo.jpg" aria-label="Animated Sogni result: shark CEO"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-shark-ceo.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-shark-ceo.jpg" width="480" height="270" loading="eager" alt="Sogni result: shark CEO"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-tv-popcorn.jpg" width="480" height="270" loading="eager" alt="Sogni result: retro television with popcorn"></div>
-          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-sumo-chihuahua.jpg" aria-label="Animated Sogni result: sumo wrestler and chihuahua"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-sumo-chihuahua.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-sumo-chihuahua.jpg" width="480" height="270" loading="eager" alt="Sogni result: sumo wrestler holding a chihuahua"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-mermaid-gym.jpg" width="480" height="270" loading="eager" alt="Sogni result: mermaid training at a gym"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-horse-selfie.jpg" width="480" height="270" loading="eager" alt="Sogni result: horse taking a selfie"></div>
-          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-rollerskate-nun.jpg" aria-label="Animated Sogni result: roller-skating nun"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-rollerskate-nun.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-rollerskate-nun.jpg" width="480" height="270" loading="eager" alt="Sogni result: roller-skating nun"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-popcorn-cannonball.jpg" width="480" height="270" loading="eager" alt="Sogni result: popcorn cannonball scene"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-breakdancer.jpg" width="480" height="270" loading="eager" alt="Sogni result: breakdancer in motion"></div>
-          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-boxing-ballerina.jpg" aria-label="Animated Sogni result: boxing ballerina"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-boxing-ballerina.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-boxing-ballerina.jpg" width="480" height="270" loading="eager" alt="Sogni result: boxing ballerina"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-pigeon-chess.jpg" width="480" height="270" loading="eager" alt="Sogni result: pigeon playing chess"></div>
-          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-chef-donuts.jpg" width="480" height="270" loading="eager" alt="Sogni result: chef surrounded by donuts"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- HERO BANNER -->
+</div><!-- HERO BANNER -->
 <div class="band" style="padding-top:26px">
   <div class="hero-banner">
     <img src="assets/hero.jpg" width="2048" height="935" alt="Two neon fashion portraits rendered from the same prompt by Krea 2 Turbo and FLUX.1 Krea in Sogni Create">
@@ -1300,6 +1253,51 @@ body[data-bn-current^="newsletter"]::after {
     <li><a href="#faq">FAQ</a></li>
   </ol>
 </div>
+
+<!-- AGENT-FIRST INTRO -->
+<div class="agent-first-wrap">
+<section class="agent-preface" aria-labelledby="agent-preface-title">
+  <span class="agent-preface-label">The fastest way to create with Sogni</span>
+  <div class="agent-preface-grid">
+    <div class="agent-preface-copy">
+      <h2 id="agent-preface-title">Already use Claude, Codex or Hermes? Start here.</h2>
+      <p>If you already have a powerful personal agent, the <strong>Sogni Creative Agent Skill</strong> is the easiest and most capable way into the platform. Ask in plain English and your agent plans the job, generates the assets, and delivers finished images, video, and music straight to your workspace.</p>
+      <div class="agent-command" aria-label="Installation command">
+        <code>npx setup-sogni-agent-skill</code>
+        <button class="agent-copy" type="button" aria-label="Copy install command">Copy</button>
+      </div>
+      <div class="agent-preface-actions">
+        <a class="agent-primary" href="https://www.sogni.ai/agent" target="_blank" rel="noopener">Explore Creative Agent <span aria-hidden="true">&nearr;</span></a>
+        <a class="agent-secondary" href="#s0">No agent? Continue with the guide <span aria-hidden="true">&darr;</span></a>
+      </div>
+    </div>
+    <div class="agent-preface-media">
+      <div class="agent-demo-shot">
+        <img src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-claude-batch.jpg" width="1400" height="754" loading="eager" fetchpriority="high" alt="Claude Code using the Sogni Creative Agent Skill to start a 30-image campaign batch">
+        <span class="agent-demo-label">Creative Agent &middot; Claude</span>
+      </div>
+      <div class="agent-result-wall">
+        <div class="agent-result-caption">1 prompt &middot; 30 assets generated in moments</div>
+        <div class="agent-result-grid" aria-label="Twelve images and animated results made with Sogni Creative Agent">
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-dog-crown.jpg" width="480" height="270" loading="eager" alt="Sogni result: dog wearing a crown"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-shark-ceo.jpg" aria-label="Animated Sogni result: shark CEO"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-shark-ceo.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-shark-ceo.jpg" width="480" height="270" loading="eager" alt="Sogni result: shark CEO"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-tv-popcorn.jpg" width="480" height="270" loading="eager" alt="Sogni result: retro television with popcorn"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-sumo-chihuahua.jpg" aria-label="Animated Sogni result: sumo wrestler and chihuahua"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-sumo-chihuahua.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-sumo-chihuahua.jpg" width="480" height="270" loading="eager" alt="Sogni result: sumo wrestler holding a chihuahua"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-mermaid-gym.jpg" width="480" height="270" loading="eager" alt="Sogni result: mermaid training at a gym"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-horse-selfie.jpg" width="480" height="270" loading="eager" alt="Sogni result: horse taking a selfie"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-rollerskate-nun.jpg" aria-label="Animated Sogni result: roller-skating nun"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-rollerskate-nun.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-rollerskate-nun.jpg" width="480" height="270" loading="eager" alt="Sogni result: roller-skating nun"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-popcorn-cannonball.jpg" width="480" height="270" loading="eager" alt="Sogni result: popcorn cannonball scene"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-breakdancer.jpg" width="480" height="270" loading="eager" alt="Sogni result: breakdancer in motion"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="auto" poster="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-boxing-ballerina.jpg" aria-label="Animated Sogni result: boxing ballerina"><source src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-result-boxing-ballerina.mp4" type="video/mp4"></video><img class="agent-result-poster" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-poster-boxing-ballerina.jpg" width="480" height="270" loading="eager" alt="Sogni result: boxing ballerina"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-pigeon-chess.jpg" width="480" height="270" loading="eager" alt="Sogni result: pigeon playing chess"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="https://natalieart.github.io/blogs-newsletters/assets/agent/agent-still-chef-donuts.jpg" width="480" height="270" loading="eager" alt="Sogni result: chef surrounded by donuts"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
 
 <h2 id="s0">First, which Sogni should you use?</h2>
 <p>Sogni is not a single app. It is a family of apps sharing one account, one gallery and one Spark balance, all rendering on the same <a href="https://www.sogni.ai/supernet" target="_blank" rel="noopener">Sogni Supernet</a>, so whatever you make in one shows up in the others. Here is the lineup, and then the short answer on where to start.</p>

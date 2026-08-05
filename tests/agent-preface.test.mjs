@@ -8,12 +8,15 @@ const repositoryRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const onboardingHtml = readFileSync(join(repositoryRoot, 'onboarding/index.html'), 'utf8');
 const indexHtml = readFileSync(join(repositoryRoot, 'index.html'), 'utf8');
 
-test('agent-first preface appears before the app chooser', () => {
+test('agent-first preface follows the article intro and precedes the app chooser', () => {
+  const contentsPosition = onboardingHtml.indexOf('class="toc"');
   const prefacePosition = onboardingHtml.indexOf('class="agent-preface"');
   const chooserPosition = onboardingHtml.indexOf('id="s0"');
 
+  assert.notEqual(contentsPosition, -1, 'missing article contents');
   assert.notEqual(prefacePosition, -1, 'missing agent-first preface');
   assert.notEqual(chooserPosition, -1, 'missing existing app chooser');
+  assert.ok(contentsPosition < prefacePosition, 'agent-first preface must follow the article intro');
   assert.ok(prefacePosition < chooserPosition, 'agent-first preface must precede the app chooser');
 });
 
