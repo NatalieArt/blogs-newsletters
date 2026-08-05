@@ -94,11 +94,9 @@
   .toc a:hover{color:var(--accent);text-decoration:none}
 
   /* agent-first preface */
-  .agent-preface{margin:36px 0 12px;border:1px solid rgba(0,255,157,.28);border-radius:var(--radius);
-    overflow:hidden;background:linear-gradient(135deg,rgba(0,255,157,.09),rgba(13,16,12,.98) 44%,#090c09);
-    box-shadow:0 26px 70px rgba(0,0,0,.26)}
-  .agent-preface-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);min-height:430px}
-  .agent-preface-copy{display:flex;flex-direction:column;justify-content:center;padding:34px 32px}
+  .agent-preface{margin:52px 0 34px;border:0;border-radius:0;overflow:visible;background:none;box-shadow:none}
+  .agent-preface-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;gap:32px;min-height:0}
+  .agent-preface-copy{display:flex;flex-direction:column;justify-content:center;padding:0}
   .agent-preface-label{display:block;margin:0 0 14px;color:var(--accent);font-size:11px;font-weight:800;
     letter-spacing:.18em;text-transform:uppercase}
   .agent-preface h2{display:block;margin:0 0 16px;font-size:clamp(25px,3.2vw,36px);line-height:1.08;
@@ -122,14 +120,14 @@
   .agent-preface-actions .agent-secondary{min-height:0;border:0;border-radius:0;background:transparent;color:var(--muted);
     padding:4px 0;justify-content:flex-start;font-weight:650}
   .agent-preface-actions .agent-secondary:hover{border-color:transparent;color:var(--accent);transform:none;text-decoration:underline}
-  .agent-preface-media{display:flex;flex-direction:column;min-width:0;background:#050705;border-left:1px solid var(--line)}
+  .agent-preface-media{display:flex;flex-direction:column;min-width:0;background:transparent;border:0}
   .agent-demo-shot{position:relative;padding:4px;background:linear-gradient(135deg,rgba(0,255,157,.18),#0b100c 44%,#202836);overflow:hidden}
   .agent-demo-shot img{display:block;width:100%;height:auto;object-fit:contain;border:1px solid rgba(0,255,157,.3);
     border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.32);cursor:zoom-in}
   .agent-demo-label{position:absolute;left:14px;bottom:12px;padding:7px 10px;border:1px solid rgba(255,255,255,.16);
     border-radius:999px;background:rgba(4,7,4,.82);color:#fff;backdrop-filter:blur(8px);
     font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-  .agent-result-wall{margin-top:auto;background:#050705;border-top:1px solid var(--line)}
+  .agent-result-wall{margin-top:12px;background:transparent;border-top:0}
   .agent-result-caption{padding:9px 12px 8px;color:var(--accent);font:800 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
     letter-spacing:.13em;text-align:center;text-transform:uppercase}
   .agent-result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:0 2px 2px;background:#050705}
@@ -137,12 +135,12 @@
   .agent-result-image,.agent-result-video,.agent-result-poster{display:block;width:100%;height:100%;aspect-ratio:16/9;object-fit:contain;background:#0a0d0a}
   .agent-result-poster{display:none}
   @media(max-width:860px){
-    .agent-preface-grid{grid-template-columns:1fr}
-    .agent-preface-media{order:-1;border-left:0;border-bottom:1px solid var(--line)}
+    .agent-preface-grid{grid-template-columns:1fr;gap:26px}
+    .agent-preface-media{order:-1;border:0}
   }
   @media(max-width:520px){
-    .agent-preface{margin-top:28px;border-radius:14px}
-    .agent-preface-copy{padding:24px 18px 22px}
+    .agent-preface{margin:36px 0 28px}
+    .agent-preface-copy{padding:0}
     .agent-preface h2{font-size:25px}
     .agent-preface p{font-size:14.5px}
     .agent-command{align-items:stretch;flex-direction:column;padding:13px;margin:20px 0 16px}
