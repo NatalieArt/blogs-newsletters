@@ -95,9 +95,9 @@
 
   /* agent-first preface */
   .agent-preface{margin:52px 0 34px;border:0;border-radius:0;overflow:visible;background:none;box-shadow:none}
-  .agent-preface-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;gap:32px;min-height:0}
-  .agent-preface-copy{display:flex;flex-direction:column;justify-content:center;padding:0}
-  .agent-preface-label{display:block;margin:0 0 14px;color:var(--accent);font-size:11px;font-weight:800;
+  .agent-preface-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:start;gap:32px;min-height:0}
+  .agent-preface-copy{display:flex;flex-direction:column;justify-content:flex-start;padding:0}
+  .agent-preface-label{display:block;margin:0 0 16px;color:var(--accent);font-size:11px;font-weight:800;
     letter-spacing:.18em;text-transform:uppercase}
   .agent-preface h2{display:block;margin:0 0 16px;font-size:clamp(25px,3.2vw,36px);line-height:1.08;
     letter-spacing:-.025em;scroll-margin-top:110px}
@@ -121,7 +121,7 @@
     padding:4px 0;justify-content:flex-start;font-weight:650}
   .agent-preface-actions .agent-secondary:hover{border-color:transparent;color:var(--accent);transform:none;text-decoration:underline}
   .agent-preface-media{display:flex;flex-direction:column;min-width:0;background:transparent;border:0}
-  .agent-demo-shot{position:relative;padding:4px;background:linear-gradient(135deg,rgba(0,255,157,.18),#0b100c 44%,#202836);overflow:hidden}
+  .agent-demo-shot{position:relative;padding:4px;border-radius:10px;background:linear-gradient(135deg,rgba(0,255,157,.18),#0b100c 44%,#202836);overflow:hidden}
   .agent-demo-shot img{display:block;width:100%;height:auto;object-fit:contain;border:1px solid rgba(0,255,157,.3);
     border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.32);cursor:zoom-in}
   .agent-demo-label{position:absolute;left:14px;bottom:12px;padding:7px 10px;border:1px solid rgba(255,255,255,.16);
@@ -1256,9 +1256,9 @@ body[data-bn-current^="newsletter"]::after {
 </div>
 
 <section class="agent-preface" aria-labelledby="agent-preface-title">
+  <span class="agent-preface-label">The fastest way to create with Sogni</span>
   <div class="agent-preface-grid">
     <div class="agent-preface-copy">
-      <span class="agent-preface-label">The fastest way to create with Sogni</span>
       <h2 id="agent-preface-title">Already use Claude, Codex or Hermes? Start here.</h2>
       <p>If you already have a powerful personal agent, the <strong>Sogni Creative Agent Skill</strong> is the easiest and most capable way into the platform. Ask in plain English and your agent plans the job, generates the assets, and delivers finished images, video, and music straight to your workspace.</p>
       <div class="agent-command" aria-label="Installation command">
