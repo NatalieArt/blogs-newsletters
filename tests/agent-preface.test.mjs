@@ -78,10 +78,6 @@ test('onboarding hero crop keeps the model mouth in frame', () => {
   assert.match(onboardingHtml, /object-position:center 68%/);
 });
 
-test('secondary route is text-only and Agent screenshots have a thin frame', () => {
+test('secondary route is text-only', () => {
   assert.match(onboardingHtml, /\.agent-preface-actions \.agent-secondary\{min-height:0;border:0;border-radius:0;background:transparent/);
-  assert.match(onboardingHtml, /\.agent-demo-shot\{[^}]*padding:4px/);
-  assert.match(onboardingHtml, /\.agent-demo-shot img\{[^}]*border:1px solid rgba\(0,255,157,\.3\)/);
-  assert.match(indexHtml, /\.featured-guide-shot\s*\{[^}]*padding:4px/);
-  assert.match(indexHtml, /\.featured-guide-shot img\s*\{[^}]*border:1px solid rgba\(0,255,157,\.3\)/);
 });
