@@ -11,7 +11,7 @@ Make the onboarding guide steer experienced agent users toward the Sogni Creativ
 - Describe the Skill as the fastest and most powerful way to create images, video, and music with Sogni because the user can ask in plain English while the agent plans, generates, and delivers the media.
 - Show the exact installation command `npx setup-sogni-agent-skill` in a copyable command component.
 - Link the primary call to action to `https://www.sogni.ai/agent` in a new tab.
-- End the preface with a clear handoff: readers without a personal agent should continue into the existing guide below.
+- End the preface with a clear handoff: readers without a personal agent should continue into the existing guide below. Present this secondary route as a plain text link with no border, background, rounded container, or button-height treatment.
 - Keep the existing Creative Agent row in the application comparison table so the reference remains complete.
 
 ## Visual treatment
@@ -19,6 +19,7 @@ Make the onboarding guide steer experienced agent users toward the Sogni Creativ
 - Use the existing Sogni dark editorial palette, mint accent, panel borders, rounded corners, and typography.
 - Build a wide two-column feature block: copy and command on the left, a readable Creative Agent workflow on the right.
 - Show one optimized screenshot of Claude invoking the Sogni Creative Agent Skill so the agent workflow is immediately recognizable.
+- Finish the Agent screenshot with a four-pixel dark inset, a one-pixel translucent mint frame, and a restrained shadow. Apply the same finish on the root-index feature for visual continuity.
 - Follow the screenshot with a dense wall of twelve native 16:9 results: eight optimized still images mixed with four short looping videos. Keep every tile at its source aspect ratio so none of the artwork is cropped.
 - Label the result wall `1 prompt · 30 assets generated in moments` to communicate batch scale and speed without adding explanatory copy.
 - Use a 4-by-3 result grid in the onboarding preface and a compact 6-by-2 grid on the root index. On narrow screens, place the media above the copy and use a readable 3- or 4-column grid based on available width.
