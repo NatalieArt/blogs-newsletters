@@ -18,9 +18,10 @@ Make the onboarding guide steer experienced agent users toward the Sogni Creativ
 
 - Use the existing Sogni dark editorial palette, mint accent, and typography.
 - Present the onboarding preface as an open editorial section with no shared outer border, rounded container, background panel, or large shadow. Separate the copy and media columns with whitespace instead of a divider so the section follows the visual rhythm of the guide below it.
+- Place the small mint `The fastest way to create with Sogni` eyebrow above the entire two-column layout. On desktop, align the top edge of the main Agent heading with the top edge of the Claude screenshot; neither column should be vertically centered against the full height of the other.
 - Build a wide two-column feature block: copy and command on the left, a readable Creative Agent workflow on the right.
 - Show one optimized screenshot of Claude invoking the Sogni Creative Agent Skill so the agent workflow is immediately recognizable.
-- Finish the Agent screenshot with a four-pixel dark inset, a one-pixel translucent mint frame, and a restrained shadow. Apply the same finish on the root-index feature for visual continuity.
+- Finish the Agent screenshot with a four-pixel dark inset, a one-pixel translucent mint frame, and a restrained shadow. Round and clip the outer screenshot wrapper as well as the image so the framed screenshot has no square background corners. Apply the same finish on the root-index feature for visual continuity.
 - Follow the screenshot with a dense wall of twelve native 16:9 results: eight optimized still images mixed with four short looping videos. Keep every tile at its source aspect ratio so none of the artwork is cropped.
 - Label the result wall `1 prompt · 30 assets generated in moments` to communicate batch scale and speed without adding explanatory copy.
 - Place the yellow result wall below the screenshot with a small, consistent gap and no enclosing panel edge. Never stretch or crop the 16:9 tiles.
