@@ -50,7 +50,7 @@
   /* hero banner */
   .hero-banner{position:relative;margin:0 auto;max-width:var(--maxw);border-radius:var(--radius);
     overflow:hidden;border:1px solid var(--line);background:#050704}
-  .hero-banner img{width:100%;height:clamp(300px,50vh,520px);object-fit:cover;object-position:center 42%}
+  .hero-banner img{width:100%;height:clamp(300px,50vh,520px);object-fit:cover;object-position:center 68%}
   .hero-banner .hero-scrim{position:absolute;inset:0;pointer-events:none;
     background:linear-gradient(180deg,rgba(4,6,3,0) 0%,rgba(4,6,3,0) 46%,rgba(4,6,3,.28) 74%,rgba(4,6,3,.62) 100%)}
   .hero-banner .hero-cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,4.4vw,48px)}
@@ -127,8 +127,13 @@
   .agent-demo-label{position:absolute;left:14px;bottom:12px;padding:7px 10px;border:1px solid rgba(255,255,255,.16);
     border-radius:999px;background:rgba(4,7,4,.82);color:#fff;backdrop-filter:blur(8px);
     font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-  .agent-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;padding:3px;background:#050705}
-  .agent-result-video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0a0d0a}
+  .agent-result-wall{background:#050705;border-top:1px solid var(--line)}
+  .agent-result-caption{padding:9px 12px 8px;color:var(--accent);font:800 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+    letter-spacing:.13em;text-align:center;text-transform:uppercase}
+  .agent-result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:0 2px 2px;background:#050705}
+  .agent-result-tile{position:relative;overflow:hidden;aspect-ratio:16/9;background:#0a0d0a}
+  .agent-result-image,.agent-result-video,.agent-result-poster{display:block;width:100%;height:100%;aspect-ratio:16/9;object-fit:contain;background:#0a0d0a}
+  .agent-result-poster{display:none}
   @media(max-width:860px){
     .agent-preface-grid{grid-template-columns:1fr}
     .agent-preface-media{order:-1;border-left:0;border-bottom:1px solid var(--line)}
@@ -144,9 +149,12 @@
     .agent-preface-actions{align-items:stretch;flex-direction:column}
     .agent-preface-actions a{width:100%}
     .agent-demo-label{left:10px;bottom:9px;font-size:8px}
+    .agent-result-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .agent-result-caption{font-size:8px}
   }
   @media(prefers-reduced-motion:reduce){
-    .agent-result-grid{display:none}
+    .agent-result-video{display:none}
+    .agent-result-poster{display:block}
   }
 
   /* figures */
@@ -207,7 +215,7 @@
     .band,.wrap,.pills{padding-left:14px;padding-right:14px}
     .wrap{padding-top:26px;padding-bottom:64px}
     .hero-banner{border-radius:14px}
-    .hero-banner img{height:clamp(240px,70vw,300px);object-position:center 42%}
+    .hero-banner img{height:clamp(240px,70vw,300px);object-position:center 68%}
     .hero-banner .hero-cap{padding:18px}
     .hero-banner .hero-h{font-size:clamp(25px,8vw,34px);max-width:18ch}
     .hero-banner .hero-eyebrow{font-size:10px;margin-bottom:8px}
@@ -1264,13 +1272,24 @@ body[data-bn-current^="newsletter"]::after {
     <div class="agent-preface-media">
       <div class="agent-demo-shot">
         <img src="../assets/agent/agent-claude-batch.jpg" width="1400" height="754" loading="lazy" alt="Claude Code using the Sogni Creative Agent Skill to start a 30-image campaign batch">
-        <span class="agent-demo-label">One prompt &middot; animated results</span>
+        <span class="agent-demo-label">Creative Agent &middot; Claude</span>
       </div>
-      <div class="agent-result-grid" aria-label="Four animated results made with Sogni Creative Agent">
-        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: shark CEO"><source src="../assets/agent/agent-result-shark-ceo.mp4" type="video/mp4"></video>
-        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: sumo wrestler and chihuahua"><source src="../assets/agent/agent-result-sumo-chihuahua.mp4" type="video/mp4"></video>
-        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: roller-skating nun"><source src="../assets/agent/agent-result-rollerskate-nun.mp4" type="video/mp4"></video>
-        <video class="agent-result-video" autoplay loop muted playsinline preload="metadata" aria-label="Animated Sogni result: boxing ballerina"><source src="../assets/agent/agent-result-boxing-ballerina.mp4" type="video/mp4"></video>
+      <div class="agent-result-wall">
+        <div class="agent-result-caption">1 prompt &middot; 30 assets generated in moments</div>
+        <div class="agent-result-grid" aria-label="Twelve images and animated results made with Sogni Creative Agent">
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-dog-crown.jpg" width="480" height="270" loading="lazy" alt="Sogni result: dog wearing a crown"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="metadata" poster="../assets/agent/agent-poster-shark-ceo.jpg" aria-label="Animated Sogni result: shark CEO"><source src="../assets/agent/agent-result-shark-ceo.mp4" type="video/mp4"></video><img class="agent-result-poster" src="../assets/agent/agent-poster-shark-ceo.jpg" width="480" height="270" loading="lazy" alt="Sogni result: shark CEO"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-tv-popcorn.jpg" width="480" height="270" loading="lazy" alt="Sogni result: retro television with popcorn"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="metadata" poster="../assets/agent/agent-poster-sumo-chihuahua.jpg" aria-label="Animated Sogni result: sumo wrestler and chihuahua"><source src="../assets/agent/agent-result-sumo-chihuahua.mp4" type="video/mp4"></video><img class="agent-result-poster" src="../assets/agent/agent-poster-sumo-chihuahua.jpg" width="480" height="270" loading="lazy" alt="Sogni result: sumo wrestler holding a chihuahua"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-mermaid-gym.jpg" width="480" height="270" loading="lazy" alt="Sogni result: mermaid training at a gym"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-horse-selfie.jpg" width="480" height="270" loading="lazy" alt="Sogni result: horse taking a selfie"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="metadata" poster="../assets/agent/agent-poster-rollerskate-nun.jpg" aria-label="Animated Sogni result: roller-skating nun"><source src="../assets/agent/agent-result-rollerskate-nun.mp4" type="video/mp4"></video><img class="agent-result-poster" src="../assets/agent/agent-poster-rollerskate-nun.jpg" width="480" height="270" loading="lazy" alt="Sogni result: roller-skating nun"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-popcorn-cannonball.jpg" width="480" height="270" loading="lazy" alt="Sogni result: popcorn cannonball scene"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-breakdancer.jpg" width="480" height="270" loading="lazy" alt="Sogni result: breakdancer in motion"></div>
+          <div class="agent-result-tile agent-result-tile-video"><video class="agent-result-video" autoplay loop muted playsinline preload="metadata" poster="../assets/agent/agent-poster-boxing-ballerina.jpg" aria-label="Animated Sogni result: boxing ballerina"><source src="../assets/agent/agent-result-boxing-ballerina.mp4" type="video/mp4"></video><img class="agent-result-poster" src="../assets/agent/agent-poster-boxing-ballerina.jpg" width="480" height="270" loading="lazy" alt="Sogni result: boxing ballerina"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-pigeon-chess.jpg" width="480" height="270" loading="lazy" alt="Sogni result: pigeon playing chess"></div>
+          <div class="agent-result-tile"><img class="agent-result-image" src="../assets/agent/agent-still-chef-donuts.jpg" width="480" height="270" loading="lazy" alt="Sogni result: chef surrounded by donuts"></div>
+        </div>
       </div>
     </div>
   </div>
