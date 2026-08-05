@@ -22,7 +22,7 @@ test('agent-first preface exposes the install path and both routes', () => {
   assert.match(onboardingHtml, /aria-label="Copy install command"/);
   assert.match(onboardingHtml, /href="https:\/\/www\.sogni\.ai\/agent"/);
   assert.match(onboardingHtml, /href="#s0"/);
-  assert.match(onboardingHtml, /src="\.\.\/assets\/agent\/agent-claude-batch\.jpg"/);
+  assert.match(onboardingHtml, /src="https:\/\/natalieart\.github\.io\/blogs-newsletters\/assets\/agent\/agent-claude-batch\.jpg"/);
 });
 
 test('root index features onboarding before preserving the three-card grid', () => {
