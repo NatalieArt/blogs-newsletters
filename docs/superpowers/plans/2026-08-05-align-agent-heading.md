@@ -21,41 +21,30 @@
 ### Task 1: Align and round the onboarding Agent header
 
 **Files:**
-- Modify: `tests/agent-preface.test.mjs`
 - Modify: `onboarding/index.html:97-135,1260-1266`
 
 **Interfaces:**
 - Consumes: Existing `.agent-preface-label`, `.agent-preface-grid`, `.agent-preface-copy`, and `.agent-demo-shot` elements.
 - Produces: A section-level eyebrow followed by a top-aligned two-column grid and a rounded, clipped screenshot wrapper.
 
-- [ ] **Step 1: Add the failing regression test**
+- [ ] **Step 1: Capture the failing rendered contract in Chrome**
 
-Append this test to `tests/agent-preface.test.mjs`:
+Open the onboarding page in Chrome and evaluate the actual layout:
 
 ```js
-test('agent heading aligns with a fully rounded Claude screenshot', () => {
-  const eyebrowPosition = onboardingHtml.indexOf('class="agent-preface-label"');
-  const gridPosition = onboardingHtml.indexOf('class="agent-preface-grid"');
-  const copyPosition = onboardingHtml.indexOf('class="agent-preface-copy"');
-
-  assert.ok(eyebrowPosition < gridPosition, 'eyebrow must sit above the two-column grid');
-  assert.ok(gridPosition < copyPosition, 'copy must remain inside the grid');
-  assert.match(onboardingHtml, /\.agent-preface-grid\{[^}]*align-items:start/);
-  assert.match(onboardingHtml, /\.agent-demo-shot\{[^}]*border-radius:10px[^}]*overflow:hidden/);
+const heading = document.querySelector('#agent-preface-title');
+const shot = document.querySelector('.agent-demo-shot');
+const eyebrow = document.querySelector('.agent-preface-label');
+({
+  eyebrowParent: eyebrow.parentElement.className,
+  topDifference: Math.abs(heading.getBoundingClientRect().top - shot.getBoundingClientRect().top),
+  wrapperRadius: getComputedStyle(shot).borderRadius,
 });
 ```
 
-- [ ] **Step 2: Run the focused test and verify RED**
+Expected before implementation: the contract is RED because `eyebrowParent` is `agent-preface-copy`, `topDifference` is greater than `1`, and `wrapperRadius` is `0px`.
 
-Run:
-
-```bash
-node --test --test-name-pattern="agent heading aligns" tests/agent-preface.test.mjs
-```
-
-Expected: FAIL because the eyebrow is inside the grid, the grid uses `align-items:center`, and the screenshot wrapper has no border radius.
-
-- [ ] **Step 3: Implement the minimal markup and CSS change**
+- [ ] **Step 2: Implement the minimal markup and CSS change**
 
 Move the existing eyebrow immediately inside `.agent-preface`, before `.agent-preface-grid`. Change the relevant CSS declarations to:
 
@@ -66,7 +55,7 @@ Move the existing eyebrow immediately inside `.agent-preface`, before `.agent-pr
 .agent-demo-shot{position:relative;padding:4px;border-radius:10px;background:linear-gradient(135deg,rgba(0,255,157,.18),#0b100c 44%,#202836);overflow:hidden}
 ```
 
-- [ ] **Step 4: Run regression tests and browser QA**
+- [ ] **Step 3: Run regression tests and browser QA**
 
 Run:
 
@@ -75,12 +64,11 @@ node --test tests/agent-preface.test.mjs
 git diff --check
 ```
 
-Expected: all 7 tests pass. In Chrome, verify the heading and screenshot top edges differ by no more than `1px`, the wrapper radius is `10px`, horizontal overflow is `0`, and the mobile media remains above the copy.
+Expected: all 6 tests pass. In Chrome, run the Step 1 evaluation again and verify `eyebrowParent` is `agent-preface`, the heading and screenshot top edges differ by no more than `1px`, the wrapper radius is `10px`, horizontal overflow is `0`, and the mobile media remains above the copy.
 
-- [ ] **Step 5: Commit the implementation**
+- [ ] **Step 4: Commit the implementation**
 
 ```bash
-git add tests/agent-preface.test.mjs onboarding/index.html
+git add onboarding/index.html
 git commit -m "fix: align agent heading with screenshot"
 ```
-
